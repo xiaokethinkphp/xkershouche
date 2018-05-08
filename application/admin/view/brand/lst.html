@@ -1,0 +1,116 @@
+{extend name="base" /}
+{block name="title"}后台首页{/block}
+    {block name="right"}
+        <div class="row J_mainContent" id="content-main" style="overflow-y:scroll">
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>二手车管理</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <strong>品牌管理</strong>
+                        </li>
+                        <li>
+                            品牌列表
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row ibox-content">
+                <div class="col-sm-2">
+                    <button class="btn btn-success" type="button" id="addBrand">
+                        <i class="fa fa-plus-square"></i>&nbsp;&nbsp;
+                        <span class="bold">添加母品牌</span>
+                    </button>
+                </div>
+                <div class="col-sm-10">
+                    <ul class="list-unstyled list-inline">
+                        <li><a href="{:url('admin/brand/lst',array('initial'=>'A'))}">A</a></li>
+                        <li><a href="{:url('admin/brand/lst',array('initial'=>'B'))}">B</a></li>
+                        <li><a href="{:url('admin/brand/lst',array('initial'=>'C'))}">C</a></li>
+                        <li><a href="{:url('admin/brand/lst',array('initial'=>'D'))}">D</a></li>
+                        <li><a href="{:url('admin/brand/lst',array('initial'=>'E'))}">E</a></li>
+                        <li><a href="#">F</a></li>
+                        <li><a href="#">G</a></li>
+                        <li><a href="#">H</a></li>
+                        <li><a href="#">I</a></li>
+                        <li><a href="#">J</a></li>
+                        <li><a href="#">K</a></li>
+                        <li><a href="#">L</a></li>
+                        <li><a href="#">M</a></li>
+                        <li><a href="#">N</a></li>
+                        <li><a href="#">O</a></li>
+                        <li><a href="#">P</a></li>
+                        <li><a href="#">Q</a></li>
+                        <li><a href="#">R</a></li>
+                        <li><a href="#">S</a></li>
+                        <li><a href="#">T</a></li>
+                        <li><a href="#">U</a></li>
+                        <li><a href="#">V</a></li>
+                        <li><a href="#">W</a></li>
+                        <li><a href="#">X</a></li>
+                        <li><a href="#">Y</a></li>
+                        <li><a href="#">Z</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>品牌名称</th>
+                                        <th>是否流行</th>
+                                        <th>标志</th>
+                                        <th>首字母</th>
+                                        <th>排序</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {volist name="brand_model_all" id="vo"}
+                                    <tr>
+                                        <td>{$vo.id}</td>
+                                        <td>{$vo.name}</td>
+                                        <td>
+                                            {if $vo.type==1}
+                                            是
+                                            {else/}
+                                            否
+                                            {/if}
+                                        </td>
+                                        <td><img src="__UPLOADS__/brand/{$vo.thumb}" alt=""></td>
+                                        <td>{$vo.initial}</td>
+                                        <td><input type="text" value="{$vo.order}"></td>
+                                        <td><a href="{:url('admin/brand/add',array('pid'=>$vo.id,'level'=>2))}">
+                                            <button class="btn btn-success btn-sm" type="button" id="addBrand">
+                                                <span class="bold">添加子品牌</span>
+                                            </button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {/volist}
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/block}
+    {block name="js"}
+    {__block__}
+    <script src="__ADMIN__/js/hAdmin.js?v=4.1.0"></script>
+    <script type="text/javascript" src="__ADMIN__/js/index.js"></script>
+    <script src="__ADMIN__/js/plugins/pace/pace.min.js"></script>
+    <script type="text/javascript">
+        $("#addBrand").click(function(event) {
+            /* Act on the event */
+            window.location.href = "{:url('admin/brand/add',array('level'=>1))}";
+        });
+    </script>
+    {/block}

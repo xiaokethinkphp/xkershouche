@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{block name="title"}{/block}</title>
+    {block name="css"}{include file="public/css"}{/block}
+</head>
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow-y:hidden">
+    <div id="wrapper">
+        {block name="left"}{include file="public/left"}{/block}
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            {block name="top"}{include file="public/top"}{/block}
+            {block name="right"}{/block}
+        </div>
+    </div>
+    {block name="js"}{include file="public/js"}{/block}
+</body>
+</html>
