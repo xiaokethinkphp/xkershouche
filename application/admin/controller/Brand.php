@@ -18,11 +18,20 @@ class Brand extends Controller
     {
         // 获取全部品牌的信息
         $brand_model_all = $this->brand_model
-        ->where('initial',$initial)
         ->order('type desc')->order('order desc')
         ->select();
+        // 将得到的信息转换成数组
+        $brand_model_all_toArray = $brand_model_all->toArray();
+        // 进行无限级分类
+        $brand_list = getChildren($brand_model_all_toArray);
+        // 将其中首字母不是$initial的清除掉
+        foreach ($brand_list as $key => $value) {
+            if ($value['initial']!=$initial) {
+                unset($brand_list[$key]);
+            }
+        }
         // 将变量分配到模板上
-        $this->assign("brand_model_all",$brand_model_all->toArray());
+        $this->assign("brand_list",$brand_list);
         return view();
     }
     // 添加品牌界面

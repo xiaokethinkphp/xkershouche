@@ -71,7 +71,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {volist name="brand_model_all" id="vo"}
+                                    {volist name="brand_list" id="vo"}
                                     <tr>
                                         <td>{$vo.id}</td>
                                         <td>{$vo.name}</td>
@@ -83,7 +83,7 @@
                                             {/if}
                                         </td>
                                         <td><img src="__UPLOADS__/brand/{$vo.thumb}" alt=""></td>
-                                        <td>{$vo.initial}</td>
+                                        <td></td>
                                         <td><input type="text" value="{$vo.order}"></td>
                                         <td><a href="{:url('admin/brand/add',array('pid'=>$vo.id,'level'=>2))}">
                                             <button class="btn btn-success btn-sm" type="button" id="addBrand">
@@ -92,6 +92,50 @@
                                             </a>
                                         </td>
                                     </tr>
+                                    {volist name="$vo.children" id="vo1"}
+                                    <tr>
+                                        <td>{$vo1.id}</td>
+                                        <td>|——{$vo1.name}</td>
+                                        <td>
+                                            {if $vo1.type==1}
+                                            是
+                                            {else/}
+                                            否
+                                            {/if}
+                                        </td>
+                                        <td></td>
+                                        <td>{$vo1.initial}</td>
+                                        <td><input type="text" value="{$vo1.order}"></td>
+                                        <td><a href="{:url('admin/brand/add',array('pid'=>$vo1.id,'level'=>3))}">
+                                            <button class="btn btn-success btn-sm" type="button" id="addBrand">
+                                                <span class="bold">添加子品牌</span>
+                                            </button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {volist name="$vo1.children" id="vo2"}
+                                    <tr>
+                                        <td>{$vo2.id}</td>
+                                        <td>|————{$vo2.name}</td>
+                                        <td>
+                                            {if $vo2.type==1}
+                                            是
+                                            {else/}
+                                            否
+                                            {/if}
+                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><input type="text" value="{$vo2.order}"></td>
+                                        <td><a href="{:url('admin/brand/add',array('pid'=>$vo2.id,'level'=>3))}">
+                                            <button class="btn btn-success btn-sm" type="button" id="addBrand">
+                                                <span class="bold">添加子品牌</span>
+                                            </button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {/volist}
+                                    {/volist}
                                     {/volist}
                                 </tbody>
                             </table>

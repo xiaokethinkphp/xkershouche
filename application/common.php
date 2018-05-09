@@ -10,3 +10,15 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+/*由父类得到全部子类，得到一个多维数组*/
+function getChildren($list,$pid=0)
+{
+    $arr = array();
+    foreach ($list as $key => $value) {
+        if ($value['pid'] == $pid) {
+            $value['children'] = getChildren($list,$value['id']);
+            $arr[] = $value;
+        }
+    }
+    return $arr;
+}
