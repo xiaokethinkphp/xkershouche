@@ -77,9 +77,9 @@
                                         <td>{$vo.name}</td>
                                         <td>
                                             {if $vo.type==1}
-                                            是
+                                            <button type="button" class="btn btn-success type">是</button>
                                             {else/}
-                                            否
+                                            <button type="button" class="btn btn-danger type">否</button>
                                             {/if}
                                         </td>
                                         <td><img src="__UPLOADS__/brand/{$vo.thumb}" alt=""></td>
@@ -98,9 +98,9 @@
                                         <td>|——{$vo1.name}</td>
                                         <td>
                                             {if $vo1.type==1}
-                                            是
+                                            <button type="button" class="btn btn-success type">是</button>
                                             {else/}
-                                            否
+                                            <button type="button" class="btn btn-danger type">否</button>
                                             {/if}
                                         </td>
                                         <td></td>
@@ -119,9 +119,9 @@
                                         <td>|————{$vo2.name}</td>
                                         <td>
                                             {if $vo2.type==1}
-                                            是
+                                            <button type="button" class="btn btn-success type">是</button>
                                             {else/}
-                                            否
+                                            <button type="button" class="btn btn-danger type">否</button>
                                             {/if}
                                         </td>
                                         <td></td>
@@ -149,12 +149,29 @@
     {block name="js"}
     {__block__}
     <script src="__ADMIN__/js/hAdmin.js?v=4.1.0"></script>
-    <script type="text/javascript" src="__ADMIN__/js/index.js"></script>
     <script src="__ADMIN__/js/plugins/pace/pace.min.js"></script>
     <script type="text/javascript">
         $("#addBrand").click(function(event) {
             /* Act on the event */
             window.location.href = "{:url('admin/brand/add',array('level'=>1))}";
+        });
+
+        $(".type").click(function(event) {
+            /* Act on the event */
+            var id = $(this).parents('tr').find("td:eq(0)").html();
+            $.ajax({
+                url: '{:url("admin/brand/changeTypeAjax")}',
+                type: 'post',
+                data: {id: id}
+            })
+            .done(function(data) {
+                if(data==1){
+                    alert("数据修改成功");
+                    window.location.reload();
+                } else {
+                    alert("数据修改失败");
+                }
+            });
         });
     </script>
     {/block}

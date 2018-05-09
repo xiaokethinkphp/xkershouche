@@ -123,4 +123,29 @@ class Brand extends Controller
         }
 
     }
+
+    // 使用Ajax进行品牌类型的更新
+    public function changeTypeAjax()
+    {
+        // 判断是否是ajax请求
+        if (request()->isAjax()) {
+            // 获取POST信息
+            $post = request()->post();
+            // 获取对应品牌的信息
+            $brand_find = db("brand")->find($post['id']);
+            // 进行品牌信息的更新
+            $brand_update_result = db("brand")->where("id",$post['id'])->update([
+                'type'  =>  ($brand_find['type'] xor 1)
+            ]);
+            if ($brand_update_result) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } else {
+            // 不是则跳转到品牌列表界面
+            $this->redirect("admin/brand/lst");
+        }
+    }
+
 }
