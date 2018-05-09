@@ -148,4 +148,25 @@ class Brand extends Controller
         }
     }
 
+    public function changeOrderAjax()
+    {
+        // 判断是否是ajax请求
+        if (request()->isAjax()) {
+            // 获取POST信息
+            $post = request()->post();
+            // 进行品牌信息的更新
+            $brand_update_result = db("brand")->where("id",$post['id'])->update([
+                'order'  =>  $post['order']
+            ]);
+            if ($brand_update_result) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } else {
+            // 不是则跳转到品牌列表界面
+            $this->redirect("admin/brand/lst");
+        }
+    }
+
 }

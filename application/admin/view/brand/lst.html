@@ -84,7 +84,10 @@
                                         </td>
                                         <td><img src="__UPLOADS__/brand/{$vo.thumb}" alt=""></td>
                                         <td></td>
-                                        <td><input type="text" value="{$vo.order}"></td>
+                                        <td>
+                                            <input type="text" value="{$vo.order}">
+                                            <button type="button" class="btn btn-success btn-sm order">修改</button>
+                                        </td>
                                         <td><a href="{:url('admin/brand/add',array('pid'=>$vo.id,'level'=>2))}">
                                             <button class="btn btn-success btn-sm" type="button" id="addBrand">
                                                 <span class="bold">添加子品牌</span>
@@ -105,7 +108,10 @@
                                         </td>
                                         <td></td>
                                         <td>{$vo1.initial}</td>
-                                        <td><input type="text" value="{$vo1.order}"></td>
+                                        <td>
+                                            <input type="text" value="{$vo1.order}">
+                                            <button type="button" class="btn btn-success btn-sm order">修改</button>
+                                        </td>
                                         <td><a href="{:url('admin/brand/add',array('pid'=>$vo1.id,'level'=>3))}">
                                             <button class="btn btn-success btn-sm" type="button" id="addBrand">
                                                 <span class="bold">添加子品牌</span>
@@ -126,7 +132,10 @@
                                         </td>
                                         <td></td>
                                         <td></td>
-                                        <td><input type="text" value="{$vo2.order}"></td>
+                                        <td>
+                                            <input type="text" value="{$vo2.order}">
+                                            <button type="button" class="btn btn-success btn-sm order">修改</button>
+                                        </td>
                                         <td><a href="{:url('admin/brand/add',array('pid'=>$vo2.id,'level'=>3))}">
                                             <button class="btn btn-success btn-sm" type="button" id="addBrand">
                                                 <span class="bold">添加子品牌</span>
@@ -163,6 +172,25 @@
                 url: '{:url("admin/brand/changeTypeAjax")}',
                 type: 'post',
                 data: {id: id}
+            })
+            .done(function(data) {
+                if(data==1){
+                    alert("数据修改成功");
+                    window.location.reload();
+                } else {
+                    alert("数据修改失败");
+                }
+            });
+        });
+
+        $(".order").click(function(event) {
+            /* Act on the event */
+            var id = $(this).parents('tr').find("td:eq(0)").html();
+            var order = $(this).prev(":input").val();
+            $.ajax({
+                url: '{:url("admin/brand/changeOrderAjax")}',
+                type: 'post',
+                data: {id: id,order:order}
             })
             .done(function(data) {
                 if(data==1){
