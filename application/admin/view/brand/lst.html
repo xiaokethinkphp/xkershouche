@@ -88,11 +88,19 @@
                                             <input type="text" value="{$vo.order}">
                                             <button type="button" class="btn btn-success btn-sm order">修改</button>
                                         </td>
-                                        <td><a href="{:url('admin/brand/add',array('pid'=>$vo.id,'level'=>2))}">
-                                            <button class="btn btn-success btn-sm" type="button" id="addBrand">
-                                                <span class="bold">添加子品牌</span>
-                                            </button>
-                                            </a>
+                                        <td>
+                                            <div class="btn-group open">
+                                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="{:url('admin/brand/add',array('pid'=>$vo.id,'level'=>2))}">添加子品牌</a>
+                                                    </li>
+                                                    <li><a href="{:url('admin/brand/upd',array('id'=>$vo.id))}">修改</a>
+                                                    </li>
+                                                    <li><a href="buttons.html#">删除</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </td>
                                     </tr>
                                     {volist name="$vo.children" id="vo1"}
@@ -112,11 +120,19 @@
                                             <input type="text" value="{$vo1.order}">
                                             <button type="button" class="btn btn-success btn-sm order">修改</button>
                                         </td>
-                                        <td><a href="{:url('admin/brand/add',array('pid'=>$vo1.id,'level'=>3))}">
-                                            <button class="btn btn-success btn-sm" type="button" id="addBrand">
-                                                <span class="bold">添加子品牌</span>
-                                            </button>
-                                            </a>
+                                        <td>
+                                            <div class="btn-group open">
+                                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="{:url('admin/brand/add',array('pid'=>$vo1.id,'level'=>3))}">添加子品牌</a>
+                                                    </li>
+                                                    <li><a href="{:url('admin/brand/upd',array('id'=>$vo1.id))}">修改</a>
+                                                    </li>
+                                                    <li><a href="buttons.html#">删除</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </td>
                                     </tr>
                                     {volist name="$vo1.children" id="vo2"}
@@ -136,11 +152,17 @@
                                             <input type="text" value="{$vo2.order}">
                                             <button type="button" class="btn btn-success btn-sm order">修改</button>
                                         </td>
-                                        <td><a href="{:url('admin/brand/add',array('pid'=>$vo2.id,'level'=>3))}">
-                                            <button class="btn btn-success btn-sm" type="button" id="addBrand">
-                                                <span class="bold">添加子品牌</span>
-                                            </button>
-                                            </a>
+                                        <td>
+                                            <div class="btn-group open">
+                                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="{:url('admin/brand/upd',array('id'=>$vo2.id))}">修改</a>
+                                                    </li>
+                                                    <li><a href="buttons.html#">删除</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </td>
                                     </tr>
                                     {/volist}

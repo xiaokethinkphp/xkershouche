@@ -114,8 +114,15 @@ class Brand extends Controller
         if (request()->isAjax()) {
             // 获取POST信息
             $post = request()->post();
-            // 查询品牌信息
-            $brand_find_result = db('brand')->where("name",$post['name'])->find();
+            // 判断POST信息信息中的id情况，
+            // 如果id为空，则说明是进行添加的操作
+            // 如果不为空，则说明是进行修改的操作
+            if (!empty($post['id'])) {
+                $brand_find_result = db('brand')->where('id','neq',$post['id'])
+                ->where('name',$post['name'])->find();
+            } else{
+                $brand_find_result = db('brand')->where("name",$post['name'])->find();
+            }
             // 如果找到返回假，如果找不到返回真
             return !$brand_find_result;
         } else {
@@ -167,6 +174,26 @@ class Brand extends Controller
             // 不是则跳转到品牌列表界面
             $this->redirect("admin/brand/lst");
         }
+    }
+
+    // 品牌修改界面显示
+    public function upd($id='')
+    {
+        // 获取对应id的品牌信息
+        $brand_find = db("brand")->find($id);
+        // 判断对应的信息是否存在，如果不存在则跳转到品牌列表界面
+        if (!empty($brand_find)) {
+            // 判断是否是顶级品牌，如果不是，则获取到母品牌的信息
+            if ($brand_find['pid']!=0) {
+                $brand_father_find = db("brand")->find($brand_find['pid']);
+                $this->assign("brand_father_find",$brand_father_find);
+            }
+            $this->assign("brand_find",$brand_find);
+        } else {
+            // 不是则跳转到品牌列表界面
+            $this->redirect("admin/brand/lst");
+        }
+        return view();
     }
 
 }
