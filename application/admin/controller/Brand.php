@@ -196,4 +196,73 @@ class Brand extends Controller
         return view();
     }
 
+    // 品牌修改提交处理
+    public function updhanddle()
+    {
+        // 判断是否是post请求
+        if (request()->isPost()) {
+            // 获取POST信息
+            $post = request()->post();
+            // 获取被修改的品牌的数据
+            $brand_find = db('brand')->find($post['id']);
+            // 判断是否是顶级品牌
+            if ($brand_find['level']==1) {
+                // 获取file信息
+                $file = request()->file('thumb');
+                if (!empty($file)) {
+                    // 进行文件的上传
+                    $info = $file->validate(['size'=>2*1024*1024,'ext'=>'jpeg,jpg,png,gif'])
+                    ->rule('uniqid')->move('../uploads/brand','');
+                    // 判断是否上传成功
+                    if ($info) {
+                        // 将上传图片的信息写入到post当中
+                        $post['thumb'] = $info->getSaveName();
+                        // 将数据写入到数据库当中
+                        $brand_update_result = db("brand")->update($post);
+                        // 获取旧图片信息
+                        $thumb_old = $brand_find['thumb'];
+                        if ($brand_update_result!==false) {
+                            // 新旧图片进行对比，如果图片一样，则说明新图片将老图片进行了替换，不用删除老图片
+                            if ($thumb_old!=$post['thumb']) {
+                                // 进行图片删除
+                                if (file_exists("../uploads/brand/".$thumb_old)) {
+                                    unlink("../uploads/brand/".$thumb_old);
+                                }
+                            }
+                            $this->success("品牌修改成功",'admin/brand/lst');
+                        } else {
+                           if ($thumb_old!=$post['thumb']) {
+                               // 进行图片删除
+                               if (file_exists("../uploads/brand/".$post['thumb'])) {
+                                   unlink("../uploads/brand/".$post['thumb']);
+                               }
+                           }
+                           $this->error("品牌修改失败",'admin/brand/lst');
+                        }
+                    } else {
+                        $this->error($file->getError(),'admin/brand/lst');
+                    }
+                } else {
+                    // 进行数据更新
+                    $brand_update_result = db("brand")->update($post);
+                    if ($brand_update_result) {
+                        $this->success('品牌修改成功','admin/brand/lst');
+                    } else {
+                        $this->error("品牌修改失败",'admin/brand/lst');
+                    }
+                }
+            } else {
+                // 进行数据更新
+                $brand_update_result = db("brand")->update($post);
+                if ($brand_update_result) {
+                    $this->success('品牌修改成功','admin/brand/lst');
+                } else {
+                    $this->error("品牌修改失败",'admin/brand/lst');
+                }
+            }
+        } else {
+            // 如果不是则跳转到品牌列表界面
+            $this->redirect("admin/brand/lst");
+        }
+    }
 }

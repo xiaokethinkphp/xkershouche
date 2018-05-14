@@ -1,5 +1,5 @@
 {extend name="base" /}
-{block name="title"}添加品牌{/block}
+{block name="title"}修改品牌{/block}
     {block name="right"}
         <div class="row J_mainContent" id="content-main">
             <div class="row wrapper border-bottom white-bg page-heading">
@@ -10,7 +10,7 @@
                             <strong>品牌管理</strong>
                         </li>
                         <li>
-                            添加品牌
+                            修改品牌
                         </li>
                     </ol>
                 </div>
@@ -19,8 +19,7 @@
                 <div class="col-sm-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
-
-                            <form action="{:url('admin/brand/addHanddle')}"
+                            <form action="{:url('admin/brand/updHanddle')}"
                             method="post" class="form-horizontal row"
                             enctype="multipart/form-data" id="form1">
                             <input type="hidden" name="id" value="{$brand_find.id}">
@@ -104,7 +103,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label"></label>
                                         <div class="col-sm-3">
-                                            <input class="form-control" type="submit" value="添加品牌">
+                                            <input class="form-control" type="submit" value="修改品牌">
                                         </div>
                                     </div>
                                 </div>
