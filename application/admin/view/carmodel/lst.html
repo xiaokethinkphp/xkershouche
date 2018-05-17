@@ -1,5 +1,5 @@
 {extend name="base" /}
-{block name="title"}后台首页{/block}
+{block name="title"}车型列表{/block}
     {block name="right"}
         <div class="row J_mainContent" id="content-main" style="overflow-y:scroll">
             <div class="row wrapper border-bottom white-bg page-heading">
@@ -7,10 +7,10 @@
                     <h2>二手车管理</h2>
                     <ol class="breadcrumb">
                         <li>
-                            <strong>品牌管理</strong>
+                            <strong>车型管理</strong>
                         </li>
                         <li>
-                            品牌列表
+                            车型列表
                         </li>
                     </ol>
                 </div>
@@ -19,7 +19,7 @@
                 <div class="col-sm-2">
                     <button class="btn btn-success" type="button" id="addBrand">
                         <i class="fa fa-plus-square"></i>&nbsp;&nbsp;
-                        <span class="bold">添加母品牌</span>
+                        <span class="bold">添加款式</span>
                     </button>
                 </div>
                 <div class="col-sm-10">
@@ -62,112 +62,38 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>品牌名称</th>
-                                        <th>是否流行</th>
-                                        <th>标志</th>
-                                        <th>首字母</th>
-                                        <th>排序</th>
+                                        <th>母品牌</th>
+                                        <th>子品牌</th>
+                                        <th>车品牌</th>
+                                        <th>款式</th>
+                                        <th>版本</th>
                                         <th>操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {volist name="brand_list" id="vo"}
+
                                     <tr>
-                                        <td>{$vo.id}</td>
-                                        <td>{$vo.name}</td>
-                                        <td>
-                                            {if $vo.type==1}
-                                            <button type="button" class="btn btn-success type">是</button>
-                                            {else/}
-                                            <button type="button" class="btn btn-danger type">否</button>
-                                            {/if}
-                                        </td>
-                                        <td><img src="__UPLOADS__/brand/{$vo.thumb}" alt=""></td>
                                         <td></td>
-                                        <td>
-                                            <input type="text" value="{$vo.order}">
-                                            <button type="button" class="btn btn-success btn-sm order">修改</button>
-                                        </td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <td>
                                             <div class="btn-group open">
                                                 <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="{:url('admin/brand/add',array('pid'=>$vo.id,'level'=>2))}">添加子品牌</a>
+                                                    <li><a href="">添加子品牌</a>
                                                     </li>
-                                                    <li><a href="{:url('admin/brand/upd',array('id'=>$vo.id))}">修改</a>
+                                                    <li><a href="">修改</a>
                                                     </li>
-                                                    <li><a href="javascript:if(confirm('确实要删除么？')) location='{:url('admin/brand/del',array('id'=>$vo.id))}'">删除</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    {volist name="$vo.children" id="vo1"}
-                                    <tr>
-                                        <td>{$vo1.id}</td>
-                                        <td>|——{$vo1.name}</td>
-                                        <td>
-                                            {if $vo1.type==1}
-                                            <button type="button" class="btn btn-success type">是</button>
-                                            {else/}
-                                            <button type="button" class="btn btn-danger type">否</button>
-                                            {/if}
-                                        </td>
-                                        <td></td>
-                                        <td>{$vo1.initial}</td>
-                                        <td>
-                                            <input type="text" value="{$vo1.order}">
-                                            <button type="button" class="btn btn-success btn-sm order">修改</button>
-                                        </td>
-                                        <td>
-                                            <div class="btn-group open">
-                                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="{:url('admin/brand/add',array('pid'=>$vo1.id,'level'=>3))}">添加子品牌</a>
-                                                    </li>
-                                                    <li><a href="{:url('admin/brand/upd',array('id'=>$vo1.id))}">修改</a>
-                                                    </li>
-                                                    <li><a href="javascript:if(confirm('确实要删除么？')) location='{:url('admin/brand/del',array('id'=>$vo1.id))}'">删除</a>
+                                                    <li><a href="">删除</a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </td>
                                     </tr>
-                                    {volist name="$vo1.children" id="vo2"}
-                                    <tr>
-                                        <td>{$vo2.id}</td>
-                                        <td>|————{$vo2.name}</td>
-                                        <td>
-                                            {if $vo2.type==1}
-                                            <button type="button" class="btn btn-success type">是</button>
-                                            {else/}
-                                            <button type="button" class="btn btn-danger type">否</button>
-                                            {/if}
-                                        </td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <input type="text" value="{$vo2.order}">
-                                            <button type="button" class="btn btn-success btn-sm order">修改</button>
-                                        </td>
-                                        <td>
-                                            <div class="btn-group open">
-                                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a href="{:url('admin/brand/upd',array('id'=>$vo2.id))}">修改</a>
-                                                    </li>
-                                                    <li><a href="javascript:if(confirm('确实要删除么？')) location='{:url('admin/brand/del',array('id'=>$vo2.id))}'">删除</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    {/volist}
-                                    {/volist}
-                                    {/volist}
                                 </tbody>
                             </table>
 
@@ -184,7 +110,7 @@
     <script type="text/javascript">
         $("#addBrand").click(function(event) {
             /* Act on the event */
-            window.location.href = "{:url('admin/brand/add',array('level'=>1))}";
+            window.location.href = "{:url('admin/carmodel/add')}";
         });
 
         $(".type").click(function(event) {

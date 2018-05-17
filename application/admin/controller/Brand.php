@@ -265,4 +265,32 @@ class Brand extends Controller
             $this->redirect("admin/brand/lst");
         }
     }
+
+    // 品牌删除
+    public function del($id='')
+    {
+        // 根据id获取被删除的品牌信息
+        $brand_find = db("brand")->find($id);
+        if (!empty($brand_find)) {
+            // 获取全部品牌信息
+            $brand_select = db("brand")->select();
+            $brand_children = getChildren2($brand_select,$id);
+            array_unshift($brand_children, $brand_find);
+            $brand_children = array_column($brand_children, 'id');
+            $brand_del_result = db("brand")->delete($brand_children);
+            if ($brand_del_result) {
+                if ($brand_find['level']==1) {
+                    if (file_exists('../uploads/brand/'.$brand_find['thumb'])) {
+                        unlink('../uploads/brand/'.$brand_find['thumb']);
+                    }
+                }
+                $this->success('品牌删除成功');
+            } else {
+                $this->error('品牌删除失败');
+            }
+
+        } else {
+            $this->redirect("admin/brand/lst");
+        }
+    }
 }
