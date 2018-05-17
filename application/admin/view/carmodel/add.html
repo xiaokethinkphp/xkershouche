@@ -25,28 +25,32 @@
                             enctype="multipart/form-data" id="form1">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label"></label>
+                                        <label class="col-sm-1 control-label"></label>
                                         <div id="brand_select">
                                             <div class="col-sm-2">
-                                                <select class="form-control brand1">
-
-                                                </select>
+                                                <select class="form-control brand1"></select>
                                             </div>
                                             <div class="col-sm-2">
-                                                <select class="form-control brand2">
-
-                                                </select>
+                                                <select class="form-control brand2"></select>
                                             </div>
                                             <div class="col-sm-2">
-                                                <select class="form-control brand3" name="carid">
-
-                                                </select>
+                                                <select class="form-control brand3" name="carid"></select>
                                             </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <select class="form-control" name="style">
+                                                {volist name="years" id="vo"}
+                                                <option value="{$vo}">{$vo}款</option>
+                                                {/volist}
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input class="form-control" type="text" name="edition" value="" placeholder="请输入版本">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="col-sm-2 control-label"></label>
+                                        <label class="col-sm-3 control-label"></label>
                                         <div class="col-sm-3">
                                             <input class="form-control" type="submit" value="添加品牌">
                                         </div>
@@ -65,6 +69,7 @@
     <script src="__ADMIN__/js/plugins/pace/pace.min.js"></script>
     <script src="__ADMIN__/js/plugins/validate/jquery.validate.min.js"></script>
     <script src="__ADMIN__/js/jquery.cxselect.js" charset="utf-8"></script>
+    <script src="__ADMIN__/js/plugins/validate/jquery.validate.min.js"></script>
     <script type="text/javascript">
         $("#brand_select").cxSelect({
             url:"{:url('admin/carmodel/brandJsonGet')}",
@@ -73,5 +78,51 @@
             jsonValue:'id',
             jsonSub:'children',
         })
+    </script>
+    <script type="text/javascript">
+        $().ready(function(){
+            $("#form1").validate({
+
+                ignore:[],
+                rules:{
+                    carid:{
+                        required:true,
+                    },
+                    edition:{
+                        required:true,
+                        remote:{
+                            url:"{:url('admin/carmodel/checkEditionAjax')}",
+                            cache: false,
+                            data:{
+                                carid:function(){
+                                    return $("select[name='carid']").find("option:selected").val()==undefined?'':$("select[name='carid']").find("option:selected").val();
+                                },
+                                style:function(){
+                                    return $("select[name='style']").find("option:selected").val();
+                                }
+                            },
+                            type:"post"
+                        }
+                    }
+                },
+                messages:{
+                    carid:{
+                        required:"请输入品牌名称",
+                    },
+                    edition:{
+                        required:"请输入版本",
+                        remote:"车型信息不正确或已经存在"
+                    }
+                }
+            });
+        });
+
+        $("select[name='carid']").change(function(){
+            $("input[name='edition']").removeData("previousValue");
+        });
+
+        $("select[name='style']").change(function(){
+            $("input[name='edition']").removeData("previousValue");
+        });
     </script>
     {/block}

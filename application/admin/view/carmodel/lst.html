@@ -24,32 +24,9 @@
                 </div>
                 <div class="col-sm-10">
                     <ul class="list-unstyled list-inline">
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'A'))}">A</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'B'))}">B</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'C'))}">C</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'D'))}">D</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'E'))}">E</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'F'))}">F</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'G'))}">G</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'H'))}">H</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'I'))}">I</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'J'))}">J</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'K'))}">K</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'L'))}">L</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'M'))}">M</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'N'))}">N</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'O'))}">O</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'P'))}">P</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'Q'))}">Q</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'R'))}">R</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'S'))}">S</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'T'))}">T</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'U'))}">U</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'V'))}">V</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'W'))}">W</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'X'))}">X</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'Y'))}">Y</a></li>
-                        <li><a href="{:url('admin/brand/lst',array('initial'=>'Z'))}">Z</a></li>
+                        {volist name="az" id="vo"}
+                        <li><a href="{:url('admin/carmodel/lst',array('initial'=>$vo))}">{$vo}</a></li>
+                        {/volist}
                     </ul>
                 </div>
             </div>
