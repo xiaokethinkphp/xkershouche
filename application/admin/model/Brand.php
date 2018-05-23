@@ -12,10 +12,10 @@ class Brand extends Model
         return $this->hasMany("Carmodel","carid");
     }
 
-    public function brandGetData()
+    public function brandGetData($initial)
     {
         $brand_data = array();
-        $brand_model_all = Brand::where("level",3)->select();
+        $brand_model_all = Brand::where("level",3)->order('type desc')->order('order desc')->select();
         $brand_select = db("brand")->select();
         foreach ($brand_model_all as $key => $value) {
             self::$arr = array();
@@ -24,6 +24,9 @@ class Brand extends Model
             $brand_parents[] = $value->toArray();
             $brand_data[] = $brand_parents;
         }
+        $brand_data = array_filter($brand_data,function($data) use($initial){
+            return $data[0]['initial']==$initial;
+        });
         return $brand_data;
     }
 
@@ -38,5 +41,6 @@ class Brand extends Model
         }
         return self::$arr;
     }
+
 
 }

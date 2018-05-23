@@ -7,7 +7,7 @@ use \think\Controller;
 class Carmodel extends Controller
 {
     // 车型列表显示
-    public function lst()
+    public function lst($initial="A")
     {
         $alpha = array('A','B','C','D','E',
         'F','G','H','I','J','K','L','M','N',
@@ -20,7 +20,7 @@ class Carmodel extends Controller
         // $brand_parents = getParents($brand_select,$brand_pid);
         // $brand_get->carmodel;
         // $brand_parents[] = $brand_get->toArray();
-        $brand_data = $brand_model->brandGetData();dump($brand_data);
+        $brand_data = $brand_model->brandGetData($initial);
         $this->assign("brand_data",$brand_data);
         return view();
     }
