@@ -48,14 +48,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    {volist name="brand_data" id="vo"}
+                                    {volist name="$vo['2']['carmodel']" id="vo1"}
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{$vo1.id}</td>
+                                        <td>{$vo[0]['name']}</td>
+                                        <td>{$vo[1]['name']}</td>
+                                        <td>{$vo[2]['name']}</td>
+                                        <td>{$vo1.style}款</td>
+                                        <td>{$vo1.edition}</td>
                                         <td>
                                             <div class="btn-group open">
                                                 <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
@@ -71,6 +72,8 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    {/volist}
+                                    {/volist}
                                 </tbody>
                             </table>
 

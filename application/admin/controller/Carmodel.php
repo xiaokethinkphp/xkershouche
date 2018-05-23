@@ -13,6 +13,15 @@ class Carmodel extends Controller
         'F','G','H','I','J','K','L','M','N',
         'O','P','Q','R','S','T','U','V','W','X','Y','Z');
         $this->assign('az',$alpha);
+        $brand_model = model("Brand");
+        // $brand_get = $brand_model->get(56);
+        // $brand_pid = $brand_get['pid'];
+        // $brand_select = db('brand')->select();
+        // $brand_parents = getParents($brand_select,$brand_pid);
+        // $brand_get->carmodel;
+        // $brand_parents[] = $brand_get->toArray();
+        $brand_data = $brand_model->brandGetData();dump($brand_data);
+        $this->assign("brand_data",$brand_data);
         return view();
     }
 

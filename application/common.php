@@ -35,3 +35,16 @@ function getChildren2($list,$pid)
 
     return $arr;
 }
+
+/*无线级分类由子类得到全部父类*/
+// function getParents($list,$pid)
+// {
+//     static $arr = array();
+//     foreach ($list as $key => $value) {
+//         if ($value['id']==$pid) {
+//             array_unshift($arr,$value);
+//             getParents($list,$value['pid']);
+//         }
+//     }
+//     return $arr;
+// }
