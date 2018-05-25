@@ -79,4 +79,28 @@ class Carmodel extends Controller
         }
 
     }
+
+    // 车型修改界面显示
+    public function upd($id='')
+    {
+        $carmodel_find = db("carmodel")->find($id);
+        if ($carmodel_find) {
+            $this->assign('carmodel_find',$carmodel_find);
+
+            $current_year = date("Y");
+            $years = array();
+            for ($i=0; $i < 20; $i++) {
+                $years[$i] = $current_year-$i;
+            }
+            $this->assign("years",$years);
+
+            $brand_model = model("Brand");
+            $brand_select = db("brand")->select();
+            $carmodel_parents = $brand_model->getParents($brand_select,$carmodel_find['carid']);
+            $this->assign('carmodel_parents',$carmodel_parents);
+            return view();
+        } else {
+            $this->redirect("admin/carmodel/lst");
+        }
+    }
 }

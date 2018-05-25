@@ -1,5 +1,5 @@
 {extend name="base" /}
-{block name="title"}添加车型{/block}
+{block name="title"}修改车型{/block}
     {block name="right"}
         <div class="row J_mainContent" id="content-main">
             <div class="row wrapper border-bottom white-bg page-heading">
@@ -10,7 +10,7 @@
                             <strong>车型管理</strong>
                         </li>
                         <li>
-                            添加车型
+                            修改车型
                         </li>
                     </ol>
                 </div>
@@ -28,31 +28,41 @@
                                         <label class="col-sm-1 control-label"></label>
                                         <div id="brand_select">
                                             <div class="col-sm-2">
-                                                <select class="form-control brand1"></select>
+                                                <select class="form-control brand1">
+                                                    <option value="{$carmodel_parents[0]['id']}">{$carmodel_parents[0]['name']}</option>
+                                                </select>
                                             </div>
                                             <div class="col-sm-2">
-                                                <select class="form-control brand2"></select>
+                                                <select class="form-control brand2">
+                                                    <option value="{$carmodel_parents[1]['id']}">{$carmodel_parents[1]['name']}</option>
+                                                </select>
                                             </div>
                                             <div class="col-sm-2">
-                                                <select class="form-control brand3" name="carid"></select>
+                                                <select class="form-control brand3" name="carid">
+                                                    <option value="{$carmodel_parents[2]['id']}">{$carmodel_parents[2]['name']}</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-sm-2">
                                             <select class="form-control" name="style">
                                                 {volist name="years" id="vo"}
-                                                <option value="{$vo}">{$vo}款</option>
+                                                <option value="{$vo}"
+                                                {if $vo==$carmodel_find.style}
+                                                 selected="selected"
+                                                {/if}
+                                                >{$vo}款</option>
                                                 {/volist}
                                             </select>
                                         </div>
                                         <div class="col-sm-2">
-                                            <input class="form-control" type="text" name="edition" value="" placeholder="请输入版本">
+                                            <input class="form-control" type="text" name="edition" value="{$carmodel_find.edition}">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label"></label>
                                         <div class="col-sm-3">
-                                            <input class="form-control" type="submit" value="添加车型">
+                                            <input class="form-control" type="submit" value="修改车型">
                                         </div>
                                     </div>
                                 </div>
@@ -77,6 +87,7 @@
             jsonName:'name',
             jsonValue:'id',
             jsonSub:'children',
+            required:true,
         })
     </script>
     <script type="text/javascript">
