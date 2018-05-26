@@ -9,7 +9,7 @@ class Carmodel extends Validate
     protected $rule = [
         'carid'  =>  "require|unique:carmodel,carid^style^edition",
         'style' =>  "require|unique:carmodel,carid^style^edition",
-        'edition' =>  "require|unique:carmodel,carid^style^edition"
+        'edition' =>  "require|unique:carmodel,carid^style^edition",
     ];
 
     protected $message = [

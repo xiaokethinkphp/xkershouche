@@ -20,9 +20,10 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
 
-                            <form action="{:url('admin/carmodel/addHanddle')}"
+                            <form action="{:url('admin/carmodel/updHanddle')}"
                             method="post" class="form-horizontal row"
                             enctype="multipart/form-data" id="form1">
+                            <input type="hidden" name="id" value="{$carmodel_find.id}">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="col-sm-1 control-label"></label>
@@ -110,6 +111,9 @@
                                 },
                                 style:function(){
                                     return $("select[name='style']").find("option:selected").val();
+                                },
+                                id:function(){
+                                    return $("input[type='hidden']").val();
                                 }
                             },
                             type:"post"

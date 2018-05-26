@@ -103,4 +103,22 @@ class Carmodel extends Controller
             $this->redirect("admin/carmodel/lst");
         }
     }
+
+    // 车型修改提交处理
+    public function updhanddle()
+    {
+        if (request()->isPost()) {
+            $post = request()->post();
+            $carmodel_upd_result = db("carmodel")->update($post);
+            if ($carmodel_upd_result!==false) {
+                $this->success("车型修改成功",'admin/carmodel/lst');
+            } else {
+                $this->error("车型修改失败",'admin/carmodel/lst');
+            }
+
+        } else {
+            $this->redirect("admin/carmodel/lst");
+        }
+
+    }
 }
