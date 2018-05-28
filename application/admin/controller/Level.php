@@ -9,6 +9,8 @@ class Level extends Controller
     // 车辆级别列表
    public function lst()
    {
+       $level_select = db("level")->order("order desc")->select();
+       $this->assign("level_select",$level_select);
        return view();
    }
 
@@ -18,6 +20,7 @@ class Level extends Controller
        return view();
    }
 
+   // 车辆添加提交处理
    public function addhanddle()
    {
        if (request()->isPost()) {
@@ -40,6 +43,7 @@ class Level extends Controller
        }
    }
 
+   // 验证级别是否符合要求的ajax方法
    public function checkNameAjax()
    {
        if (request()->isAjax()) {
@@ -56,4 +60,19 @@ class Level extends Controller
            $this->redirect("admin/level/lst");
        }
    }
+
+   //排序的ajax方法
+   public function changeOrderAjax()
+   {
+       if (request()->isAjax()) {
+           $post = input('post.');
+           foreach ($post as $key => $value) {
+               db("level")->where('id',$key)->update(['order'=>$value]);
+           }
+       } else {
+           $this->redirect("admin/level/lst");
+       }
+
+   }
+
 }

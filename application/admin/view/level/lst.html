@@ -1,6 +1,29 @@
 {extend name="base" /}
 {block name="title"}级别列表{/block}
+{block name="css"}
+{__block__}
+<link rel="stylesheet" href="__ADMIN__/chexing/iconfont.css">
+<style type="text/css">
 
+    @font-face {font-family: "iconfont";
+      src: url('iconfont.eot'); /* IE9*/
+      src: url('iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('iconfont.woff') format('woff'), /* chrome, firefox */
+      url('iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+      url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+    }
+
+    .iconfont {
+      font-family:"iconfont" !important;
+      font-size:30px;
+      font-style:normal;
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-stroke-width: 0.2px;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+</style>
+{/block}
     {block name="right"}
         <div class="row J_mainContent" id="content-main" style="overflow-y:scroll">
             <div class="row wrapper border-bottom white-bg page-heading">
@@ -35,22 +58,19 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>母品牌</th>
-                                        <th>子品牌</th>
-                                        <th>车品牌</th>
-                                        <th>款式</th>
-                                        <th>版本</th>
+                                        <th>级别名称</th>
+                                        <th>图标</th>
+                                        <th>排序</th>
                                         <th>操作</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {volist name="level_select" id="vo"}
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{$vo.id}</td>
+                                        <td>{$vo.name}</td>
+                                        <td><i class="icon iconfont">{$vo.thumb|raw}</i></td>
+                                        <td><input type="text" value="{$vo.order}" name="{$vo.id}"></td>
                                         <td>
                                             <div class="btn-group open">
                                                 <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
@@ -64,11 +84,23 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    {/volist}
+
                                 </tbody>
+
                             </table>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <button class="btn btn-success" type="button" id="changeOrder">
+                                        <i class="fa fa-plus-square"></i>&nbsp;&nbsp;
+                                        <span class="bold">排序</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     {/block}
@@ -82,41 +114,29 @@
             window.location.href = "{:url('admin/level/add')}";
         });
 
-        $(".type").click(function(event) {
+        $("#changeOrder").click(function(event) {
             /* Act on the event */
-            var id = $(this).parents('tr').find("td:eq(0)").html();
-            $.ajax({
-                url: '{:url("admin/brand/changeTypeAjax")}',
-                type: 'post',
-                data: {id: id}
-            })
-            .done(function(data) {
-                if(data==1){
-                    alert("数据修改成功");
-                    window.location.reload();
-                } else {
-                    alert("数据修改失败");
-                }
+            var json = {};
+            $("input").not('#top-search').each(function(index, el) {
+                json[$(this).attr('name')] = $(this).val();
             });
+            $.ajax({
+                url: '{:url("admin/level/changeOrderAjax")}',
+                type: 'post',
+                data: json
+            })
+            .done(function() {
+                alert("排序成功");
+                window.location.reload();
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+
         });
 
-        $(".order").click(function(event) {
-            /* Act on the event */
-            var id = $(this).parents('tr').find("td:eq(0)").html();
-            var order = $(this).prev(":input").val();
-            $.ajax({
-                url: '{:url("admin/brand/changeOrderAjax")}',
-                type: 'post',
-                data: {id: id,order:order}
-            })
-            .done(function(data) {
-                if(data==1){
-                    alert("数据修改成功");
-                    window.location.reload();
-                } else {
-                    alert("数据修改失败");
-                }
-            });
-        });
     </script>
     {/block}
