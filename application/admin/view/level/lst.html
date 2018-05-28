@@ -1,5 +1,6 @@
 {extend name="base" /}
-{block name="title"}车型列表{/block}
+{block name="title"}级别列表{/block}
+
     {block name="right"}
         <div class="row J_mainContent" id="content-main" style="overflow-y:scroll">
             <div class="row wrapper border-bottom white-bg page-heading">
@@ -7,10 +8,10 @@
                     <h2>二手车管理</h2>
                     <ol class="breadcrumb">
                         <li>
-                            <strong>车型管理</strong>
+                            <strong>级别管理</strong>
                         </li>
                         <li>
-                            车型列表
+                            级别列表
                         </li>
                     </ol>
                 </div>
@@ -19,15 +20,10 @@
                 <div class="col-sm-2">
                     <button class="btn btn-success" type="button" id="addBrand">
                         <i class="fa fa-plus-square"></i>&nbsp;&nbsp;
-                        <span class="bold">添加款式</span>
+                        <span class="bold">添加级别</span>
                     </button>
                 </div>
                 <div class="col-sm-10">
-                    <ul class="list-unstyled list-inline">
-                        {volist name="az" id="vo"}
-                        <li><a href="{:url('admin/carmodel/lst',array('initial'=>$vo))}">{$vo}</a></li>
-                        {/volist}
-                    </ul>
                 </div>
             </div>
             <div class="row">
@@ -48,30 +44,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {volist name="brand_data" id="vo"}
-                                    {volist name="$vo['2']['carmodel']" id="vo1"}
                                     <tr>
-                                        <td>{$vo1.id}</td>
-                                        <td>{$vo[0]['name']}</td>
-                                        <td>{$vo[1]['name']}</td>
-                                        <td>{$vo[2]['name']}</td>
-                                        <td>{$vo1.style}款</td>
-                                        <td>{$vo1.edition}</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                         <td>
                                             <div class="btn-group open">
                                                 <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="{:url('admin/carmodel/upd',array('id'=>$vo1.id))}">修改</a>
+                                                    <li><a href="">修改</a>
                                                     </li>
-                                                    <li><a href="javascript:if(confirm('确认删除？')) location='{:url('admin/carmodel/del',array('id'=>$vo1.id))}'">删除</a>
+                                                    <li><a href="">删除</a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </td>
                                     </tr>
-                                    {/volist}
-                                    {/volist}
                                 </tbody>
                             </table>
                         </div>
@@ -87,7 +79,7 @@
     <script type="text/javascript">
         $("#addBrand").click(function(event) {
             /* Act on the event */
-            window.location.href = "{:url('admin/carmodel/add')}";
+            window.location.href = "{:url('admin/level/add')}";
         });
 
         $(".type").click(function(event) {

@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 09/05/2018 11:18:39
+ Date: 26/05/2018 11:29:01
 */
 
 SET NAMES utf8mb4;
@@ -32,7 +32,7 @@ CREATE TABLE `xk_brand`  (
   `level` tinyint(255) NOT NULL DEFAULT 1 COMMENT '品牌级别，1：母品牌；2：子品牌；3：车型',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `name`(`name`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 58 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 66 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of xk_brand
@@ -81,8 +81,51 @@ INSERT INTO `xk_brand` VALUES (51, '进口宝马', 1, NULL, NULL, 0, 13, 2);
 INSERT INTO `xk_brand` VALUES (52, '广州本田', 1, NULL, NULL, 0, 30, 2);
 INSERT INTO `xk_brand` VALUES (53, '东风本田', 1, NULL, NULL, 0, 30, 2);
 INSERT INTO `xk_brand` VALUES (54, '福建奔驰', 1, NULL, NULL, 150, 12, 2);
-INSERT INTO `xk_brand` VALUES (55, '宝马3系', 1, NULL, NULL, 0, 50, 3);
-INSERT INTO `xk_brand` VALUES (56, '宝马1系', 1, NULL, NULL, 0, 50, 3);
+INSERT INTO `xk_brand` VALUES (55, '宝马3系', 1, NULL, NULL, 1, 50, 3);
+INSERT INTO `xk_brand` VALUES (56, '宝马1系', 1, NULL, NULL, 2, 50, 3);
 INSERT INTO `xk_brand` VALUES (57, '宝马5系', 1, NULL, NULL, 0, 50, 3);
+INSERT INTO `xk_brand` VALUES (58, '宝马1系（进口）', 1, NULL, NULL, 0, 51, 3);
+INSERT INTO `xk_brand` VALUES (59, '奔驰C级', 1, NULL, NULL, 0, 48, 3);
+INSERT INTO `xk_brand` VALUES (60, '一汽大众奥迪', 1, NULL, NULL, 3, 15, 2);
+INSERT INTO `xk_brand` VALUES (61, '进口奥迪', 1, NULL, NULL, 2, 15, 2);
+INSERT INTO `xk_brand` VALUES (62, '奥迪A3', 1, NULL, NULL, 0, 60, 3);
+INSERT INTO `xk_brand` VALUES (63, '奥迪A4L', 1, NULL, NULL, 0, 60, 3);
+INSERT INTO `xk_brand` VALUES (64, '奥迪A6L', 1, NULL, NULL, 0, 60, 3);
+INSERT INTO `xk_brand` VALUES (65, '奔驰E级', 1, NULL, NULL, 0, 48, 3);
+
+-- ----------------------------
+-- Table structure for xk_carmodel
+-- ----------------------------
+DROP TABLE IF EXISTS `xk_carmodel`;
+CREATE TABLE `xk_carmodel`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `style` int(255) NOT NULL COMMENT '车款',
+  `edition` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '车版本',
+  `carid` int(11) NOT NULL COMMENT '对应的车品牌',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `weiyi`(`style`, `edition`, `carid`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of xk_carmodel
+-- ----------------------------
+INSERT INTO `xk_carmodel` VALUES (1, 2018, '118i 时尚版', 56);
+INSERT INTO `xk_carmodel` VALUES (2, 2018, '118i 运动版', 56);
+INSERT INTO `xk_carmodel` VALUES (3, 2016, '118i 运动版', 56);
+INSERT INTO `xk_carmodel` VALUES (4, 2017, '118i 运动版', 56);
+INSERT INTO `xk_carmodel` VALUES (5, 2015, '118i 运动版', 56);
+INSERT INTO `xk_carmodel` VALUES (6, 2014, '118i 运动版', 56);
+INSERT INTO `xk_carmodel` VALUES (7, 2013, '118i 运动版', 56);
+INSERT INTO `xk_carmodel` VALUES (8, 2013, '118i 运动版', 55);
+INSERT INTO `xk_carmodel` VALUES (9, 2015, '118i 领先型', 58);
+INSERT INTO `xk_carmodel` VALUES (10, 2018, 'C 200 运动版', 59);
+INSERT INTO `xk_carmodel` VALUES (11, 2018, 'C 200 成就特别版', 59);
+INSERT INTO `xk_carmodel` VALUES (12, 2016, 'TFSI 进取型', 62);
+INSERT INTO `xk_carmodel` VALUES (13, 2018, 'TFSI 时尚型', 62);
+INSERT INTO `xk_carmodel` VALUES (14, 2018, 'TFSI 风尚型', 62);
+INSERT INTO `xk_carmodel` VALUES (15, 2018, 'C 300 运动版', 59);
+INSERT INTO `xk_carmodel` VALUES (16, 2018, '180 L 动感型运动版', 59);
+INSERT INTO `xk_carmodel` VALUES (17, 2018, '180 L 时尚型运动版', 59);
+INSERT INTO `xk_carmodel` VALUES (18, 2016, 'C 200 运动版', 59);
 
 SET FOREIGN_KEY_CHECKS = 1;

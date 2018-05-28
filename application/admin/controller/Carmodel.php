@@ -121,4 +121,14 @@ class Carmodel extends Controller
         }
 
     }
+
+    public function del($id='')
+    {
+        $carmodel_del_result = db("carmodel")->delete($id);
+        if ($carmodel_del_result) {
+            $this->success("车型删除成功",'admin/carmodel/lst');
+        } else {
+            $this->error("车型删除失败",'admin/carmodel/lst');
+        }
+    }
 }
