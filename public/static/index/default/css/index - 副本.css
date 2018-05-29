@@ -1,0 +1,181 @@
+@import url(base.css);
+@import url(common.css);
+@charset "utf-8";
+
+/*全站链接样式*/
+a{ color:#333; text-decoration:none;}
+a:hover{ color:#ff6600; text-decoration:none;} 
+.blank{height:10px;}
+body{ color:#333; font-size:12px;}
+.blank{ height:10px;}
+
+body{font-weight:normal;font:12px "微软雅黑",verdana,lucida,helvetica,arial,sans-serif;background:#fff;}
+
+
+/*车源图片列表*/
+.car_list li{float:left;padding:10px;}
+.car_list li img{width:215px;height:170px;}
+.car_list li p.carname{height:35px;line-height:35px;font-size:14px;}
+.car_list li p a{color:#0066cc;text-decoration:undercar;}
+.car_list li p{margin-top:5px;}
+
+.scar_list li{float:left;width:125px;padding:10px 13px 9px 13px;}
+.scar_list li img{width:125px;height:100px;}
+.scar_list li p.carname{height:35px;line-height:35px;font-size:14px;}
+.scar_list li p a{color:#0066cc;text-decoration:undercar;}
+.scar_list li p{height:26px;line-height:26px;}
+.hide{display:none;}
+
+/*幻灯片*/
+.fullSlide{width:100%;position:relative;height:480px;background:#000;}
+.fullSlide .bd{margin:0 auto;position:relative;z-index:0;overflow:hidden;}
+.fullSlide .bd ul{width:100% !important;}
+.fullSlide .bd li{width:100% !important;height:480px;overflow:hidden;text-align:center;}
+.fullSlide .bd li a{display:block;height:480px;}
+.fullSlide .hd{width:100%;position:absolute;z-index:1;bottom:0;left:0;height:30px;line-height:30px;}
+.fullSlide .hd ul{text-align:center;}
+.fullSlide .hd ul li{cursor:pointer;display:inline-block;*display:inline;zoom:1;width:42px;height:11px;margin:1px;overflow:hidden;background:#000;filter:alpha(opacity=50);opacity:0.5;line-height:999px}
+.fullSlide .hd ul .on{background:#f00;}
+.fullSlide .prev,.fullSlide .next{display:block;position:absolute;z-index:1;top:50%;margin-top:-30px;left:15%;z-index:1;width:40px;height:60px;cursor:pointer;filter:alpha(opacity=50);opacity:0.5;display:none}
+.fullSlide .next{left:auto;right:15%;}
+
+/*左侧搜索*/
+.leftsearch{position:absolute;left:50%;margin-left:-600px;top:25px;width:360px;background:#fff;z-index:2;}
+.leftsearch h2{height:30px;line-height:30px;background:#910003;color:#fff;padding:0 10px;font-size:14px;font-weight:bold;}
+.leftsearch h2 .more{float:right;color:#fff;font-size:12px;}
+.leftsearch .leftsearchbox{border-bottom:1px dashed #d8d8d8;padding:5px 0;}
+.leftsearch .leftsearchbox div{line-height:20px;}
+.leftsearch .leftsearchbox div a{float:left;padding-right:10px;color:#666;white-space:nowrap;font-size:14px;line-height:25px;}
+.leftsearch h3{font-size:14px;font-weight:bold;height:25px;line-height:25px;color:#f65100;}
+.leftsearch .leftsearchbox div a i{background: url("../img/icons.__1408011138__.png") no-repeat scroll -100px -60px ;display:inline-block;height:16px;margin:0 0 0 3px;position:absolute;top:6px;width:16px;}
+.leftsearch .leftsearchbox div a.more {color: #fc5300;display: block;position: relative;}
+.leftsearch_tab li{float:left;width:180px;height:45px;line-height:45px;text-align:center;font-size:16px;font-weight:bold;background:#f5f5f5;cursor:pointer;}
+.leftsearch_tab li.here{background:#fff;}
+
+.leftsearch .other{height:75px;margin-top:6px;padding-left:15px}
+.leftsearch .other i{background:url("../img/icons.__1408011138__.png") no-repeat scroll 0 -40px rgba(0,0,0,0);float:left;height:44px;margin:15px 10px 0 0;width:44px}
+.leftsearch .other p.tel{color:#fc5300;font-size:24px;font-weight:bold;padding-top:10px}
+.leftsearch .other p.info{color:#898989;font-size:12px}
+
+/*快速评估*/
+.assess_table th{width:60px;}
+.assess_table td{padding:0 5px;height:35px;}
+.assess_table td select{border:1px solid #d8d8d8;padding:1px;}
+.assess_table td input[type="text"]{border:1px solid #d8d8d8;padding:3px;}
+.assess_table td .but01{color:#fff;background:#ee7700;padding:5px 15px;border:none;font-family:"微软雅黑";font-size:14px;font-weight:bold;}
+
+/*首页*/
+.indexbox{border:1px solid #d8d8d8;background:#f9f9f9;}
+.indexbox h3{font-size:16px;height:45px;}
+.indexbox .left{float:left;width:260px;height:280px;padding:30px 20px 20px 20px;border-right:1px solid #d8d8d8;}
+.indexbox .right{float:right;width:253px;height:280px;padding:30px 20px 20px 20px;}
+.indexbut01{color:#fff;background:#111;padding:5px 15px;border:none;text-align:center;}
+.indexbut02{color:#fff;background:#ee7700;padding:5px 15px;border:none;text-align:center;}
+.indexbut01 a,.indexbut02 a{color:#fff;}
+
+
+/*特荐二手车*/
+.activityBox{height:330px;width:240px;position:relative;}
+.activityBox a{color:#666}
+.activityBox .title{width:220px;height:34px;line-height:34px;padding:0 10px;background:#FC7000}
+.activityBox .title h2{font-size:16px;line-height:34px;color:#fff;font-weight:normal}
+.activityBox .title .pageState{margin-left:5px}
+.activityBox .content{width:240px;position:relative}
+.activityBox .content .contentInner{width:194px;height:250px;padding:20px;position:relative;overflow:hidden;border:3px solid #FC7000;}
+.activityBox .content .contentInner ul{width:190px;height:260px;position:absolute}
+.activityBox .content .contentInner ul li{height:260px}
+.activityBox .content .contentInner ul li img{width:206px;vertical-align:middle;height:140px;}
+.activityBox .content .contentInner ul li p.carname{height:50px;line-height:25px;}
+.activityBox .title,.activityBox .title a{color:#fff}
+.activityBox .title .ac_List{position:absolute;right:55px;top:0}
+.activityBox .title .prev,.activityBox .title .next{width:16px;height:14px;position:absolute;display:block;top:10px;cursor:pointer;background:url(../img/menu.jpg) 0 0 no-repeat}
+.activityBox .title .prev{right:29px;background-position:0 0}
+.activityBox .title .next{right:10px;background-position:-17px 0}
+
+/*推荐车商*/
+.tjdealer{width:678px;height:95px;padding:10px;position:relative}
+.tjdealer .piclist{overflow:hidden;zoom:1}
+.tjdealer .ohbox{overflow:hidden;position:relative;width:620px;left:30px}
+.tjdealer{position:relative;overflow:hidden;zoom:1}
+.tjdealer .piclist li{float:left;display:inline;width:100px;background:#fff;border:1px solid #e8e8e8;margin-right:10px;padding:5px}
+.tjdealer .piclist li img{width:100px;height:60px;}
+.tjdealer .piclist li .noimg{background:#f5f5f5;width:100px;height:60px;line-height:60px;text-align:center;color:#999;}
+.tjdealer .piclist li span{height:25px;line-height:25px;display:block;text-align:center}
+.tjdealer .pageBtn span{background:url(../img/menubg.png) no-repeat;display:block;width:23px;height:49px;position:absolute;top:36px;cursor:pointer;text-indent:-999em;overflow:hidden}
+.tjdealer .pageBtn .prev{left:0;background-position:0 0}
+.tjdealer .pageBtn .next{right:0;background-position:0 -49px}
+.tjdealer .pageBtn .list{overflow:hidden;zoom:1;margin:10px 0 0 413px}
+.tjdealer .pageBtn .list li{background:url(../img/bntBg.png);float:left;display:inline;width:15px;height:15px;background-position:-86px -57px;cursor:pointer;margin-left:10px;line-height:10000px;overflow:hidden}
+.tjdealer .pageBtn .list li.on{background-position:-114px -57px}
+
+/*车源排行*/
+.indexhotcarlist p{height:20px;line-height:20px;overflow:hidden;padding:7px 0;}
+.indexhotcarlist p .num01{float:left;display:block;width:20px;height:20px;overflow:hidden;line-height:20px;background:#ee7700;color:#fff;text-align:center;}
+.indexhotcarlist p .num02{float:left;display:block;width:20px;height:20px;line-height:20px;background:#111;color:#fff;text-align:center;}
+
+
+/*热门品牌*/
+#hot_brands .tab_title{background:none repeat scroll 0 0 #f7f7f7;border-right:1px solid #ebebeb}
+#hot_brands .tab_title li{display:inline;float:left;font-family:Microsoft YaHei;font-size:14px;text-align:center}
+#hot_brands .tab_title li a{background:#f7f7f7;border-color:#ebebeb;border-image:none;border-style:solid none solid solid;border-width:1px 0 1px 1px;color:#2f3031;display:inline-block;float:left;height:78px;width:147px}
+#hot_brands .tab_title li a img{display:block;height:40px;margin:9px auto 0;width:40px}
+#hot_brands .tab_title li a.current{background:none repeat scroll 0 0 #fff;border-bottom:1px solid #fff;border-top:3px solid #fc5300;height:76px}
+#hot_brands .tab_title li a.current img{margin-top:7px}
+#hot_brands .tab_title li a:hover{text-decoration:none}
+#hot_brands .tab_title li.last a{width:152px}
+#hot_brands .nocar{margin-left:420px;padding:95px 0}
+#hot_brands .nocar .icon{float:left;height:60px;width:60px}
+#hot_brands .nocar p{color:#989898;display:inline;float:left;font-size:14px;margin:0 0 0 10px}
+#hot_brands .nocar p strong{color:#494949;display:block;font-family:"Microsoft YaHei";font-size:26px;font-weight:bold;margin:6px 0}
+#hot_brands .nocar p a{color:#0090d8}
+#hot_brands .carmore{width:1200px;margin-top:10px;position:relative;text-align:center}
+#hot_brands .carmore a{background-color:#f7f7f7;border:1px solid #ebebeb;display:block;font-family:"Microsoft YaHei";font-size:16px;font-weight:bold;padding:10px 0;width:100%}
+#hot_brands .carmore a strong{color:#fc5300;font-weight:bold;margin:0 3px}
+#hot_brands .carmore a i{background:url("../img/icons.__1408011138__.png") no-repeat scroll -95px -60px rgba(0,0,0,0);display:inline-block;height:15px;position:absolute;top:16px;width:20px}
+#hot_brands .carmore a:hover{background-color:#ffeae0;border-color:#ffd9c7;color:#2f3031;text-decoration:none}
+
+
+/*资讯*/
+.indexnews_tab{height:35px;background:#f7f7f7;border:1px solid #eee;}
+.indexnews_tab li{float:left;width:120px;text-align:center;line-height:35px;font-size:14px;font-weight:bold;border-right:1px solid #eee;cursor:pointer;color:#666;}
+.indexnews_tab li.here{border-top:2px solid #fc5300;color:#fc5300;background:#fff;height:34px;line-height:34px;}
+.indexnews_box{padding:10px 0;}
+.indexnews_box .box_left{float:left;width:500px;}
+.indexnews_box .box_right{float:right;width:300px;}
+
+.picnewslist{padding:10px 0;}
+.picnewslist .img{float:left;width:165px;height:120px;}
+.picnewslist .img img{width:150px;height:120px;}
+.picnewslist .info{float:left;width:300px;line-height:22px;}
+
+/*评估*/
+.sell_table th{width:80px;padding:8px 10px;text-align:right;font-size:14px;}
+.sell_table td{padding:8px 10px;text-align:left;}
+.sell_table input[type="text"]{padding:3px;border:1px solid #d8d8d8;font-size:12px;}
+.sell_table .select01{padding:2px;width:200px;border:1px solid #d8d8d8;font-size:12px;}
+.sell_table .select02{padding:2px;width:98px;border:1px solid #d8d8d8;font-size:12px;}
+.sell_table textarea{width:300px;height:60px;border:1px solid #d8d8d8;padding:5px;font-size:12px;}
+
+
+/*问答*/
+.asklist li{padding:10px 0;border-bottom:1px dashed #ccc;}
+.asklist li div{padding:5px 0;}
+.asklist .ask i{background: url("../img/ask.png") no-repeat scroll 0 0;display: inline-block;float: left;height: 18px;vertical-align: middle;width:18px;}
+.asklist .ask strong {display: inline;float:left;font-size:14px;font-weight:bold;margin: 0 0 0 10px;}
+.asklist .reply i{background: url("../img/ask.png") no-repeat scroll -20px 0;display:inline-block;float:left;height: 18px;vertical-align: middle;width:18px;}
+.asklist .reply p{float:left;margin: 0 0 0 10px;display:inline;width:280px;color:#999;}
+
+.more{float:right;font-size:12px;padding-right:10px;color:#999;}
+
+/*服务*/
+#services{width:1200px;margin-left:auto;margin-right:auto;background:url("../img/services_bg.__1394092426__.png") no-repeat scroll 0 20px rgba(0,0,0,0);border-bottom:1px solid #ededed;border-top:1px solid #ededed;margin-bottom:20px;padding:20px 0;position:relative;z-index:4}
+#services dl{display:inline;float:left;line-height:24px;padding-left:68px;width:119px}
+#services dl dt{font:bold 16px/1.5em "Microsoft YaHei"}
+#services dl dd a{display:block}
+#services .d1{padding-left:60px;width:195px}
+#services .d1 .tel{color:#fc5300;font-size:24px;font-weight:bold;padding:4px 0}
+#services .d1 .time{font-size:14px;font-weight:bold}
+#services .d6{padding-left:75px;width:112px}
+
+
+.hide{display:none;}

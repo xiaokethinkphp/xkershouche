@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 26/05/2018 11:29:01
+ Date: 28/05/2018 21:08:58
 */
 
 SET NAMES utf8mb4;
@@ -43,10 +43,10 @@ INSERT INTO `xk_brand` VALUES (19, '雪铁龙', 1, 'm_6.png', 'X', 0, 0, 1);
 INSERT INTO `xk_brand` VALUES (17, 'JEEP', 1, 'm_4.png', 'J', 0, 0, 1);
 INSERT INTO `xk_brand` VALUES (18, '标致', 0, 'm_5.png', 'B', 30, 0, 1);
 INSERT INTO `xk_brand` VALUES (16, '奥克斯', 0, 'm_12.png', 'A', 0, 0, 1);
-INSERT INTO `xk_brand` VALUES (15, '奥迪', 1, 'm_9.png', 'A', 0, 0, 1);
+INSERT INTO `xk_brand` VALUES (15, '奥迪', 1, 'm_9.png', 'A', 5, 0, 1);
 INSERT INTO `xk_brand` VALUES (14, '丰田', 1, 'm_7.png', 'F', 0, 0, 1);
 INSERT INTO `xk_brand` VALUES (13, '宝马', 1, 'm_3.png', 'B', 150, 0, 1);
-INSERT INTO `xk_brand` VALUES (12, '奔驰', 1, 'm_2.png', 'B', 100, 0, 1);
+INSERT INTO `xk_brand` VALUES (12, '奔驰', 1, 'm_2.png', 'B', 200, 0, 1);
 INSERT INTO `xk_brand` VALUES (11, '大众', 1, 'm_8.png', 'D', 0, 0, 1);
 INSERT INTO `xk_brand` VALUES (22, '比亚迪', 0, 'm_15.png', 'B', 90, 0, 1);
 INSERT INTO `xk_brand` VALUES (23, '铃木', 0, 'm_16.png', 'L', 0, 0, 1);
@@ -120,12 +120,33 @@ INSERT INTO `xk_carmodel` VALUES (8, 2013, '118i 运动版', 55);
 INSERT INTO `xk_carmodel` VALUES (9, 2015, '118i 领先型', 58);
 INSERT INTO `xk_carmodel` VALUES (10, 2018, 'C 200 运动版', 59);
 INSERT INTO `xk_carmodel` VALUES (11, 2018, 'C 200 成就特别版', 59);
-INSERT INTO `xk_carmodel` VALUES (12, 2016, 'TFSI 进取型', 62);
 INSERT INTO `xk_carmodel` VALUES (13, 2018, 'TFSI 时尚型', 62);
 INSERT INTO `xk_carmodel` VALUES (14, 2018, 'TFSI 风尚型', 62);
 INSERT INTO `xk_carmodel` VALUES (15, 2018, 'C 300 运动版', 59);
 INSERT INTO `xk_carmodel` VALUES (16, 2018, '180 L 动感型运动版', 59);
 INSERT INTO `xk_carmodel` VALUES (17, 2018, '180 L 时尚型运动版', 59);
 INSERT INTO `xk_carmodel` VALUES (18, 2016, 'C 200 运动版', 59);
+
+-- ----------------------------
+-- Table structure for xk_level
+-- ----------------------------
+DROP TABLE IF EXISTS `xk_level`;
+CREATE TABLE `xk_level`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `thumb` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `order` int(255) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of xk_level
+-- ----------------------------
+INSERT INTO `xk_level` VALUES (1, '微型车', '&#xe7b8;', 5);
+INSERT INTO `xk_level` VALUES (2, '小型车', '&#xe7b7;', 4);
+INSERT INTO `xk_level` VALUES (3, '紧凑型车', '&#xe7b5;', 2);
+INSERT INTO `xk_level` VALUES (4, '中型车', '&#xe7ba;', 3);
+INSERT INTO `xk_level` VALUES (5, '中大型车', '&#xe7b9;', 8);
+INSERT INTO `xk_level` VALUES (6, '大型车', '&#xe7b6;', 7);
 
 SET FOREIGN_KEY_CHECKS = 1;

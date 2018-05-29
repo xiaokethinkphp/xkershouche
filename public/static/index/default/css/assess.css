@@ -1,0 +1,39 @@
+@import url(base.css);
+@import url(common.css);
+@charset "utf-8";
+/*全站链接样式*/
+a{color:#333; text-decoration:none;}
+a:hover{color:#ff6600;text-decoration:none;} 
+.blank{height:10px;}
+body{color:#333;font-size:12px;}
+.blank{height:10px;}
+
+#evalute_result{border:1px solid #ededed}
+#evalute_result .car_info{background:none repeat scroll 0 0 #fafafa;border-bottom:1px solid #ededed;height:48px;line-height:48px}
+#evalute_result .car_info .left{display:inline-block;float:left;height:48px;overflow:hidden;width:50%}
+#evalute_result .car_info .left span{background:url("../img/eva_title_bg.__1386729412__.gif") no-repeat scroll 0 0 rgba(0,0,0,0);font-size:14px;font-weight:bold;margin:0 0 0 10px;padding:0 0 0 10px}
+#evalute_result .car_info .right{display:inline;float:right}
+#evalute_result .car_info .right span{color:#a3a3a3;padding:0 0 0 18px}
+#evalute_result .car_info .right strong{color:#494949;padding:0 20px 0 5px}
+#evalute_result .car_info .right span.time{background:url("../img/eva_icon.__1386729412__.png") no-repeat scroll 0 0 rgba(0,0,0,0)}
+#evalute_result .car_info .right span.addr{background:url("../img/eva_icon.__1386729412__.png") no-repeat scroll 0 -15px rgba(0,0,0,0)}
+#evalute_result .car_info .right span.mileage{background:url("../img/eva_icon.__1386729412__.png") no-repeat scroll 0 -30px rgba(0,0,0,0)}
+#evalute_result .eva_info{height:250px;position:relative}
+#evalute_result .eva_info .logo{height:250px;left:0;overflow:hidden;position:relative;width:238px}
+#evalute_result .eva_info .logo .logo_switch{height:250px;width:480px}
+#evalute_result .eva_info .logo .nodata{background:url("../img/nodata_pc.__1387875096__.gif") no-repeat scroll 0 0 rgba(0,0,0,0);float:left;height:250px;width:238px}
+#evalute_result .eva_info .logo .hasdata{background:url("../img/nodata_pc.__1387875096__.gif") no-repeat scroll 0 0 rgba(0,0,0,0);float:left;height:250px;width:238px}
+#evalute_result .eva_info .detail_info{border-right:1px dashed #cecece;height:210px;left:250px;margin:20px 0;position:absolute;top:0;width:657px}
+#evalute_result .eva_info .detail_info span.no{display:block;font-size:14px;font-weight:bold;margin:95px auto;width:390px}
+#evalute_result .eva_info .choose{background:url("../img/eva_pc1.__1387964458__.gif") no-repeat scroll 0 0 rgba(0,0,0,0);height:250px;left:908px;position:absolute;top:0;width:232px}
+#evalute_result .eva_info .choose .item{margin:90px 0 0 51px}
+#evalute_result .eva_info .choose a.btn{background:none repeat scroll 0 0 #f37c06;border:0 none;color:#fff;cursor:pointer;display:block;font-size:14px;font-weight:bold;height:30px;line-height:30px;margin-bottom:7px;padding:0;text-align:center;width:128px}
+#evalute_result .eva_info .choose a{background:url("../img/right_icon.__1386811858__.png") no-repeat scroll 5px center rgba(0,0,0,0);color:#494949;display:block;height:30px;line-height:30px;padding:0 0 0 20px}
+#evalute_result .eva_info .choose a:hover{text-decoration:none}
+
+#evalute_result .eva_info .detail_info p.p1{color:#a3a3a3;font-size:14px;padding:30px 30px 0 15px}
+#evalute_result .eva_info .detail_info p.p1 strong{color:#494949}
+#evalute_result .eva_info .detail_info p.p2{color:#d00;font-family:"Microsoft YaHei";font-size:16px;padding:5px 0 0 15px}
+#evalute_result .eva_info .detail_info p.p2 span{font-size:50px;font-weight:700;padding-left:5px}
+#evalute_result .eva_info .note_box{background:url("../img/eva_note_bg.__1386729412__.gif") no-repeat scroll 0 0 rgba(0,0,0,0);height:82px;width:480px}
+#evalute_result .eva_info .note_box p{line-height:24px;padding:20px 10px}

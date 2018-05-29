@@ -1,0 +1,47 @@
+@import url(base.css);
+@import url(common.css);
+@charset "utf-8";
+
+/*全站链接样式*/
+a{ color:#333; text-decoration:none;}
+a:hover{ color:#ff6600; text-decoration:none;} 
+.blank{height:10px;}
+body{ color:#333; font-size:12px;}
+.blank{ height:10px;}
+
+body{font-weight:normal;font:12px "微软雅黑",verdana,lucida,helvetica,arial,sans-serif;background:#fff;}
+
+
+
+/*车源图片列表*/
+.picnewslist li{float:left;padding:10px;}
+.picnewslist li img{width:215px;height:170px;}
+.picnewslist li p a{color:#0066cc;}
+.picnewslist li p{margin-top:5px;text-align:center;}
+
+.picnewslist02 li{float:left;padding:10px;}
+.picnewslist02 li img{width:180px;height:100px;}
+.picnewslist02 li p a{color:#0066cc;}
+.picnewslist02 li p{margin-top:5px;text-align:center;}
+
+.hide{display:none;}
+
+
+/*幻灯片*/
+.focusBox{position:relative;width:1200px;height:450px;overflow:hidden}
+.focusBox .pic img{width:1200px;height:450px;display:block}
+.focusBox .hd{overflow:hidden;zoom:1;position:absolute;bottom:5px;right:10px;z-index:3}
+.focusBox .hd li{float:left;line-height:15px;text-align:center;font-size:12px;width:25px;height:10px;cursor:pointer;overflow:hidden;background:#919191;margin-left:4px;filter:alpha(opacity=80);opacity:.8;-webkit-transition:All .5s ease;-moz-transition:All .5s ease;-o-transition:All .5s ease}
+.focusBox .hd .on{background:#fff;filter:alpha(opacity=100);opacity:1}
+.focusBox .prev,.focusBox .next{width:45px;height:99px;position:absolute;top:170px;z-index:3;filter:alpha(opacity=20);-moz-opacity:.2;opacity:.2;-webkit-transition:All .5s ease;-moz-transition:All .5s ease;-o-transition:All .5s ease}
+.focusBox .prev{background-image:url(../img/index.png);background-position:-112px 0;left:0}
+.focusBox .next{background-image:url(../img/index.png);background-position:-158px 0;right:0}
+.focusBox .prev:hover,.focusBox .next:hover{filter:alpha(opacity=60);-moz-opacity:.6;opacity:.6}
+
+/*问答*/
+.asklist li{padding:10px 0;border-bottom:1px dashed #ccc;}
+.asklist li div{padding:5px 0;}
+.asklist .ask i{background: url("../img/ask.png") no-repeat scroll 0 0;display: inline-block;float: left;height: 18px;vertical-align: middle;width:18px;}
+.asklist .ask strong {display: inline;float:left;font-size:14px;font-weight:bold;margin: 0 0 0 10px;}
+.asklist .reply i{background: url("../img/ask.png") no-repeat scroll -20px 0;display:inline-block;float:left;height: 18px;vertical-align: middle;width:18px;}
+.asklist .reply p{float:left;margin: 0 0 0 10px;display:inline;width:280px;color:#999;}

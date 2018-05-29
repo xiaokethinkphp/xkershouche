@@ -76,9 +76,9 @@
                                                 <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="">修改</a>
+                                                    <li><a href="{:url('admin/level/upd',array('id'=>$vo.id))}">修改</a>
                                                     </li>
-                                                    <li><a href="">删除</a>
+                                                    <li><a href="javascript:if(confirm('确认删除？')) location='{:url('admin/level/del',array('id'=>$vo.id))}'">删除</a>
                                                     </li>
                                                 </ul>
                                             </div>

@@ -75,4 +75,48 @@ class Level extends Controller
 
    }
 
+   public function upd($id='')
+   {
+       $level_find = db('level')->find($id);
+       if (!empty($level_find)) {
+            $this->assign('level_find',$level_find);
+            return view();
+       } else {
+           $this->redirect("admin/level/lst");
+       }
+
+   }
+
+   public function updhanddle()
+   {
+       if (request()->isPost()) {
+           $post = input('post.');
+           $validate = validate("Level");
+           if (!$validate->check($post)) {
+               $this->error($validate->getError());
+           } else {
+               $level = db("level")->update($post);
+               if ($level!==false) {
+                   $this->success("级别修改成功",'admin/level/lst');
+               } else {
+                   $this->error("级别修改失败",'admin/level/lst');
+               }
+
+           }
+       } else {
+           $this->redirect("admin/level/lst");
+       }
+
+   }
+
+   public function del($id='')
+   {
+       $level_del_result = db('level')->delete($id);
+       if ($level_del_result) {
+           $this->success("级别删除成功",'admin/level/lst');
+       } else {
+           $this->error("级别删除失败",'admin/level/lst');
+       }
+   }
+
 }

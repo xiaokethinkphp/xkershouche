@@ -35,6 +35,7 @@ return [
     // 模板替换
     'tpl_replace_string'    =>  [
         '__ADMIN__' =>  '/xkershouche/public/static/admin',
-        '__UPLOADS__' =>  '/xkershouche/uploads'
+        '__UPLOADS__' =>  '/xkershouche/uploads',
+        '__INDEX__' =>  '/xkershouche/public/static/index',
     ]
 ];
