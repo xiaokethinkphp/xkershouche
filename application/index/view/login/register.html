@@ -1,0 +1,170 @@
+{extend name='base'/}
+{block name="header"}
+{__block__}
+<link href="__INDEX__/default/css/user.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="__INDEX__/static/js/jquery.inputtext.js"></script>
+<script src="__ADMIN__/js/jquery.cxselect.js" charset="utf-8"></script>
+<script src="__ADMIN__/js/plugins/validate/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#area").cxSelect({
+            url:"__INDEX__/static/area.json",
+            selects:['province','city','county'],
+            jsonName:"name",
+            jsonValue:"code",
+            jsonSub:"children"
+        });
+
+        $("#loginform").validate({
+            rules:{
+                member_name:{
+                    required:true,
+                    rangelength:[1,10],
+                    remote:{
+                        url:"{:url('index/login/checkNameAjax')}",
+                        type:"post"
+                    }
+                },
+                member_password:{
+                    required:true,
+                    rangelength:[6,10],
+                },
+                member_password1:{
+                    required:true,
+                    rangelength:[6,10],
+                    equalTo:"#member_password"
+                },
+                mobile_number:{
+                    required:true,
+                    number:true,
+                    rangelength:[11,11],
+                    min:13000000000,
+                    max:19999999999,
+                    remote:{
+                        url:"{:url('index/login/checkMobileNumberAjax')}",
+                        type:"post"
+                    }
+                },
+                checkcode:{
+                    required:true,
+                    number:true,
+                    rangelength:[6,6],
+                    remote:{
+                        url:"{:url('index/login/checkCode')}",
+                        type:"post",
+
+                    }
+                }
+            },
+            messages:{
+                member_name:{
+                    required:"请输入用户名",
+                    rangelength:"用户名长度在1-10之间",
+                    remote:"该用户名已经存在"
+                },
+                member_password:{
+                    required:"请输入密码",
+                    rangelength:"密码长度在6-10之间",
+                },
+                member_password1:{
+                    required:"请输入密码",
+                    rangelength:"密码长度在6-10之间",
+                    equalTo:"两次密码输入不一致"
+                },
+                mobile_number:{
+                    required:"请输入手机号",
+                    number:"手机号码格式不正确",
+                    rangelength:"手机号码格式不正确",
+                    min:"手机号码格式不正确",
+                    max:"手机号码格式不正确",
+                    remote:"该手机号已经被使用"
+                },
+                checkcode:{
+                    required:"请输入验证码",
+                    number:"验证码必须为6位数字",
+                    rangelength:"验证码必须为6位数字",
+                    remote:"验证码无效或超时"
+                }
+            }
+        });
+
+        $("button[name='button']").click(function(event) {
+            var $mobile_number = $("input[name='mobile_number']").val();
+            if ($mobile_number=='') {
+                alert("请输入手机号码");
+            }
+            /* Act on the event */
+            $.ajax({
+                url: '{:url("index/login/senMessage")}',
+                type: 'post',
+                data: {mobile_number: $mobile_number}
+            })
+
+        });
+    })
+</script>
+{/block}
+{block name="main"}
+<div class="login_main mt10 clearfix">
+    <div class="login_left">
+        <div class="title">注册</div>
+        <ul class="clearfix reg_tab">
+            <li class="here">个人注册</li>
+        </ul>
+        <div class="regbox mt20">
+            <div>
+                <form name="loginform" class="resform" id="loginform" method="post" action="{:url('index/login/registerhanddle')}" >
+                    <table class="logintable">
+                        <tr>
+                            <th>用户名：</th>
+                            <td><input type="text"  name="member_name" class="inp01"/></td>
+                        </tr>
+                        <tr>
+                            <th>密码：</th>
+                            <td><input type="password"  name="member_password" class="inp01" placeholder="密码长度在6-10之间" id="member_password"/></td>
+                        </tr>
+                        <tr>
+                            <th>确认密码：</th>
+                            <td><input type="password"  name="member_password1" class="inp01" placeholder="请再次输入密码"/></td>
+                        </tr>
+                        <tr>
+                            <th> 所在城市：</th>
+                            <td colspan="3">
+                                <div id="area">
+                                    <select name="province_id" class="province">
+
+                                    </select>
+                                    <select name="city_id" class="city">
+
+                                    </select>
+                                    <select name="county_id" class="county">
+
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>手机号：</th>
+                            <td>
+                                <input type="text" name="mobile_number" class="inp01"/>
+                                <button type="button" name="button">点击获取验证码</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th width="20%">验证码：</th>
+                            <td><input name="checkcode"  type="text" class="inp02" />
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><input type="submit" class="login_but" value="注册">
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="login_right">
+        <p class="f14 mt20">已是二手车网会员？</p>
+        <p class="mt20"><a href="/simcms/index.php?m=login" class="register_but">我要登录</a></p>
+    </div>
+</div>
+{/block}

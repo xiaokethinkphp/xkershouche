@@ -1,4 +1,173 @@
 {extend name="base" /}
+{block name="header"}
+{__block__}
+<script language="JavaScript">
+$(function() {
+    //品牌选择
+    $("#brand").change(function(){
+        $.get("/simcms/index.php?m=ajax&ajax=1", {
+            brandid :  $("#brand").val()
+        }, function (data, textStatus){
+            $("#subbrand").html(data); // 把返回的数据添加到页面上
+        }
+    );
+});
+
+//品牌选择
+$("#subbrand").change(function(){
+    $.get("/simcms/index.php?m=ajax&ajax=1", {
+        subbrandid :  $("#subbrand").val()
+    }, function (data, textStatus){
+        $("#subsubbrand").html(data); // 把返回的数据添加到页面上
+    }
+);
+});
+
+$div_li = $("div.tab_title ul li a");
+$div_li.click(function() {
+    $(this).addClass("current").parent().siblings().children().removeClass("current");
+    var index = $div_li.index(this);
+    $("div.cartab_box > div").eq(index).show().siblings().hide();
+});
+
+$search_li = $("div.leftsearch_tab ul li");
+$search_li.click(function() {
+    $(this).addClass("here").siblings().removeClass("here");
+    var index = $search_li.index(this);
+    $("div.leftsearch_tab_box > div").eq(index).show().siblings().hide();
+});
+
+//表单验证
+$(".carform").Validform({
+    tiptype:1
+});
+//热门车源
+$("#hotcar1").load("/simcms/index.php?m=ajax&ajax=1&cartype=indexhot");
+//首页推荐新车
+$("#hotcar").load("/simcms/index.php?m=ajax&ajax=1&cartype=indexnew");
+//首页推荐新车旧卖
+//$("#hotcar").load("/simcms/index.php?m=ajax&ajax=1&cartype=recommend");
+
+
+//修改处  nav
+
+$(".leftsearch .leftsearchbox:eq(0)").mouseover(function(){
+
+    $("#icon_03").css("background-position","-278px -47px");
+    $("#icon_02").css("background-position","-278px 0px");
+    $("#icon_04").css("background-position","-0px -219px");
+    $(".leftsearch .leftsearchbox .clearfix a").css("color","#333");
+    $(".lefttitle").css("color","#fc5300");
+    $(".triangle").show();
+    $(".more:eq(0)").css("color","#fc5300");
+    $(".rightad").hide();
+    $(".leftsearch .leftsearchbox").css("background","#fff");
+
+    $(".leftsearch .leftsearchbox:eq(0)").css("background","#fc5300");
+    $("#icon_01").css("background-position","-94px -266px");
+    $(".leftsearch .leftsearchbox:eq(0) .clearfix a").css("color","#fff");
+    $(".lefttitle:eq(0)").css("color","#fff");
+    $(".triangle:eq(0)").hide();
+    $(".rightad:eq(0)").show();
+});
+
+$(".leftsearch .leftsearchbox:eq(1)").mouseover(function(){
+
+    $("#icon_01").css("background-position","-278px -141px");
+    $("#icon_03").css("background-position","-278px -47px");
+    $("#icon_04").css("background-position","-0px -219px");
+    $(".leftsearch .leftsearchbox .clearfix a").css("color","#333");
+    $(".lefttitle").css("color","#fc5300");
+    $(".triangle").show();
+    $(".more:eq(0)").css("color","#fc5300");
+    $(".rightad").hide();
+    $(".leftsearch .leftsearchbox").css("background","#fff");
+
+    $(".leftsearch .leftsearchbox:eq(1)").css("background","#fc5300");
+    $("#icon_02").css("background-position","-188px -219px");
+    $(".leftsearch .leftsearchbox:eq(1) .clearfix a").css("color","#fff");
+    $(".lefttitle:eq(1)").css("color","#fff");
+    $(".triangle:eq(1)").hide();
+    $(".rightad:eq(1)").show();
+});
+
+$(".leftsearch .leftsearchbox:eq(2)").mouseover(function(){
+
+    $("#icon_01").css("background-position","-278px -141px");
+    $("#icon_02").css("background-position","-278px 0px");
+    $("#icon_04").css("background-position","-0px -219px");
+    $(".leftsearch .leftsearchbox .clearfix a").css("color","#333");
+    $(".lefttitle").css("color","#fc5300");
+    $(".triangle").show();
+    $(".more:eq(0)").css("color","#fc5300");
+    $(".rightad").hide();
+    $(".leftsearch .leftsearchbox").css("background","#fff");
+
+    $(".leftsearch .leftsearchbox:eq(2)").css("background","#fc5300");
+    $("#icon_03").css("background-position","-278px -94px");
+    $(".leftsearch .leftsearchbox:eq(2) .clearfix a").css("color","#fff");
+    $(".lefttitle:eq(2)").css("color","#fff");
+    $(".triangle:eq(2)").hide();
+    $(".rightad:eq(2)").show();
+});
+
+$(".leftsearch .leftsearchbox:eq(3)").mouseover(function(){
+
+    $("#icon_01").css("background-position","-278px -141px");
+    $("#icon_02").css("background-position","-278px 0px");
+    $("#icon_03").css("background-position","-278px -47px");
+    $(".leftsearch .leftsearchbox .clearfix a").css("color","#333");
+    $(".lefttitle").css("color","#fc5300");
+    $(".triangle").show();
+    $(".more:eq(0)").css("color","#fc5300");
+    $(".rightad").hide();
+    $(".leftsearch .leftsearchbox").css("background","#fff");
+
+    $(".leftsearch .leftsearchbox:eq(3)").css("background","#fc5300");
+    $("#icon_04").css("background-position","-141px -219px");
+    $(".leftsearch .leftsearchbox:eq(3) .clearfix a").css("color","#fff");
+    $(".lefttitle:eq(3)").css("color","#fff");
+    $(".triangle:eq(3)").hide();
+    $(".rightad:eq(3)").show();
+});
+
+$(".leftsearch .leftsearchbox").mouseleave(function(){
+    $(".rightad").hide();
+    $("#icon_01").css("background-position","-278px -141px");
+    $("#icon_02").css("background-position","-278px 0");
+    $("#icon_03").css("background-position","-278px -47px");
+    $("#icon_04").css("background-position","0 -219px");
+    $(".leftsearch .leftsearchbox .clearfix a").css("color","#333");
+    $(".lefttitle").css("color","#fc5300");
+    $(".triangle").show();
+    $(".more:eq(0)").css("color","#fc5300");
+    $(".leftsearch .leftsearchbox").css("background","#fff");
+});
+
+//修改处  商家/个人推荐二手车
+
+$(".tjdealer").slide({mainCell:".piclist", effect:"leftLoop",vis:5,autoPlay:true});
+
+
+})
+</script>
+<script type="text/javascript" src="/simcms/static/js/jquery.inputtext.js"></script>
+<script language="JavaScript">
+$(function(){
+    $("#carcount").load("/simcms/index.php?m=ajax&ajax=1&carcount=1");
+    $(".keywords").textRemindAuto();
+    //城市选择
+    $(".topcity").toggle(
+        function () {
+            $(".topcitylist").show();
+        },
+        function () {
+            $(".topcitylist").hide();
+        }
+    );
+})
+</script>
+{/block}
 {block name="main"}
 <div class="fullSlide">
     <div class="leftsearch">
