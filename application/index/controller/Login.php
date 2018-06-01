@@ -64,9 +64,44 @@ class Login extends Controller
         // $this->redirect('index/login/bb');
     }
 
+    // 登录界面显示
     public function login()
     {
-        dump(input('post.'));
+        return view();
+    }
+
+    // 验证登录信息
+    public function checklogin()
+    {
+        if (request()->isPost()) {
+            $post = input('post.');
+            $member_name_find = db("member")
+            ->where("member_name",input("post.member_name"))
+            ->find();
+            if (!$member_name_find) {
+                $this->error("该用户不存在,请重新登录","index/login/login");
+            }
+            if ($member_name_find['member_password']==md5(input("post.member_password"))) {
+                $this->success("登录成功","index/member/membercenter");
+            } else {
+               $this->error("密码错误,请重新登录","index/login/login");
+            }
+
+        } else{
+            $this->redirect('index/login/register');
+        }
+    }
+
+    // 判断用户是否存在
+    public function isNameAjax()
+    {
+        if (request()->isAjax()) {
+            $db = db("member")->where("member_name",input("post.member_name"))->find();
+            return empty($db)?false:true;
+        } else {
+            $this->redirect('index/login/login');
+        }
+
     }
 
     public function registerhanddle()
@@ -79,6 +114,7 @@ class Login extends Controller
             if (!$validate->check($post)) {
                 $this->error($validate->getError());
             }
+            $post['member_password'] = md5($post['member_password']);
             $member_add_result = db("member")->insert($post);
             if ($member_add_result) {
                 $this->success("注册成功");
