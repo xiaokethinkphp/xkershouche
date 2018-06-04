@@ -3,6 +3,47 @@
 {block name="header"}
 {__block__}
 <link href="__INDEX__/default/css/user.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript">
+    $(function(){
+        $("#checkMobile").click(function(event) {
+            /* Act on the event */
+            var mobile_number = $("input[name='mobile_number']").val();
+            var id = {$Think.cookie.member['id']};
+            $.ajax({
+                url: '{:url("index/login/checkMobileNumberAjax")}',
+                type: 'post',
+                data: {id: id,mobile_number:mobile_number}
+            })
+            .done(function(data) {
+               if(!data){
+                   alert("该手机号不符合要求或已经被使用！");
+               }
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+
+        });
+
+        var $input = $("input[name='mobile_number']");
+        $input.focus(function(event) {
+            /* Act on the event */
+            if($input.val()=={$Think.cookie.member['mobile_number']}){
+                $input.val('');
+            }
+        })
+        .blur(function(event) {
+            /* Act on the event */
+            var prv = {$Think.cookie.member['mobile_number']};
+            if($input.val()==''){
+                $input.val(prv);
+            }
+        });
+    })
+</script>
 {/block}
 <!--主体-->
 {block name="main"}
@@ -26,7 +67,7 @@
                     <img src="/simcms/upload/image/20180601/20180601093506_90299.png"/>
                 </div>
                 <div class="userinfo_right">
-                    <p class="fb">吴兴超.com</p>
+                    <p class="fb">{$Think.cookie.member['member_name']}</p>
                     <div class="mt10 gray01" id="user_menu">账户信息
                         <ul class="userinfomenu hide">
                             <li><a href="/simcms/index.php?m=user&a=upinfo">修改资料</a></li>
@@ -57,46 +98,38 @@
         </div>
         <div class="usermenu">
             <h3><a href="/simcms/index.php?m=user&a=logout">退出</a></h3>
-        </div>    </div>
-        <div class="userright">
-            <h2 class="usernav">编辑个人信息</h2>
-            <div class="box">
-                <form name="form1" class="carform" method="post" action="index.php?m=user">
-                    <table cellspacing="0" cellpadding="0" width="100%"  class="maintable">
-                        <tr>
-                            <th>用户名：</th>
-                            <td colspan="3">吴兴超.com</td>
-                        </tr>
-                        <tr>
-                            <th>邮箱地址：</th>
-                            <td colspan="3">
-                                <input type="text" name="email" value="120986916@qq.com" size="30" class="inp01" datatype="e" ajaxurl="index.php?m=user&ajax=1" nullmsg="请输入邮箱地址！" errormsg="请输入正确的邮箱地址！"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>联系人：</th>
-                            <td><input type="text" name="nicname" value="吴兴超" class="inp01"  datatype="s" nullmsg="请填写联系人！"/></td>
-                        </tr>
-                        <tr>
-                            <th>手机号码：</th>
-                            <td colspan="3">
-                                <input type="text" name="mobilephone" value="18040654788" size="20" class="inp01" datatype="m" ajaxurl="index.php?m=user&ajax=1" nullmsg="请输入手机号！" errormsg="请输入正确的手机号！"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <td colspan="5">
-                                <div class="buttons">
-                                    <input type="submit" value="提 交" class="submit">
-                                    <input type="hidden" name="a" value="upinfo">
-                                    <input type="hidden" name="id" value="182">
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
         </div>
     </div>
+    <div class="userright">
+        <h2 class="usernav">编辑个人信息</h2>
+        <div class="box">
+            <form name="form1" class="carform" method="post" action="index.php?m=user">
+                <table cellspacing="0" cellpadding="0" width="100%"  class="maintable">
+                    <tr>
+                        <th>用户名：</th>
+                        <td colspan="3">{$Think.cookie.member['member_name']}</td>
+                    </tr>
+                    <tr>
+                        <th>手机号码：</th>
+                        <td colspan="3">
+                            <input type="text" name="mobile_number" value="{$Think.cookie.member['mobile_number']}" size="20" class="inp01"/>
+                            <button type="button" id="checkMobile">点击获取验证码</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td colspan="5">
+                            <div class="buttons">
+                                <input type="submit" value="提 交" class="submit">
+                                <input type="hidden" name="a" value="upinfo">
+                                <input type="hidden" name="id" value="182">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
 {/block}
         <!--主体结束-->

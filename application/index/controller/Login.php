@@ -82,6 +82,7 @@ class Login extends Controller
                 $this->error("该用户不存在,请重新登录","index/login/login");
             }
             if ($member_name_find['member_password']==md5(input("post.member_password"))) {
+                cookie("member",$member_name_find);
                 $this->success("登录成功","index/member/membercenter");
             } else {
                $this->error("密码错误,请重新登录","index/login/login");
@@ -126,4 +127,6 @@ class Login extends Controller
         }
 
     }
+
+
 }

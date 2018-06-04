@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 28/05/2018 21:08:58
+ Date: 01/06/2018 10:04:27
 */
 
 SET NAMES utf8mb4;
@@ -146,7 +146,29 @@ INSERT INTO `xk_level` VALUES (1, '微型车', '&#xe7b8;', 5);
 INSERT INTO `xk_level` VALUES (2, '小型车', '&#xe7b7;', 4);
 INSERT INTO `xk_level` VALUES (3, '紧凑型车', '&#xe7b5;', 2);
 INSERT INTO `xk_level` VALUES (4, '中型车', '&#xe7ba;', 3);
-INSERT INTO `xk_level` VALUES (5, '中大型车', '&#xe7b9;', 8);
 INSERT INTO `xk_level` VALUES (6, '大型车', '&#xe7b6;', 7);
+
+-- ----------------------------
+-- Table structure for xk_member
+-- ----------------------------
+DROP TABLE IF EXISTS `xk_member`;
+CREATE TABLE `xk_member`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `member_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名称',
+  `member_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户密码',
+  `mobile_number` float(20, 0) NOT NULL COMMENT '用户手机',
+  `province_id` int(11) NOT NULL COMMENT '用户省',
+  `city_id` int(11) NOT NULL COMMENT '用户市',
+  `county_id` int(11) NOT NULL COMMENT '用户县',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `member_name`(`member_name`) USING BTREE,
+  UNIQUE INDEX `mobile_number`(`mobile_number`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of xk_member
+-- ----------------------------
+INSERT INTO `xk_member` VALUES (1, '11', '1', 13344445440, 1, 1, 1);
+INSERT INTO `xk_member` VALUES (12, '1123', 'e10adc3949ba59abbe56e057f20f883e', 15040360448, 120000, 120100, 120102);
 
 SET FOREIGN_KEY_CHECKS = 1;
