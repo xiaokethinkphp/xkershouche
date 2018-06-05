@@ -46,60 +46,7 @@
 </script>
 {/block}
 <!--主体-->
-{block name="main"}
-<div class="usermain clearfix mt10">
-    <div class="userleft">
-        <script type="text/javascript">
-        $(document).ready(function() {
-            $("#user_menu").hover(
-                function () {
-                    $('.userinfomenu').show();
-                },
-                function () {
-                    $('.userinfomenu').hide();
-                }
-            );
-        });
-        </script>
-        <div class="userinfo">
-            <div class="clearfix">
-                <div class="userinfo_left">
-                    <img src="/simcms/upload/image/20180601/20180601093506_90299.png"/>
-                </div>
-                <div class="userinfo_right">
-                    <p class="fb">{$Think.cookie.member['member_name']}</p>
-                    <div class="mt10 gray01" id="user_menu">账户信息
-                        <ul class="userinfomenu hide">
-                            <li><a href="/simcms/index.php?m=user&a=upinfo">修改资料</a></li>
-                            <li><a href="/simcms/index.php?m=user&a=uppwd">修改密码</a></li>
-                            <li><a href="/simcms/index.php?m=user&a=addlogo">修改头像</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <p class="mt10 gray01 pl5">注册日期：2014/09/24</p>
-        </div>
-        <div class="usermenu">
-            <h3><a href="/simcms/index.php?m=user">会员中心首页</a></h3>
-        </div>
-        <div class="usermenu">
-            <h3>二手车管理</h3>
-            <ul>
-                <li><a href="/simcms/index.php?m=user&a=carlist">二手车管理</a></li>
-                <li><a href="/simcms/index.php?m=user&a=rentcarlist">租车管理</a></li>
-            </ul>
-        </div>
-        <div class="usermenu">
-            <h3>商机管理</h3>
-            <ul>
-                <li><a href="/simcms/index.php?m=user&a=subscribelist">预约管理</a></li>
-                <li><a href="/simcms/index.php?m=user&a=inquirylist">询价管理</a></li>
-            </ul>
-        </div>
-        <div class="usermenu">
-            <h3><a href="/simcms/index.php?m=user&a=logout">退出</a></h3>
-        </div>
-    </div>
+{block name="userright"}
     <div class="userright">
         <h2 class="usernav">编辑个人信息</h2>
         <div class="box">
@@ -130,6 +77,5 @@
             </form>
         </div>
     </div>
-</div>
 {/block}
         <!--主体结束-->

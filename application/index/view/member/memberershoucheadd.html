@@ -1,0 +1,516 @@
+{extend name="member/memberbase"/}
+{block name="title"}用户中心-添加二手车{/block}
+{block name="userright"}
+<div class="userright">
+    <h2 class="usernav">添加车源</h2>
+    <div class="box">
+        <script type="text/javascript" src="/simcms/static/js/laydate/laydate.js"></script>
+        <form name="form1" class="carform" enctype="multipart/form-data" method="post" action="{:url('index/member/ershoucheaddhaddle')}">
+            <table cellspacing="0" cellpadding="0" width="100%"  class="maintable">
+                <tr>
+                    <th>所在城市：</th>
+                    <td colspan="3">
+                        <select name="aid" id="province">
+                            <option value=''>请选择省份</option>
+                            <option value='1' >北京市</option>
+                        </select>
+                        <select name="cid" id="city">
+                            <option value=''>请选择城市</option>
+                            <option value='135' >杭州市</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>品牌型号：</th>
+                    <td colspan="3">
+                        <select name="p_brand" id="brand" datatype="n" nullmsg="请选择品牌！">
+                            <option value=''>请选择品牌</option>
+                            <option value='1' >A 奥迪</option>
+                            <option value='2' >A 奥克斯</option>
+                        </select>
+                        <select class="subbrand" id="subbrand" name="p_subbrand" datatype="n" nullmsg="请选择车系！">
+                            <option  value="">请选择车系</option>
+                        </select> &nbsp;<select class="subbrand" id="subsubbrand" name="p_subsubbrand" datatype="n" nullmsg="请选择款式！">
+                            <option  value="">请选择款式</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>车型选择：</th>
+                    <td><select name="p_model">
+                        <option value='41' >小型车</option>
+                    </select></td>
+                    <th></th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>预售价格：</th>
+                    <td><input type="text" name="p_price"  size="5" value="" datatype="s" nullmsg="请填写价格！">
+                        <span class="gray">(万元)</span>
+                    </td>
+                    <th>出厂报价：</th>
+                    <td><input type="text" name="p_newprice"  size="5" value="">
+                        <span class="gray">(万元)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>购置税：</th>
+                    <td><input type="text" name="p_tax"  size="5" value="">
+                        <span class="gray">(万元)</span>
+                    </td>
+                    <th>为您节省：</th>
+                    <td><input type="text" name="p_save"  size="5" value="">
+                        <span class="gray">(万元)</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>车体颜色：</th>
+                    <td width="180"><select name="p_color">
+                        <option value=''>请选择颜色</option>
+                        <option value='白色' >白色</option>
+                        <option value='黑色' >黑色</option>
+                        <option value='银灰' >银灰</option>
+                        <option value='蓝色' >蓝色</option>
+                        <option value='红色' >红色</option>
+                        <option value='黄色' >黄色</option>
+                        <option value='绿色' >绿色</option>
+                        <option value='玫红' >玫红</option>
+                        <option value='玫紫' >玫紫</option>
+                        <option value='棕色' >棕色</option>
+
+                    </select></td>
+                    <th width="50">排量：</th>
+                    <td><select name="p_gas">
+                        <option value=''>请选择排量</option>
+                        <option value='1.0L' >1.0L</option>
+                        <option value='1.2L' >1.2L</option>
+                        <option value='1.2T' >1.2T</option>
+                        <option value='1.3L' >1.3L</option>
+                        <option value='1.4L' >1.4L</option>
+                        <option value='1.5L' >1.5L</option>
+                        <option value='1.6L' >1.6L</option>
+                        <option value='1.8 L' >1.8 L</option>
+                        <option value='2.0L' >2.0L</option>
+                        <option value='2.4T' >2.4T</option>
+                        <option value='2.8L' >2.8L</option>
+                        <option value='3.0L' >3.0L</option>
+                        <option value='3.5L' >3.5L</option>
+                        <option value='4.0L' >4.0L</option>
+
+                    </select></td>
+                </tr>
+                <tr>
+                    <th>变速箱：</th>
+                    <td><select name="p_transmission">
+                        <option value=''>请选择变速箱</option>
+                        <option value='手动' >手动</option>
+                        <option value='自动' >自动</option>
+                        <option value='手自一体' >手自一体</option>
+
+                    </select></td>
+                    <th>上牌日期：</th>
+                    <td><select name="p_year" id="p_year">
+                        <option value=''>请选择年份</option>
+                        <option value='2003' >2003年</option>
+                        <option value='2004' >2004年</option>
+                        <option value='2005' >2005年</option>
+                        <option value='2006' >2006年</option>
+                        <option value='2007' >2007年</option>
+                        <option value='2008' >2008年</option>
+                        <option value='2009' >2009年</option>
+                        <option value='2010' >2010年</option>
+                        <option value='2011' >2011年</option>
+                        <option value='2012' >2012年</option>
+                        <option value='2013' >2013年</option>
+                        <option value='2014' >2014年</option>
+
+                    </select>
+                    <select name="p_month" id="p_month">
+                        <option value=''>请选择月份</option>
+                        <option value='01' >01月</option>
+                        <option value='02' >02月</option>
+                        <option value='03' >03月</option>
+                        <option value='04' >04月</option>
+                        <option value='05' >05月</option>
+                        <option value='06' >06月</option>
+                        <option value='07' >07月</option>
+                        <option value='08' >08月</option>
+                        <option value='09' >09月</option>
+                        <option value='10' >10月</option>
+                        <option value='11' >11月</option>
+                        <option value='12' >12月</option>
+
+                    </select></td>
+                </tr>
+                <tr>
+                    <th>行驶里程：</th>
+                    <td ><input name="p_kilometre" type="text" id="p_kilometre" size="5" value=""  />
+                        <span class="gray">(万公里)</span></td>
+                    </td>
+                    <th>国产进口：</th>
+                    <td><select name="p_country">
+                        <option value=''>请选择</option>
+                        <option value='国产' >国产</option>
+                        <option value='进口' >进口</option>
+
+                    </select></td>
+                </tr>
+                <tr>
+                    <th>排放标准：</th>
+                    <td colspan="3">
+                        <select name="p_emission">
+                            <option value="">请选择</option>
+                            <option value="国一" >国一</option>
+                            <option value="国二" >国二</option>
+                            <option value="国三" >国三</option>
+                            <option value="国四" >国四</option>
+                            <option value="国五" >国五</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>交强险到期时间：</th>
+                    <td>
+
+                        <input name="para5" type="text" size="20" class="laydate-icon" value="" onclick="laydate()"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>年检有效期至：</th>
+                    <td>
+
+                        <input name="para2" type="text" size="20" class="laydate-icon" value="" onclick="laydate()"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>4S店定期保养：</th>
+                    <td>
+
+                        <select name="para8"><option value=''>请选择</option>
+                            <option value='是' >是</option>
+                            <option value='否' >否</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>车辆用途：</th>
+                    <td>
+
+                        <select name="para9"><option value=''>请选择</option>
+                            <option value='非营运' >非营运</option>
+                            <option value='营运' >营运</option>
+                            <option value='营转非' >营转非</option>
+                            <option value='租赁' >租赁</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>DVD：</th>
+                    <td>
+
+                        <select name="para12"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>电子稳定：</th>
+                    <td>
+
+                        <select name="para13"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>倒车雷达：</th>
+                    <td>
+
+                        <select name="para14"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>自动空调：</th>
+                    <td>
+
+                        <select name="para15"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>四轮驱动：</th>
+                    <td>
+
+                        <select name="para16"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>GPS导航：</th>
+                    <td>
+
+                        <select name="para17"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>座椅加热：</th>
+                    <td>
+
+                        <select name="para18"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>蓝牙电话：</th>
+                    <td>
+
+                        <select name="para19"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>外接音源：</th>
+                    <td>
+
+                        <select name="para20"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>大灯随动：</th>
+                    <td>
+
+                        <select name="para21"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>空气悬挂：</th>
+                    <td>
+
+                        <select name="para22"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>自动大灯：</th>
+                    <td>
+
+                        <select name="para23"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>电动车窗：</th>
+                    <td>
+
+                        <select name="para24"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>全景天窗：</th>
+                    <td>
+
+                        <select name="para25"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>后座出风：</th>
+                    <td>
+
+                        <select name="para26"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>倒车影像：</th>
+                    <td>
+
+                        <select name="para27"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>电动后备箱：</th>
+                    <td>
+
+                        <select name="para28"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>涡轮增压：</th>
+                    <td>
+
+                        <select name="para29"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>真皮座椅：</th>
+                    <td>
+
+                        <select name="para30"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>侧气囊帘：</th>
+                    <td>
+
+                        <select name="para31"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>未知22：</th>
+                    <td>
+
+                        <select name="para32"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>电动座椅：</th>
+                    <td>
+
+                        <select name="para33"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>未知24：</th>
+                    <td>
+
+                        <select name="para34"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>氙气大灯：</th>
+                    <td>
+
+                        <select name="para35"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>一键启动：</th>
+                    <td>
+
+                        <select name="para36"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>自动泊车入位：</th>
+                    <td>
+
+                        <select name="para37"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>中控台彩屏：</th>
+                    <td>
+
+                        <select name="para38"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>电动后视镜：</th>
+                    <td>
+
+                        <select name="para39"><option value=''>请选择</option>
+                            <option value='有' >有</option>
+                            <option value='无' >无</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>图片：</th>
+                    <td colspan="3">
+                        <ul id="piclist" class="clearfix">
+                        </ul>
+                        <input type="button" id="J_selectImage" value="批量上传图片" class="uploadbut"/>
+                        <div id="mainpic">
+
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>车辆补充描述：</th>
+                    <td colspan="5"><textarea  name="p_details" rows="2" cols="90" class="textarea01"></textarea></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td colspan="5">
+                        <div class="buttons">
+                            <input type="submit" value="提 交" class="submit">
+                            <input type="hidden" name="a" value="addcar">
+                            <input type="hidden" name="id" value="">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+{/block}

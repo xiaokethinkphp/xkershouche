@@ -9,6 +9,10 @@
 </head>
 <body>
     {block name="userhead"}{include file="member/userhead"}{/block}
+    <div class="usermain clearfix mt10">
+        {block name="userleft"}{include file="member/userleft"}{/block}
+        {block name="userright"}{/block}
+    </div>
     {block name="main"}{/block}
     {block name="footer"}{include file="public/footer"}{/block}
 
