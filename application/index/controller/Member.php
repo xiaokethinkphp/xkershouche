@@ -30,7 +30,21 @@ class Member extends Common
     // 用户二手车添加界面
     public function erchoucheadd()
     {
+        $level_select = db("level")->select();
+        $this->assign("level",$level_select);
+
         return view('memberershoucheadd');
+    }
+
+    public function brandJsonGet()
+    {
+        if (request()->isAjax()) {
+            $member_model = model("Member");
+            return $member_model->getBrand();
+        } else {
+            $this->redirect("index/member/membercenter");
+        }
+
     }
 
     public function ershoucheaddhaddle()

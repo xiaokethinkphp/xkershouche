@@ -1,5 +1,29 @@
 {extend name="member/memberbase"/}
 {block name="title"}用户中心-添加二手车{/block}
+{block name="header"}
+{__block__}
+<script src="__ADMIN__/js/jquery.cxselect.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#area").cxSelect({
+            url:"__INDEX__/static/area.json",
+            selects:['province','city','county'],
+            jsonName:"name",
+            jsonValue:"code",
+            jsonSub:"children"
+        });
+
+        $("#brands").cxSelect({
+            url:"{:url('index/member/brandJsonGet')}",
+            selects:['brand1','brand2','brand3','brand4'],
+            jsonName:'name',
+            jsonValue:'id',
+            jsonSub:'children',
+        })
+
+    })
+</script>
+{/block}
 {block name="userright"}
 <div class="userright">
     <h2 class="usernav">添加车源</h2>
@@ -10,62 +34,70 @@
                 <tr>
                     <th>所在城市：</th>
                     <td colspan="3">
-                        <select name="aid" id="province">
-                            <option value=''>请选择省份</option>
-                            <option value='1' >北京市</option>
-                        </select>
-                        <select name="cid" id="city">
-                            <option value=''>请选择城市</option>
-                            <option value='135' >杭州市</option>
-                        </select>
+                        <div id="area">
+                            <select name="province_id" class="province">
+
+                            </select>
+                            <select name="city_id" class="city">
+
+                            </select>
+                            <select name="county_id" class="county">
+
+                            </select>
+                        </div>
                     </td>
                 </tr>
                 <tr>
                     <th>品牌型号：</th>
                     <td colspan="3">
-                        <select name="p_brand" id="brand" datatype="n" nullmsg="请选择品牌！">
-                            <option value=''>请选择品牌</option>
-                            <option value='1' >A 奥迪</option>
-                            <option value='2' >A 奥克斯</option>
-                        </select>
-                        <select class="subbrand" id="subbrand" name="p_subbrand" datatype="n" nullmsg="请选择车系！">
-                            <option  value="">请选择车系</option>
-                        </select> &nbsp;<select class="subbrand" id="subsubbrand" name="p_subsubbrand" datatype="n" nullmsg="请选择款式！">
-                            <option  value="">请选择款式</option>
-                        </select>
+                        <div id="brands">
+                            <select name="brand_level1" class="brand1">
+
+                            </select>
+                            <select class="brand2" name="brand_level2">
+
+                            </select>
+                            <select class="brand3" name="brand_level3">
+
+                            </select>
+                            <select class="brand4" name="carmodel">
+
+                            </select>
+                        </div>
+
                     </td>
                 </tr>
                 <tr>
                     <th>车型选择：</th>
-                    <td><select name="p_model">
-                        <option value='41' >小型车</option>
-                    </select></td>
+                    <td>
+                        <select name="level">
+                            {volist name="level" id="vo"}
+                            <option value='{$vo.id}' >{$vo.name}</option>
+                            {/volist}
+                        </select>
+                    </td>
                     <th></th>
                     <td></td>
                 </tr>
                 <tr>
                     <th>预售价格：</th>
-                    <td><input type="text" name="p_price"  size="5" value="" datatype="s" nullmsg="请填写价格！">
+                    <td><input type="text" name="price"  size="5" value="" datatype="s" nullmsg="请填写价格！">
                         <span class="gray">(万元)</span>
                     </td>
                     <th>出厂报价：</th>
-                    <td><input type="text" name="p_newprice"  size="5" value="">
+                    <td><input type="text" name="new_price"  size="5" value="">
                         <span class="gray">(万元)</span>
                     </td>
                 </tr>
                 <tr>
                     <th>购置税：</th>
-                    <td><input type="text" name="p_tax"  size="5" value="">
-                        <span class="gray">(万元)</span>
-                    </td>
-                    <th>为您节省：</th>
-                    <td><input type="text" name="p_save"  size="5" value="">
+                    <td><input type="text" name="tax"  size="5" value="">
                         <span class="gray">(万元)</span>
                     </td>
                 </tr>
                 <tr>
                     <th>车体颜色：</th>
-                    <td width="180"><select name="p_color">
+                    <td width="180"><select name="color">
                         <option value=''>请选择颜色</option>
                         <option value='白色' >白色</option>
                         <option value='黑色' >黑色</option>
@@ -77,10 +109,9 @@
                         <option value='玫红' >玫红</option>
                         <option value='玫紫' >玫紫</option>
                         <option value='棕色' >棕色</option>
-
                     </select></td>
                     <th width="50">排量：</th>
-                    <td><select name="p_gas">
+                    <td><select name="gas">
                         <option value=''>请选择排量</option>
                         <option value='1.0L' >1.0L</option>
                         <option value='1.2L' >1.2L</option>
@@ -101,54 +132,26 @@
                 </tr>
                 <tr>
                     <th>变速箱：</th>
-                    <td><select name="p_transmission">
+                    <td><select name="transmission">
                         <option value=''>请选择变速箱</option>
                         <option value='手动' >手动</option>
                         <option value='自动' >自动</option>
                         <option value='手自一体' >手自一体</option>
 
                     </select></td>
-                    <th>上牌日期：</th>
-                    <td><select name="p_year" id="p_year">
-                        <option value=''>请选择年份</option>
-                        <option value='2003' >2003年</option>
-                        <option value='2004' >2004年</option>
-                        <option value='2005' >2005年</option>
-                        <option value='2006' >2006年</option>
-                        <option value='2007' >2007年</option>
-                        <option value='2008' >2008年</option>
-                        <option value='2009' >2009年</option>
-                        <option value='2010' >2010年</option>
-                        <option value='2011' >2011年</option>
-                        <option value='2012' >2012年</option>
-                        <option value='2013' >2013年</option>
-                        <option value='2014' >2014年</option>
+                    <th>上牌时间：</th>
+                    <td>
 
-                    </select>
-                    <select name="p_month" id="p_month">
-                        <option value=''>请选择月份</option>
-                        <option value='01' >01月</option>
-                        <option value='02' >02月</option>
-                        <option value='03' >03月</option>
-                        <option value='04' >04月</option>
-                        <option value='05' >05月</option>
-                        <option value='06' >06月</option>
-                        <option value='07' >07月</option>
-                        <option value='08' >08月</option>
-                        <option value='09' >09月</option>
-                        <option value='10' >10月</option>
-                        <option value='11' >11月</option>
-                        <option value='12' >12月</option>
-
-                    </select></td>
+                        <input name="plate" type="text" size="20" class="laydate-icon" value="" onclick="laydate()"/>
+                    </td>
                 </tr>
                 <tr>
                     <th>行驶里程：</th>
-                    <td ><input name="p_kilometre" type="text" id="p_kilometre" size="5" value=""  />
+                    <td ><input name="kilometre" type="text" id="p_kilometre" size="5" value=""  />
                         <span class="gray">(万公里)</span></td>
                     </td>
                     <th>国产进口：</th>
-                    <td><select name="p_country">
+                    <td><select name="country">
                         <option value=''>请选择</option>
                         <option value='国产' >国产</option>
                         <option value='进口' >进口</option>
@@ -158,7 +161,7 @@
                 <tr>
                     <th>排放标准：</th>
                     <td colspan="3">
-                        <select name="p_emission">
+                        <select name="emission">
                             <option value="">请选择</option>
                             <option value="国一" >国一</option>
                             <option value="国二" >国二</option>
@@ -172,14 +175,14 @@
                     <th>交强险到期时间：</th>
                     <td>
 
-                        <input name="para5" type="text" size="20" class="laydate-icon" value="" onclick="laydate()"/>
+                        <input name="insurance" type="text" size="20" class="laydate-icon" value="" onclick="laydate()"/>
                     </td>
                 </tr>
                 <tr>
                     <th>年检有效期至：</th>
                     <td>
 
-                        <input name="para2" type="text" size="20" class="laydate-icon" value="" onclick="laydate()"/>
+                        <input name="inspect" type="text" size="20" class="laydate-icon" value="" onclick="laydate()"/>
                     </td>
                 </tr>
                 <tr>
