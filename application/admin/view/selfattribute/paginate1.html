@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-content">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>名称</th>
+                                <th>取值</th>
+                                <th>显示</th>
+                                <th>排序</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {volist name="self" id="vo"}
+                            <tr>
+                                <td>{$vo.id}</td>
+                                <td>{$vo.name}</td>
+                                <td>{$vo.value}</td>
+                                <td>
+                                    {if $vo.isshow==1}
+                                    <button type="button" class="btn btn-success btn-sm">是</button>
+                                    {else/}
+                                    <button type="button" class="btn btn-danger btn-sm">否</button>
+                                    {/if}
+                                </td>
+                                <td><input type="text" value="{$vo.order}" name=""></td>
+                                <td>
+                                    <div class="btn-group open">
+                                        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="">修改</a>
+                                            </li>
+                                            <li><a href="">删除</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            {/volist}
+                        </tbody>
+                    </table>
+                {$self|raw}
+                <div class="row">
+                    <div class="col-sm-2">
+                        <button class="btn btn-success" type="button" id="changeOrder">
+                            <i class="fa fa-plus-square"></i>&nbsp;&nbsp;
+                            <span class="bold">排序</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

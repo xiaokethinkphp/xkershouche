@@ -1,0 +1,119 @@
+{extend name="base" /}
+{block name="title"}自定义属性列表{/block}
+    {block name="right"}
+        <div class="row J_mainContent" id="content-main" style="overflow-y:scroll">
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>二手车管理</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <strong>自定义属性管理</strong>
+                        </li>
+                        <li>
+                            自定义属性列表
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row ibox-content">
+                <div class="col-sm-2">
+                    <button class="btn btn-success" type="button" id="addBrand">
+                        <i class="fa fa-plus-square"></i>&nbsp;&nbsp;
+                        <span class="bold">添加自定义属性</span>
+                    </button>
+                </div>
+                <div class="col-sm-10">
+                </div>
+            </div>
+            <div id="paginate">
+                {include file="selfattribute/paginate1"}
+            </div>
+        </div>
+    {/block}
+    {block name="js"}
+    {__block__}
+    <script src="__ADMIN__/js/hAdmin.js?v=4.1.0"></script>
+    <script src="__ADMIN__/js/plugins/pace/pace.min.js"></script>
+    <script type="text/javascript">
+        $("#addBrand").click(function(event) {
+            /* Act on the event */
+            window.location.href = "{:url('admin/selfattribute/add')}";
+        });
+
+        $("#changeOrder").click(function(event) {
+            /* Act on the event */
+            var json = {};
+            $("input").not('#top-search').each(function(index, el) {
+                json[$(this).attr('name')] = $(this).val();
+            });
+            $.ajax({
+                url: '{:url("admin/level/changeOrderAjax")}',
+                type: 'post',
+                data: json
+            })
+            .done(function() {
+                alert("排序成功");
+                window.location.reload();
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+
+        });
+
+    </script>
+    <script type="text/javascript">
+    $(document).on('click', '.pagination a', function(event) {
+        // event.preventDefault();
+        var url = $(this).attr('href');
+        /* Act on the event */
+        $.ajax({
+            url: url,
+            type: 'get',
+
+        })
+        .done(function(data) {
+            $("#paginate").html(data);
+            $(document).click();
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+    return false;
+    });
+    </script>
+    <script>
+
+    $(document).on('click', '.btn-sm', function(event) {
+        var $tr = $(this).parents("tr");
+        var id = $tr.find("td:eq(0)").html();
+        $.ajax({
+            url: '{:url("admin/selfattribute/changeIsshowAjax")}',
+            type: 'post',
+            data: {id: id}
+        })
+        .done(function(data) {
+            if (data) {
+                $tr.find("td:eq(3)").html('<button type="button" class="btn btn-success btn-sm">是</button>');
+            } else {
+                $tr.find("td:eq(3)").html('<button type="button" class="btn btn-danger btn-sm">否</button>');
+            }
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+
+        /* Act on the event */
+    });
+
+    </script>
+    {/block}
