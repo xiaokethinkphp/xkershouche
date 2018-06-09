@@ -48,3 +48,7 @@ function getChildren2($list,$pid)
 //     }
 //     return $arr;
 // }
+function explode2($str)
+{
+    return explode('|',$str);
+}

@@ -40,14 +40,14 @@
             window.location.href = "{:url('admin/selfattribute/add')}";
         });
 
-        $("#changeOrder").click(function(event) {
-            /* Act on the event */
+        $(document).on('click', '#changeOrder', function(event) {
+            event.preventDefault();
             var json = {};
             $("input").not('#top-search').each(function(index, el) {
                 json[$(this).attr('name')] = $(this).val();
             });
             $.ajax({
-                url: '{:url("admin/level/changeOrderAjax")}',
+                url: '{:url("admin/selfattribute/changeOrderAjax")}',
                 type: 'post',
                 data: json
             })
@@ -61,8 +61,31 @@
             .always(function() {
                 console.log("complete");
             });
-
+            /* Act on the event */
         });
+        // $("#changeOrder").click(function(event) {
+        //     /* Act on the event */
+        //     var json = {};
+        //     $("input").not('#top-search').each(function(index, el) {
+        //         json[$(this).attr('name')] = $(this).val();
+        //     });
+        //     $.ajax({
+        //         url: '{:url("admin/selfattribute/changeOrderAjax")}',
+        //         type: 'post',
+        //         data: json
+        //     })
+        //     .done(function() {
+        //         alert("排序成功");
+        //         window.location.reload();
+        //     })
+        //     .fail(function() {
+        //         console.log("error");
+        //     })
+        //     .always(function() {
+        //         console.log("complete");
+        //     });
+        //
+        // });
 
     </script>
     <script type="text/javascript">

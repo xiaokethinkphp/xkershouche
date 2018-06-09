@@ -9,7 +9,7 @@ class Selfattribute extends Controller
 {
     public function lst()
     {
-        $selfattribute_select = db("selfattribute")->paginate(5);
+        $selfattribute_select = db("selfattribute")->order('order desc')->paginate(5);
         $this->assign("self",$selfattribute_select);
         if (request()->isAjax()) {
             return view("paginate1");
@@ -62,5 +62,56 @@ class Selfattribute extends Controller
             $this->redirect("admin/selfattribute/lst");
         }
 
+    }
+
+    //排序的ajax方法
+    public function changeOrderAjax()
+    {
+        if (request()->isAjax()) {
+            $post = input('post.');
+            foreach ($post as $key => $value) {
+                db("selfattribute")->where('id',$key)->update(['order'=>$value]);
+            }
+        } else {
+            $this->redirect("admin/selfattribute/lst");
+        }
+
+    }
+
+    public function upd($id='')
+    {
+        $selfattribute_find = db("selfattribute")->find($id);
+        if ($selfattribute_find) {
+            $this->assign("self",$selfattribute_find);
+            return view();
+        } else {
+            $this->redirect("admin/selfattribute/lst");
+        }
+    }
+
+    public function updhanddle()
+    {
+        if (request()->isPost()) {
+            $selfattribute_upd_result = db("selfattribute")->update(input("post."));
+            if ($selfattribute_upd_result) {
+                $this->success("自定义属性修改成功","admin/selfattribute/lst");
+            } else {
+                $this->error("自定义属性修改失败","admin/selfattribute/lst");
+            }
+
+        } else {
+            $this->redirect("admin/selfattribute/lst");
+        }
+
+    }
+
+    public function del($id='')
+    {
+        $selfattribute_del_result = db("selfattribute")->delete($id);
+        if ($selfattribute_del_result) {
+            $this->success("自定义属性删除成功","admin/selfattribute/lst");
+        } else {
+            $this->error("自定义属性删除失败","admin/selfattribute/lst");
+        }
     }
 }

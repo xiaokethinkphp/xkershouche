@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 04/06/2018 20:08:25
+ Date: 07/06/2018 22:30:10
 */
 
 SET NAMES utf8mb4;
@@ -110,7 +110,7 @@ CREATE TABLE `xk_carmodel`  (
 -- Records of xk_carmodel
 -- ----------------------------
 INSERT INTO `xk_carmodel` VALUES (1, 2018, '118i 时尚版', 56);
-INSERT INTO `xk_carmodel` VALUES (2, 2018, '118i 运动版', 56);
+INSERT INTO `xk_carmodel` VALUES (2, 2010, '118i 运动版', 56);
 INSERT INTO `xk_carmodel` VALUES (3, 2016, '118i 运动版', 56);
 INSERT INTO `xk_carmodel` VALUES (4, 2017, '118i 运动版', 56);
 INSERT INTO `xk_carmodel` VALUES (5, 2015, '118i 运动版', 56);
@@ -126,6 +126,39 @@ INSERT INTO `xk_carmodel` VALUES (15, 2018, 'C 300 运动版', 59);
 INSERT INTO `xk_carmodel` VALUES (16, 2018, '180 L 动感型运动版', 59);
 INSERT INTO `xk_carmodel` VALUES (17, 2018, '180 L 时尚型运动版', 59);
 INSERT INTO `xk_carmodel` VALUES (18, 2016, 'C 200 运动版', 59);
+
+-- ----------------------------
+-- Table structure for xk_cars
+-- ----------------------------
+DROP TABLE IF EXISTS `xk_cars`;
+CREATE TABLE `xk_cars`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `province_id` int(11) NOT NULL,
+  `city_id` int(11) NOT NULL,
+  `county_id` int(11) NULL DEFAULT NULL,
+  `brand_level1` int(255) NULL DEFAULT NULL COMMENT '母品牌',
+  `brand_level2` int(255) NULL DEFAULT NULL COMMENT '子品牌',
+  `brand_levle3` int(255) NULL DEFAULT NULL COMMENT '车品牌',
+  `car_model` int(255) NULL DEFAULT NULL COMMENT '车型',
+  `level` int(255) NULL DEFAULT NULL,
+  `price` float(10, 2) NULL DEFAULT NULL COMMENT '售价',
+  `new_price` float(10, 2) NULL DEFAULT NULL COMMENT '新车售价',
+  `tax` float(255, 0) NULL DEFAULT NULL COMMENT '购置税',
+  `color` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '颜色',
+  `gas` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '排量',
+  `transmission` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `plate` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `kilometer` int(255) NULL DEFAULT NULL COMMENT '里程',
+  `country` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '是否国产',
+  `emission` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '排放标准',
+  `insurance` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '交强险时间',
+  `inspect` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '年检时间',
+  `listtime` int(255) NULL DEFAULT NULL COMMENT '上架时间',
+  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `member_id` int(11) NULL DEFAULT NULL,
+  `details` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '补充描述',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for xk_level
@@ -170,5 +203,51 @@ CREATE TABLE `xk_member`  (
 -- ----------------------------
 INSERT INTO `xk_member` VALUES (1, '11', '1', 13344445440, 1, 1, 1);
 INSERT INTO `xk_member` VALUES (12, '1123', 'e10adc3949ba59abbe56e057f20f883e', 15040360448, 120000, 120100, 120102);
+
+-- ----------------------------
+-- Table structure for xk_selfattribute
+-- ----------------------------
+DROP TABLE IF EXISTS `xk_selfattribute`;
+CREATE TABLE `xk_selfattribute`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `isshow` tinyint(1) NOT NULL DEFAULT 0,
+  `value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `order` int(255) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `name`(`name`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of xk_selfattribute
+-- ----------------------------
+INSERT INTO `xk_selfattribute` VALUES (1, '4S店定期保养', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (2, '车辆用途', 0, '运营|非运营|营转非|租赁', 0);
+INSERT INTO `xk_selfattribute` VALUES (3, 'DVD', 1, '有|无', 0);
+INSERT INTO `xk_selfattribute` VALUES (4, '电子稳定', 0, '有|无', 0);
+INSERT INTO `xk_selfattribute` VALUES (5, '倒车雷达', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (6, '自动空调', 1, '有|无', 0);
+INSERT INTO `xk_selfattribute` VALUES (7, '四轮驱动', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (8, 'GPS导航', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (9, '座椅加热', 1, '有|无', 0);
+INSERT INTO `xk_selfattribute` VALUES (10, '蓝牙电话', 1, '有|无', 0);
+INSERT INTO `xk_selfattribute` VALUES (11, '外接音源', 1, '有|无', 0);
+INSERT INTO `xk_selfattribute` VALUES (12, '大灯随动', 1, '有|无', 0);
+INSERT INTO `xk_selfattribute` VALUES (13, '空气悬挂', 1, '有|无', 0);
+INSERT INTO `xk_selfattribute` VALUES (14, '自动大灯', 1, '有|无', 0);
+INSERT INTO `xk_selfattribute` VALUES (15, '电动车窗', 1, '有|无', 0);
+INSERT INTO `xk_selfattribute` VALUES (16, '全景天窗', 1, '有|无', 0);
+INSERT INTO `xk_selfattribute` VALUES (17, '后座出风', 1, '有|无', 0);
+INSERT INTO `xk_selfattribute` VALUES (18, '倒车影像', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (19, '电动后备箱', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (20, '涡轮增压', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (21, '真皮座椅', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (22, '侧气囊帘', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (23, '电动座椅', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (24, '氙气大灯', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (25, '一键启动', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (26, '自动泊车入位', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (27, '中控台彩屏', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (28, '电动后视镜', 1, '是|否', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;

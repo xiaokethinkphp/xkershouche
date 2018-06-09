@@ -11,6 +11,8 @@ class Member extends Common
     {
         $member_find = db("member")->find(cookie("id"));
         $this->assign("member_find",$member_find);
+
+
         return view();
     }
 
@@ -33,6 +35,11 @@ class Member extends Common
         $level_select = db("level")->select();
         $this->assign("level",$level_select);
 
+        $selfattribute_select = db("selfattribute")
+        ->where('isshow',1)
+        ->order("order desc")
+        ->select();
+        $this->assign("self",$selfattribute_select);
         return view('memberershoucheadd');
     }
 
@@ -47,8 +54,32 @@ class Member extends Common
 
     }
 
+    public function ershoucheaddhaddle1()
+    {
+        $post = input('post.');
+        dump($post);
+        // $arr1:关联模型数据
+        $arr1 = array_slice($post,20,-1,true);
+        // $arr2:表的数据
+        $arr2 = array_diff($post,$arr1);
+        db("cars")->insert($arr2);
+        dump($arr2);
+    }
+
     public function ershoucheaddhaddle()
     {
-        dump(input('post.'));
+        if (request()->isPost()) {
+            $arr1 = array();//关联模型数据
+            $arr2 = array();//数据表数据
+            foreach (input('post.') as $key => $value) {
+                is_int($key)?$arr1[$key] = $value:$arr2[$key] = $value;
+            }
+            dump(input('post.'));
+            dump($arr1);
+            dump($arr2);
+        } else {
+            $this->redirect("index/member/membercenter");
+        }
+
     }
 }
