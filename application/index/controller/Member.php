@@ -74,9 +74,20 @@ class Member extends Common
             foreach (input('post.') as $key => $value) {
                 is_int($key)?$arr1[$key] = $value:$arr2[$key] = $value;
             }
-            dump(input('post.'));
-            dump($arr1);
-            dump($arr2);
+            $arr2['insurance'] = strtotime($arr2['insurance']);
+            $arr2['inspect'] = strtotime($arr2['inspect']);
+            $arr2['listtime'] = strtotime("now");
+            $arr2['member_id'] = cookie('member')['id'];
+            \think\Db::transaction(function () use($arr2,$arr1){
+                $cars_id = db("cars")->insertGetId($arr2);
+                $cars_model = model('\app\admin\model\Cars');
+                $cars_get = $cars_model->get($cars_id);
+                foreach ($arr1 as $key => $value) {
+                    // code...
+                    $cars_get->selfattribute()->save($key,['selfattribute_value'=>$value]);
+                }
+            });
+            $this->redirect("index/member/membercenter");
         } else {
             $this->redirect("index/member/membercenter");
         }
