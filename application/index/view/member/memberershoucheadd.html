@@ -3,6 +3,10 @@
 {block name="header"}
 {__block__}
 <script src="__ADMIN__/js/jquery.cxselect.js" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="__INDEX__/webuploader/css/webuploader.css" />
+<link rel="stylesheet" type="text/css" href="__INDEX__/webuploader/examples/imageupload/style.css" />
+<script type="text/javascript" src="__INDEX__/webuploader/dist/webuploader.js"></script>
+<script type="text/javascript" src="__INDEX__/webuploader/examples/imageupload/upload0.js"></script>
 <script type="text/javascript">
     $(function(){
         $("#area").cxSelect({
@@ -35,14 +39,9 @@
                     <th>所在城市：</th>
                     <td colspan="3">
                         <div id="area">
-                            <select name="province_id" class="province" data-value="浙江省">
-
-                            <select name="city_id" class="city">
-
-                            </select>
-                            <select name="county_id" class="county">
-
-                            </select>
+                            <select name="province_id" class="province"></select>
+                            <select name="city_id" class="city"></select>
+                            <select name="county_id" class="county"></select>
                         </div>
                     </td>
                 </tr>
@@ -195,12 +194,10 @@
                 <tr>
                     <th>图片：</th>
                     <td colspan="3">
-                        <link rel="stylesheet" type="text/css" href="__INDEX__/webuploader/css/webuploader.css" />
-                        <link rel="stylesheet" type="text/css" href="__INDEX__/webuploader/examples/imageupload/style.css" />
+
                         <div id="wrapper">
                             <div id="container">
                                 <!--头部，相册选择和格式选择-->
-
                                 <div id="uploader">
                                     <div class="queueList">
                                         <div id="dndArea" class="placeholder">
@@ -220,9 +217,6 @@
                                 </div>
                             </div>
                         </div>
-                        <script type="text/javascript" src="__INDEX__/static/js/jquery.js"></script>
-                        <script type="text/javascript" src="__INDEX__/webuploader/dist/webuploader.js"></script>
-                        <script type="text/javascript" src="__INDEX__/webuploader/examples/imageupload/upload.js"></script>
                     </td>
                 <tr>
                     <th>车辆补充描述：</th>

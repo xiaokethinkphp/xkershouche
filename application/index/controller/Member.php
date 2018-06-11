@@ -6,6 +6,7 @@ use \think\Controller;
  */
 class Member extends Common
 {
+
     // 用户中心
     public function membercenter()
     {
@@ -71,6 +72,8 @@ class Member extends Common
         if (request()->isPost()) {
             $arr1 = array();//关联模型数据
             $arr2 = array();//数据表数据
+            dump(session('cars_img'));
+            die;
             foreach (input('post.') as $key => $value) {
                 is_int($key)?$arr1[$key] = $value:$arr2[$key] = $value;
             }
@@ -96,21 +99,26 @@ class Member extends Common
 
     public function carsuploads()
     {
+        // static $arr = array();
         // 获取表单上传文件 例如上传了001.jpg
         $file = request()->file('file');
         // 移动到框架应用根目录/uploads/ 目录下
         $info = $file->move( '../uploads/webuploaderdemo');
         if($info){
-            // 成功上传后 获取上传信息
-            // 输出 jpg
-            echo $info->getExtension();
-            // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
-            echo $info->getSaveName();
-            // 输出 42a79759f284b767dfcb2a0197904287.jpg
-            echo $info->getFilename();
-        }else{
-            // 上传失败获取错误信息
-            echo $file->getError();
+            // cookie('img',$arr);
+            return $info->getSaveName();
+        }
+    }
+    public function carsuploads0()
+    {
+        // static $arr = array();
+        // 获取表单上传文件 例如上传了001.jpg
+        $file = request()->file('file');
+        // 移动到框架应用根目录/uploads/ 目录下
+        $info = $file->move( '../uploads/cars');
+        if($info){
+            session('cars_img.'.$info->getSaveName(),'cars/'.$info->getSaveName());
+            return $info->getSaveName();
         }
     }
 
@@ -118,5 +126,7 @@ class Member extends Common
     {
         return view();
     }
+
+
 
 }

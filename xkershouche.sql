@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 07/06/2018 22:30:10
+ Date: 12/06/2018 06:59:59
 */
 
 SET NAMES utf8mb4;
@@ -138,8 +138,8 @@ CREATE TABLE `xk_cars`  (
   `county_id` int(11) NULL DEFAULT NULL,
   `brand_level1` int(255) NULL DEFAULT NULL COMMENT '母品牌',
   `brand_level2` int(255) NULL DEFAULT NULL COMMENT '子品牌',
-  `brand_levle3` int(255) NULL DEFAULT NULL COMMENT '车品牌',
-  `car_model` int(255) NULL DEFAULT NULL COMMENT '车型',
+  `brand_level3` int(255) NULL DEFAULT NULL COMMENT '车品牌',
+  `carmodel` int(255) NULL DEFAULT NULL COMMENT '车型',
   `level` int(255) NULL DEFAULT NULL,
   `price` float(10, 2) NULL DEFAULT NULL COMMENT '售价',
   `new_price` float(10, 2) NULL DEFAULT NULL COMMENT '新车售价',
@@ -154,11 +154,85 @@ CREATE TABLE `xk_cars`  (
   `insurance` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '交强险时间',
   `inspect` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '年检时间',
   `listtime` int(255) NULL DEFAULT NULL COMMENT '上架时间',
-  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` int(255) NULL DEFAULT 1 COMMENT '1：上架0：下架-1：已售',
   `member_id` int(11) NULL DEFAULT NULL,
   `details` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '补充描述',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of xk_cars
+-- ----------------------------
+INSERT INTO `xk_cars` VALUES (7, 110000, 110100, 110101, 13, 50, 55, 8, 2, 0.00, 0.00, 0, '白色', '1.0L', '手动', '2018-06-01', 0, '国产', '国一', '1527782400', '1527782400', 1528598916, 1, 12, '');
+INSERT INTO `xk_cars` VALUES (8, 110000, 110100, 110101, 13, 50, 55, 8, 2, 0.00, 0.00, 0, '白色', '1.0L', '手动', '2018-06-01', 0, '国产', '国一', '1527782400', '1527782400', 1528598962, 1, 12, '');
+
+-- ----------------------------
+-- Table structure for xk_cars_selfattribute
+-- ----------------------------
+DROP TABLE IF EXISTS `xk_cars_selfattribute`;
+CREATE TABLE `xk_cars_selfattribute`  (
+  `cars_id` int(11) NOT NULL,
+  `selfattribute_id` int(11) NOT NULL,
+  `selfattribute_value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of xk_cars_selfattribute
+-- ----------------------------
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 28, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 22, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 1, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 2, '运营');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 3, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 5, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 6, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 7, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 8, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 9, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 10, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 11, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 12, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 13, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 14, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 15, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 16, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 17, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 18, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 19, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 20, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 23, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 24, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 25, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 26, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 27, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (7, 29, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 28, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 22, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 1, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 2, '运营');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 3, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 5, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 6, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 7, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 8, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 9, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 10, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 11, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 12, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 13, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 14, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 15, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 16, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 17, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 18, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 19, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 20, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 23, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 24, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 25, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 26, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 27, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (8, 29, '有');
 
 -- ----------------------------
 -- Table structure for xk_level
@@ -216,15 +290,15 @@ CREATE TABLE `xk_selfattribute`  (
   `order` int(255) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `name`(`name`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 29 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of xk_selfattribute
 -- ----------------------------
-INSERT INTO `xk_selfattribute` VALUES (1, '4S店定期保养', 1, '是|否', 0);
-INSERT INTO `xk_selfattribute` VALUES (2, '车辆用途', 0, '运营|非运营|营转非|租赁', 0);
-INSERT INTO `xk_selfattribute` VALUES (3, 'DVD', 1, '有|无', 0);
-INSERT INTO `xk_selfattribute` VALUES (4, '电子稳定', 0, '有|无', 0);
+INSERT INTO `xk_selfattribute` VALUES (1, '4S店定期保养', 1, '是|否', 6);
+INSERT INTO `xk_selfattribute` VALUES (2, '车辆用途', 1, '运营|非运营|营转非|租赁', 5);
+INSERT INTO `xk_selfattribute` VALUES (3, 'DVD', 1, '有|无', 3);
+INSERT INTO `xk_selfattribute` VALUES (4, '电子稳定', 0, '有|无', 2);
 INSERT INTO `xk_selfattribute` VALUES (5, '倒车雷达', 1, '是|否', 0);
 INSERT INTO `xk_selfattribute` VALUES (6, '自动空调', 1, '有|无', 0);
 INSERT INTO `xk_selfattribute` VALUES (7, '四轮驱动', 1, '是|否', 0);
@@ -241,13 +315,13 @@ INSERT INTO `xk_selfattribute` VALUES (17, '后座出风', 1, '有|无', 0);
 INSERT INTO `xk_selfattribute` VALUES (18, '倒车影像', 1, '是|否', 0);
 INSERT INTO `xk_selfattribute` VALUES (19, '电动后备箱', 1, '是|否', 0);
 INSERT INTO `xk_selfattribute` VALUES (20, '涡轮增压', 1, '是|否', 0);
-INSERT INTO `xk_selfattribute` VALUES (21, '真皮座椅', 1, '是|否', 0);
-INSERT INTO `xk_selfattribute` VALUES (22, '侧气囊帘', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (22, '侧气囊帘', 1, '是|否', 9);
 INSERT INTO `xk_selfattribute` VALUES (23, '电动座椅', 1, '是|否', 0);
 INSERT INTO `xk_selfattribute` VALUES (24, '氙气大灯', 1, '是|否', 0);
 INSERT INTO `xk_selfattribute` VALUES (25, '一键启动', 1, '是|否', 0);
 INSERT INTO `xk_selfattribute` VALUES (26, '自动泊车入位', 1, '是|否', 0);
 INSERT INTO `xk_selfattribute` VALUES (27, '中控台彩屏', 1, '是|否', 0);
-INSERT INTO `xk_selfattribute` VALUES (28, '电动后视镜', 1, '是|否', 0);
+INSERT INTO `xk_selfattribute` VALUES (28, '电动后视镜', 1, '是|否', 12);
+INSERT INTO `xk_selfattribute` VALUES (29, '真皮座椅', 1, '有|无', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;

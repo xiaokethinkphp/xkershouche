@@ -151,7 +151,7 @@
             swf: '../../dist/Uploader.swf',
             chunked: false,
             chunkSize: 512 * 1024,
-            server: 'carsuploads',
+            server: 'carsuploads0',
             // runtimeOrder: 'flash',
 
             // accept: {
