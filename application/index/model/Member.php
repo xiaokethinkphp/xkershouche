@@ -26,4 +26,9 @@ class Member extends Model
         }
         return $brand_children;
     }
+
+    public function cars()
+    {
+        return $this->hasMany('\app\admin\model\Cars');
+    }
 }

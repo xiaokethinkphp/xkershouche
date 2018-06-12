@@ -26,12 +26,19 @@
                 <th>报价</th>
                 <th width="130">操作</th>
             </tr>
+            {volist name="carslist.cars" id="vo"}
             <tr bgcolor="#ffffff" onmouseover="style.backgroundColor='#f5f5f5'"  onmouseout="style.backgroundColor='#ffffff'">
-                <td align="center"><div class="noimg">未上传图片</div></td>
+                <td align="center">
+                    {if isset($vo['carsimg'][0])}
+                    <img src="__UPLOADS__/{$vo['carsimg'][0]['url']}" alt="" width="80px" height="60px">
+                    {else/}
+                    <div class="noimg">未上传图片</div>
+                    {/if}
+                    </td>
                 <td align="left">
                     <p><a href="buycars/2015/08/20/71.html" target="_blank" class="f14 fb">浙江卡尔森 商务车 2014 款 商务豪华型</a>  </p>
-                    <p class="gray">排量： 升 / 上牌日期：0年0月 / 颜色： / 行驶里程：0.00 万公里 / 信息编号:1440044245</p>
-                    <p class="gray">刷新时间：2015-08-20 12:17:25</p>
+                    <p class="gray">排量： {$vo.gas} / 交强险时间：{$vo.insurance|date='Y年m月d日'} / 颜色：{$vo.color} / 行驶里程：{$vo.kilometer|format='%.2f'} 万公里 / 信息编号:{$vo.id}</p>
+                    <p class="gray">刷新时间：{$vo.listtime|date="Y-m-d H:i:s"}</p>
                 </td>
                 <td align="center" class="orange01 f14">11.00万</td>
                 <td align="center" class="acmenu">
@@ -40,34 +47,7 @@
                     </p>
                 </td>
             </tr>
-            <tr bgcolor="#ffffff" onmouseover="style.backgroundColor='#f5f5f5'"  onmouseout="style.backgroundColor='#ffffff'">
-                <td align="center"><div class="noimg">未上传图片</div></td>
-                <td align="left">
-                    <p><a href="buycars/2015/08/20/69.html" target="_blank" class="f14 fb">阿尔法·罗密欧 166 2003 款 166 3.0</a>  </p>
-                    <p class="gray">排量：1.3L 升 / 上牌日期：2005年0月 / 颜色：红色 / 行驶里程：11.00 万公里 / 信息编号:1440037434</p>
-                    <p class="gray">刷新时间：2015-08-20 10:23:54</p>
-                </td>
-                <td align="center" class="orange01 f14">11.00万</td>
-                <td align="center" class="acmenu">
-                    <p><a href="index.php?m=user&a=editcar&id=69&page=1">编辑</a> | <a href="index.php?m=user&a=refresh&id=69&page=1">刷新</a> | <a href="javascript:if(confirm('确实要删除吗?'))location='index.php?m=user&a=delcar&id=69&page=1'">删除</a></p>
-                    <p><a href="index.php?m=user&a=sellcar&sell=1&id=69&page=1">设置为已出售</a>
-                    </p>
-                </td>
-            </tr>
-            <tr bgcolor="#ffffff" onmouseover="style.backgroundColor='#f5f5f5'"  onmouseout="style.backgroundColor='#ffffff'">
-                <td align="center"><div class="noimg">未上传图片</div></td>
-                <td align="left">
-                    <p><a href="buycars/2015/08/19/60.html" target="_blank" class="f14 fb">奥克斯 朗杰 2004 款 豪华型</a>  </p>
-                    <p class="gray">排量：1.2L 升 / 上牌日期：2005年3月 / 颜色：白色 / 行驶里程：11.00 万公里 / 信息编号:</p>
-                    <p class="gray">刷新时间：2015-08-19 18:19:55</p>
-                </td>
-                <td align="center" class="orange01 f14">11.00万</td>
-                <td align="center" class="acmenu">
-                    <p><a href="index.php?m=user&a=editcar&id=60&page=1">编辑</a> | <a href="index.php?m=user&a=refresh&id=60&page=1">刷新</a> | <a href="javascript:if(confirm('确实要删除吗?'))location='index.php?m=user&a=delcar&id=60&page=1'">删除</a></p>
-                    <p><a href="index.php?m=user&a=sellcar&sell=1&id=60&page=1">设置为已出售</a>
-                    </p>
-                </td>
-            </tr>
+            {/volist}
         </table>
         <div class="page_list">
             <span>共3条</span><span>第1/1页</span><a href='/simcms/index.php?m=user&a=carlist&page=1'>尾页</a>

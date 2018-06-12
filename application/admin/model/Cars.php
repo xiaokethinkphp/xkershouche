@@ -10,4 +10,14 @@ class Cars extends Model
     {
         return $this->belongsToMany("Selfattribute",'cars_selfattribute','selfattribute_id','cars_id');
     }
+
+    public function carsimg()
+    {
+        return $this->hasMany('Carsimg');
+    }
+
+    public function member()
+    {
+        return $this->belongsTo('\app\index\model\Member');
+    }
 }

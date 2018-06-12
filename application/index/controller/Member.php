@@ -27,12 +27,21 @@ class Member extends Common
     // 用户二手车列表
     public function ershouchelst()
     {
+        $member_model = model("Member");
+        $member_get = $member_model->get(cookie('member')['id']);
+        $member_get->cars;
+        foreach ($member_get['cars'] as $key => $value) {
+            $value->carsimg;
+        }
+        dump($member_get);
+        $this->assign('carslist',$member_get);
         return view('memberershouchelist');
     }
 
     // 用户二手车添加界面
     public function erchoucheadd()
     {
+        session("cars_img",null);
         $level_select = db("level")->select();
         $this->assign("level",$level_select);
 
@@ -72,8 +81,10 @@ class Member extends Common
         if (request()->isPost()) {
             $arr1 = array();//关联模型数据
             $arr2 = array();//数据表数据
-            dump(session('cars_img'));
-            die;
+            if(!session('?cars_img')){
+                $this->error('请上传图片');
+            };
+            $arr3 = session('cars_img');//图片数据
             foreach (input('post.') as $key => $value) {
                 is_int($key)?$arr1[$key] = $value:$arr2[$key] = $value;
             }
@@ -81,13 +92,17 @@ class Member extends Common
             $arr2['inspect'] = strtotime($arr2['inspect']);
             $arr2['listtime'] = strtotime("now");
             $arr2['member_id'] = cookie('member')['id'];
-            \think\Db::transaction(function () use($arr2,$arr1){
+            \think\Db::transaction(function () use($arr2,$arr1,$arr3){
                 $cars_id = db("cars")->insertGetId($arr2);
                 $cars_model = model('\app\admin\model\Cars');
                 $cars_get = $cars_model->get($cars_id);
                 foreach ($arr1 as $key => $value) {
                     // code...
                     $cars_get->selfattribute()->save($key,['selfattribute_value'=>$value]);
+                }
+
+                foreach($arr3 as $key => $value){
+                    $cars_get->carsimg()->save(['url'=>$value]);
                 }
             });
             $this->redirect("index/member/membercenter");
@@ -125,6 +140,16 @@ class Member extends Common
     public function webuploader()
     {
         return view();
+    }
+
+    public function aa()
+    {
+        session('cars_img',null);
+    }
+
+    public function bb()
+    {
+        dump(session('cars_img'));
     }
 
 
