@@ -27,13 +27,42 @@ class Member extends Common
     // 用户二手车列表
     public function ershouchelst()
     {
+        $status = array(
+            'total'=>0,//总数
+            'sold'=>0,//已售-1
+            'shelf'=>0,//上架1
+            'unshelf'=>0,//下架0
+            'unaudited'=>0//未审核2
+        );
         $member_model = model("Member");
         $member_get = $member_model->get(cookie('member')['id']);
         $member_get->cars;
         foreach ($member_get['cars'] as $key => $value) {
+            switch ($value['status']) {
+                case '1':
+                    $status['shelf']++;
+                    $status['total']++;
+                    break;
+
+                case '-1':
+                    $status['sold']++;
+                    $status['total']++;
+                    break;
+
+                case '0':
+                    $status['unshelf']++;
+                    $status['total']++;
+                    break;
+
+                case '2':
+                    $status['unaudited']++;
+                    $status['total']++;
+                    break;
+
+            }
             $value->carsimg;
         }
-        dump($member_get);
+        $member_get['status'] = $status;
         $this->assign('carslist',$member_get);
         return view('memberershouchelist');
     }
@@ -81,6 +110,7 @@ class Member extends Common
         if (request()->isPost()) {
             $arr1 = array();//关联模型数据
             $arr2 = array();//数据表数据
+
             if(!session('?cars_img')){
                 $this->error('请上传图片');
             };
@@ -92,6 +122,11 @@ class Member extends Common
             $arr2['inspect'] = strtotime($arr2['inspect']);
             $arr2['listtime'] = strtotime("now");
             $arr2['member_id'] = cookie('member')['id'];
+            $arr2['full_name'] = db('brand')->where('id',$arr2['brand_level1'])->value('name')
+            ." ".db('brand')->where('id',$arr2['brand_level2'])->value('name')
+            ." ".db('brand')->where('id',$arr2['brand_level3'])->value('name')
+            ." ".db('carmodel')->where('id',$arr2['carmodel'])->value('style')
+            ."款 ".db('carmodel')->where('id',$arr2['carmodel'])->value('edition');
             \think\Db::transaction(function () use($arr2,$arr1,$arr3){
                 $cars_id = db("cars")->insertGetId($arr2);
                 $cars_model = model('\app\admin\model\Cars');
@@ -102,10 +137,11 @@ class Member extends Common
                 }
 
                 foreach($arr3 as $key => $value){
-                    $cars_get->carsimg()->save(['url'=>$value]);
+                    $cars_get->carsimg()->save(['url'=>str_replace('\\','/',$value)]);
                 }
             });
-            $this->redirect("index/member/membercenter");
+            session('cars_img',null);
+            $this->redirect("index/member/memberershouchelist");
         } else {
             $this->redirect("index/member/membercenter");
         }
@@ -140,16 +176,6 @@ class Member extends Common
     public function webuploader()
     {
         return view();
-    }
-
-    public function aa()
-    {
-        session('cars_img',null);
-    }
-
-    public function bb()
-    {
-        dump(session('cars_img'));
     }
 
 

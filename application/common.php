@@ -52,3 +52,39 @@ function explode2($str)
 {
     return explode('|',$str);
 }
+
+function getfiles($dir)
+{
+    $files = array();
+    if ($handdle = opendir($dir)) {
+        while (($file = readdir($handdle))!==false) {
+            if($file !='.'&&$file != '..'){
+                if (is_dir($dir.'/'.$file)) {
+                    $files[$file] = getfiles($dir.'/'.$file);
+                } else {
+                    $files[] = $file;
+                }
+            }
+        }
+    }
+    closedir($handdle);
+    return $files;
+}
+
+function getfiles2($dir)
+{
+    static $files = array();
+    if ($handdle = opendir($dir)) {
+        while (($file = readdir($handdle))!==false) {
+            if($file !='.'&&$file != '..'){
+                if (is_dir($dir.'/'.$file)) {
+                    getfiles2($dir.'/'.$file);
+                } else {
+                    $files[] = $dir.'/'.$file;
+                }
+            }
+        }
+    }
+    closedir($handdle);
+    return $files;
+}

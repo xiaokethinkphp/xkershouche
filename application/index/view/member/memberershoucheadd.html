@@ -27,13 +27,23 @@
 
     })
 </script>
+<script type="text/javascript">
+    function tijiao(){
+        if (confirm("车辆发布以后将无法进行修改，只能进行删除，是否确认？")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 {/block}
 {block name="userright"}
 <div class="userright">
     <h2 class="usernav">添加车源</h2>
     <div class="box">
         <script type="text/javascript" src="/simcms/static/js/laydate/laydate.js"></script>
-        <form name="form1" class="carform" enctype="multipart/form-data" method="post" action="{:url('index/member/ershoucheaddhaddle')}">
+        <form name="form1" class="carform" enctype="multipart/form-data" method="post" action="{:url('index/member/ershoucheaddhaddle')}"
+        onsubmit="return tijiao()">
             <table cellspacing="0" cellpadding="0" width="100%"  class="maintable">
                 <tr>
                     <th>所在城市：</th>
