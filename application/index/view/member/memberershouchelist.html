@@ -38,7 +38,7 @@
                     {/if}
                     </td>
                 <td align="left">
-                    <p><a href="buycars/2015/08/20/71.html" target="_blank" class="f14 fb">{$vo.full_name}</a>  </p>
+                    <p><a href="{:url('index/cars/carsdetails',array('id'=>$vo.id))}" target="_blank" class="f14 fb">{$vo.full_name}</a>  </p>
                     <p class="gray">排量： {$vo.gas} / 交强险时间：{$vo.insurance|date='Y年m月d日'} / 颜色：{$vo.color} / 行驶里程：{$vo.kilometer|format='%.2f'} 万公里 / 信息编号:{$vo.id}</p>
                     <p class="gray">刷新时间：{$vo.listtime|date="Y-m-d H:i:s"}</p>
                 </td>

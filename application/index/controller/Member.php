@@ -119,6 +119,7 @@ class Member extends Common
                 is_int($key)?$arr1[$key] = $value:$arr2[$key] = $value;
             }
             $arr2['insurance'] = strtotime($arr2['insurance']);
+            $arr2['plate'] = strtotime($arr2['plate']);
             $arr2['inspect'] = strtotime($arr2['inspect']);
             $arr2['listtime'] = strtotime("now");
             $arr2['member_id'] = cookie('member')['id'];
@@ -141,7 +142,7 @@ class Member extends Common
                 }
             });
             session('cars_img',null);
-            $this->redirect("index/member/memberershouchelist");
+            $this->redirect("index/member/memberershouchelst");
         } else {
             $this->redirect("index/member/membercenter");
         }
@@ -177,7 +178,5 @@ class Member extends Common
     {
         return view();
     }
-
-
 
 }

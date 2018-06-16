@@ -27,10 +27,10 @@
                 </div>
             </div>
         </div>
-        <p class="mt10 gray01 pl5">注册日期：2014/09/24</p>
+        <p class="mt10 gray01 pl5">注册日期：{$Think.cookie.member['register_time']|date="Y/m/d"}</p>
     </div>
     <div class="usermenu">
-        <h3><a href="/simcms/index.php?m=user">会员中心首页</a></h3>
+        <h3><a href="{:url('index/member/ershouchelst')}">会员中心首页</a></h3>
     </div>
     <div class="usermenu">
         <h3>二手车管理</h3>

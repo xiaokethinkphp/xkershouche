@@ -111,6 +111,7 @@ class Login extends Controller
             $post = input("post.");
             unset($post['member_password1']);
             unset($post['checkcode']);
+            $post['register_time'] = strtotime('now');
             $validate = validate("Member");
             if (!$validate->check($post)) {
                 $this->error($validate->getError());

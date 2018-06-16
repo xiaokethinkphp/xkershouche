@@ -20,4 +20,21 @@ class Cars extends Model
     {
         return $this->belongsTo('\app\index\model\Member');
     }
+
+    public function getCarsInfo($id='')
+    {
+        $cars_get = Cars::get($id);
+        if (empty($cars_get)) {
+            return false;
+        } else {
+            $level_find = db("level")->where('id',$cars_get['level'])->value('name');
+            $cars_get['level_name'] = $level_find;
+            $cars_get->carsimg;
+            $cars_get->member;
+            $cars_get->selfattribute;
+            return $cars_get;
+        }
+    }
+
+
 }
