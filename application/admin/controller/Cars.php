@@ -19,4 +19,13 @@ class Cars extends Controller
             }
         }
     }
+
+    public function lst()
+    {
+        $cars_model = model("Cars");
+        $cars_list = $cars_model->getCarsList();
+        $this->assign("cars_list",$cars_list);
+        // dump($cars_list);
+        return view();
+    }
 }

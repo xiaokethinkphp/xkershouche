@@ -36,5 +36,17 @@ class Cars extends Model
         }
     }
 
+    public function getCarsList()
+    {
+        $cars_list = Cars::paginate(2)->each(function($value,$key){
+            $level_find = db("level")->where('id',$value['level'])->value('name');
+            $value['level_name'] = $level_find;
+            $value->carsimg;
+            $value->member;
+            $value->selfattribute;
+        });
+        return $cars_list;
+    }
+
 
 }

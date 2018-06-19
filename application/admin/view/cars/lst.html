@@ -1,0 +1,124 @@
+{extend name="base" /}
+{block name="title"}车源列表{/block}
+    {block name="right"}
+        <div class="row J_mainContent" id="content-main" style="overflow-y:scroll">
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>二手车管理</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <strong>车源管理</strong>
+                        </li>
+                        <li>
+                            车源列表
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row ibox-content">
+                <div class="col-sm-2">
+                    <button class="btn btn-success" type="button" id="addBrand">
+                        <i class="fa fa-plus-square"></i>&nbsp;&nbsp;
+                        <span class="bold">添加款式</span>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>名称</th>
+                                        <th>车主</th>
+                                        <th>状态</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {volist name="cars_list" id="vo"}
+                                    <tr>
+                                        <td>{$vo.id}</td>
+                                        <td><a href="{:url('index/cars/carsdetails',array('id'=>$vo.id))}">{$vo.full_name}</a></td>
+                                        <td>{$vo.member.member_name}</td>
+                                        <td>
+                                            {switch $vo.status}
+                                                {case 1}上架{/case}
+                                                {case 0}下架{/case}
+                                                {case -1}已售{/case}
+                                                {default /}未审核
+                                            {/switch}
+                                        </td>
+                                        <td>
+                                            <div class="btn-group open">
+                                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="">修改</a>
+                                                    </li>
+                                                    <li><a href="">删除</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {/volist}
+                                </tbody>
+                            </table>
+                            {$cars_list|raw}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/block}
+    {block name="js"}
+    {__block__}
+    <script src="__ADMIN__/js/hAdmin.js?v=4.1.0"></script>
+    <script src="__ADMIN__/js/plugins/pace/pace.min.js"></script>
+    <script type="text/javascript">
+        $("#addBrand").click(function(event) {
+            /* Act on the event */
+            window.location.href = "{:url('admin/carmodel/add')}";
+        });
+
+        $(".type").click(function(event) {
+            /* Act on the event */
+            var id = $(this).parents('tr').find("td:eq(0)").html();
+            $.ajax({
+                url: '{:url("admin/brand/changeTypeAjax")}',
+                type: 'post',
+                data: {id: id}
+            })
+            .done(function(data) {
+                if(data==1){
+                    alert("数据修改成功");
+                    window.location.reload();
+                } else {
+                    alert("数据修改失败");
+                }
+            });
+        });
+
+        $(".order").click(function(event) {
+            /* Act on the event */
+            var id = $(this).parents('tr').find("td:eq(0)").html();
+            var order = $(this).prev(":input").val();
+            $.ajax({
+                url: '{:url("admin/brand/changeOrderAjax")}',
+                type: 'post',
+                data: {id: id,order:order}
+            })
+            .done(function(data) {
+                if(data==1){
+                    alert("数据修改成功");
+                    window.location.reload();
+                } else {
+                    alert("数据修改失败");
+                }
+            });
+        });
+    </script>
+    {/block}
