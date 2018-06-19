@@ -179,4 +179,15 @@ class Member extends Common
         return view();
     }
 
+    public function ershouchedel($id='')
+    {
+        $cars_del_result = db('cars')->where('member_id',cookie('member')['id'])->delete($id);
+        if ($cars_del_result) {
+            $this->success('车辆删除成功！');
+        } else {
+            $this->error("车辆删除失败！");
+        }
+
+    }
+
 }

@@ -44,7 +44,7 @@
                 </td>
                 <td align="center" class="orange01 f14">{$vo.price|format='%.2f'}万</td>
                 <td align="center" class="acmenu">
-                    <p><a href="javascript:if(confirm('确实要删除吗?'))location='index.php?m=user&a=delcar&id=71&page=1'">删除</a></p>
+                    <p><a href="javascript:if(confirm('确实要删除吗?'))location='{:url('index/member/ershouchedel',array('id'=>$vo.id))}'">删除</a></p>
                 </td>
             </tr>
             {/volist}
