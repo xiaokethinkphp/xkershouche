@@ -28,4 +28,19 @@ class Cars extends Controller
         // dump($cars_list);
         return view();
     }
+
+    public function verify($id='')
+    {
+        $cars_model = model("Cars");
+        $carsInfo = $cars_model->getCarsInfo($id);
+        if (empty($carsInfo)) {
+            $this->redirect('admin/cars/lst');
+        }
+        if ($carsInfo['status']!=2) {
+            $this->error('该车辆已审核');
+        }
+        $this->assign('cars',$carsInfo);
+        // dump($carsInfo);
+        return view('upd');
+    }
 }

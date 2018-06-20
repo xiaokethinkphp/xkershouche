@@ -10,8 +10,26 @@ class Cars extends Controller
     {
         $cars_model = model('\app\admin\model\Cars');
         $car = $cars_model->getCarsInfo($id);
-        // dump($car);
-        $this->assign('car',$car);
-        return view();
+        switch ($car['status']) {
+            case '0':
+                $this->error('该车辆已下架');
+                break;
+
+            case '-1':
+                $this->error('该车辆已出售');
+                break;
+
+            case '2':
+                $this->error('该车辆未被审核');
+                break;
+
+            default:
+                // code...
+                $this->assign('car',$car);
+                return view();
+                break;
+        }
     }
+
+
 }

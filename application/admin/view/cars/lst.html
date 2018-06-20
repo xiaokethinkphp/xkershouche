@@ -15,14 +15,6 @@
                     </ol>
                 </div>
             </div>
-            <div class="row ibox-content">
-                <div class="col-sm-2">
-                    <button class="btn btn-success" type="button" id="addBrand">
-                        <i class="fa fa-plus-square"></i>&nbsp;&nbsp;
-                        <span class="bold">添加款式</span>
-                    </button>
-                </div>
-            </div>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="ibox float-e-margins">
@@ -56,8 +48,10 @@
                                                 <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a href="">修改</a>
+                                                    {if $vo.status==2}
+                                                    <li><a href="{:url('admin/cars/verify',array('id'=>$vo.id))}">审核</a>
                                                     </li>
+                                                    {/if}
                                                     <li><a href="">删除</a>
                                                     </li>
                                                 </ul>

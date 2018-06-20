@@ -1,0 +1,229 @@
+{extend name="base" /}
+{block name="title"}车源审核{/block}
+    {block name="right"}
+        <div class="row J_mainContent" id="content-main" style="overflow-y:auto">
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>二手车管理</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <strong>车源管理</strong>
+                        </li>
+                        <li>
+                            车源审核
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            <form action="{:url('admin/brand/updHanddle')}"
+                            method="post" class="form-horizontal row"
+                            enctype="multipart/form-data" id="form1">
+                            <input type="hidden" name="id" value="">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">车源名称</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value={$cars.full_name} type="text" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">车源级别</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value={$cars.level_name} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">报价</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value="{$cars.price|format='%.2f'}万" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">出厂价</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value="{$cars.new_price|format='%.2f'}万" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">购置税</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value="{$cars.tax|format='%.2f'}万" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">颜色</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value={$cars.color} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">排量</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value={$cars.gas} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">变速箱</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value={$cars.transmission} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">上牌时间</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value="{$cars.plate|date='Y年m月d日'}" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">里程</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value="{$cars.kilometer|format='%.2f'}万公里" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">是否国产</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value={$cars.country} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">排放标准</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value={$cars.emission} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">交强险日期</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value="{$cars.insurance|date='Y年m月d日'}" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">年检日期</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value="{$cars.inspect|date='Y年m月d日'}" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">上架时间</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value="{$cars.listtime|date='Y年m月d日'}" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">车主描述</label>
+                                        <div class="col-sm-9">
+                                            <textarea name="name" rows="8" cols="80" readonly>{$cars.details}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">点击次数</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value={$cars.clicks} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">排放标准</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value={$cars.emission} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">排放标准</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value={$cars.emission} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">排放标准</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value={$cars.emission} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">排放标准</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value={$cars.emission} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">排放标准</label>
+                                        <div class="col-sm-9">
+                                            <input class="form-control" value={$cars.emission} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">是否流行</label>
+                                        <div class="col-sm-9">
+                                            <label class="radio-inline">
+                                                <input checked="" value="1" name="type" type="radio">流行</label>
+                                            <label class="radio-inline">
+                                                <input checked="" value="0" name="type" type="radio">不流行</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">文件域：</label>
+                                        <div class="col-sm-9">
+                                            <input name="thumb" class="form-control" type="file">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">下拉列表：</label>
+                                        <div class="col-sm-3">
+                                            <select class="form-control" name="initial">
+                                                <option value="A">A</option>
+                                                <option value="B">B</option>
+                                                <option value="C">C</option>
+                                                <option value="D">D</option>
+                                                <option value="E">E</option>
+                                                <option value="F">F</option>
+                                                <option value="G">G</option>
+                                                <option value="H">H</option>
+                                                <option value="I">I</option>
+                                                <option value="J">J</option>
+                                                <option value="K">K</option>
+                                                <option value="L">L</option>
+                                                <option value="M">M</option>
+                                                <option value="N">N</option>
+                                                <option value="O">O</option>
+                                                <option value="P">P</option>
+                                                <option value="Q">Q</option>
+                                                <option value="R">R</option>
+                                                <option value="S">S</option>
+                                                <option value="T">T</option>
+                                                <option value="U">U</option>
+                                                <option value="V">V</option>
+                                                <option value="W">W</option>
+                                                <option value="X">X</option>
+                                                <option value="Y">Y</option>
+                                                <option value="Z">Z</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"></label>
+                                        <div class="col-sm-3">
+                                            <input class="form-control" type="submit" value="修改品牌">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/block}
+    {block name="js"}
+    {__block__}
+    <script src="__ADMIN__/js/hAdmin.js?v=4.1.0"></script>
+    <script src="__ADMIN__/js/plugins/pace/pace.min.js"></script>
+    {/block}
