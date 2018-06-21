@@ -1,315 +1,102 @@
 {extend name="member/memberbase"/}
 {block name="title"}会员中心-添加租车{/block}
 {block name="userright"}
+<script src="__ADMIN__/js/jquery.cxselect.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#area").cxSelect({
+            url:"__INDEX__/static/area.json",
+            selects:['province','city','county'],
+            jsonName:"name",
+            jsonValue:"code",
+            jsonSub:"children"
+        });
+
+        $("#brands").cxSelect({
+            url:"{:url('index/member/brandJsonGet')}",
+            selects:['brand1','brand2','brand3','brand4'],
+            jsonName:'name',
+            jsonValue:'id',
+            jsonSub:'children',
+        })
+
+    })
+</script>
 <div class="userright">
     <h2 class="usernav">添加租车信息</h2>
     <div class="box">
-        <form name="form1" class="carform" enctype="multipart/form-data" method="post" action="index.php?m=user">
+        <form class="carform" enctype="multipart/form-data" method="post" action="{:url('index/member/rentcarsAddHanddle')}">
             <table cellspacing="0" cellpadding="0" width="100%"  class="maintable">
                 <tr>
                     <th>所在城市：</th>
                     <td colspan="3">
-                        <select name="aid" id="province">
-                            <option value=''>请选择省份</option>
-                            <option value='1' >北京市</option>
-                            <option value='2' >天津市</option>
-                            <option value='3' >上海市</option>
-                            <option value='4' >重庆市</option>
-                            <option value='5' >河北省</option>
-                            <option value='6' >山西省</option>
-                            <option value='7' >台湾省</option>
-                            <option value='8' >辽宁省</option>
-                            <option value='9' >吉林省</option>
-                            <option value='10' >黑龙江省</option>
-                            <option value='11' >江苏省</option>
-                            <option value='12' selected>浙江省</option>
-                            <option value='13' >安徽省</option>
-                            <option value='14' >福建省</option>
-                            <option value='15' >江西省</option>
-                            <option value='16' >山东省</option>
-                            <option value='17' >河南省</option>
-                            <option value='18' >湖北省</option>
-                            <option value='19' >湖南省</option>
-                            <option value='20' >广东省</option>
-                            <option value='21' >甘肃省</option>
-                            <option value='22' >四川省</option>
-                            <option value='24' >贵州省</option>
-                            <option value='25' >海南省</option>
-                            <option value='26' >云南省</option>
-                            <option value='27' >青海省</option>
-                            <option value='28' >陕西省</option>
-                            <option value='29' >广西壮族自治区</option>
-                            <option value='30' >西藏自治区</option>
-                            <option value='31' >宁夏回族自治区</option>
-                            <option value='32' >新疆维吾尔自治区</option>
-                            <option value='33' >内蒙古自治区</option>
-                            <option value='34' >澳门特别行政区</option>
-                            <option value='35' >香港特别行政区</option>
-
-                        </select>
-                        <select name="cid" id="city">
-                            <option value=''>请选择城市</option>
-                            <option value='135' >杭州市</option>
-                            <option value='136' >宁波市</option>
-                            <option value='137' >温州市</option>
-                            <option value='138' >嘉兴市</option>
-                            <option value='139' >湖州市</option>
-                            <option value='140' >绍兴市</option>
-                            <option value='141' >金华市</option>
-                            <option value='142' >衢州市</option>
-                            <option value='143' >舟山市</option>
-                            <option value='144' >台州市</option>
-                            <option value='145' >丽水市</option>
-
-                        </select>
+                        <div id="area">
+                            <select name="province_id" class="province"></select>
+                            <select name="city_id" class="city"></select>
+                            <select name="county_id" class="county"></select>
+                        </div>
                     </td>
-                </tr>			<tr>
+                </tr>
+                <tr>
                     <th> 标题：</th>
-                    <td><input type="text" name="p_title"  size="60" value="" datatype="*1-50" nullmsg="请填写标题！">
+                    <td><input type="text" name="title"  size="60" value="" datatype="*1-50" nullmsg="请填写标题！">
                     </td>
                 </tr>
                 <tr>
                     <th> 品牌型号：</th>
                     <td colspan="3">
-                        <select name="p_brand" id="brand" datatype="n" nullmsg="请选择品牌！">
-                            <option value=''>请选择品牌</option>
-                            <option value='1' >A 奥迪</option>
-                            <option value='2' >A 奥克斯</option>
-                            <option value='3' >A 阿尔法·罗密欧</option>
-                            <option value='4' >A 阿斯顿·马丁</option>
-                            <option value='6' >B 奔驰</option>
-                            <option value='7' >B 宝马</option>
-                            <option value='8' >B 标致</option>
-                            <option value='9' >B 北汽制造</option>
-                            <option value='10' >B 比亚迪</option>
-                            <option value='11' >B 本田</option>
-                            <option value='12' >B 奔腾</option>
-                            <option value='13' >B 宝龙</option>
-                            <option value='14' >B 保时捷</option>
-                            <option value='15' >B 宾利</option>
-                            <option value='16' >B 别克</option>
-                            <option value='17' >B 布加迪</option>
-                            <option value='18' >B 宝骏</option>
-                            <option value='19' >B 北京汽车</option>
-                            <option value='20' >B 北汽威旺</option>
-                            <option value='21' >B 巴博斯</option>
-                            <option value='22' >B 保斐利</option>
-                            <option value='23' >B 北汽幻速</option>
-                            <option value='24' >B 北汽新能源</option>
-                            <option value='25' >C 长城</option>
-                            <option value='26' >C 昌河</option>
-                            <option value='27' >C 长安轿车</option>
-                            <option value='28' >C 长安商用</option>
-                            <option value='29' >D 大众</option>
-                            <option value='30' >D 东风</option>
-                            <option value='31' >D 东南</option>
-                            <option value='32' >D 大迪</option>
-                            <option value='33' >D 大宇</option>
-                            <option value='34' >D 道奇</option>
-                            <option value='35' >D 东风风行</option>
-                            <option value='36' >D 东风风神</option>
-                            <option value='37' >D DS</option>
-                            <option value='38' >D 东风风度</option>
-                            <option value='39' >D 东风小康</option>
-                            <option value='40' >D 东风御风</option>
-                            <option value='41' >F 丰田</option>
-                            <option value='42' >F 福特</option>
-                            <option value='43' >F 菲亚特</option>
-                            <option value='44' >F 富奇</option>
-                            <option value='45' >F 福迪</option>
-                            <option value='46' >F 法拉利</option>
-                            <option value='47' >F 福田</option>
-                            <option value='48' >F 福达</option>
-                            <option value='49' >F Faralli Mazzanti</option>
-                            <option value='50' >F 飞驰商务车</option>
-                            <option value='51' >F 福汽启腾</option>
-                            <option value='52' >G 广汽吉奥</option>
-                            <option value='53' >G GMC</option>
-                            <option value='54' >G 光冈</option>
-                            <option value='55' >G 广汽日野</option>
-                            <option value='56' >G 广汽</option>
-                            <option value='57' >G 观致汽车</option>
-                            <option value='58' >H 哈飞</option>
-                            <option value='59' >H 海马</option>
-                            <option value='60' >H 华普</option>
-                            <option value='61' >H 汇众</option>
-                            <option value='62' >H 黄海</option>
-                            <option value='63' >H 红旗</option>
-                            <option value='64' >H 航天圆通</option>
-                            <option value='65' >H 悍马</option>
-                            <option value='66' >H 华泰</option>
-                            <option value='67' >H 汉江</option>
-                            <option value='68' >H 黑豹</option>
-                            <option value='69' >H 华阳</option>
-                            <option value='70' >H 海马商用车</option>
-                            <option value='71' >H 海格</option>
-                            <option value='72' >H 恒天汽车</option>
-                            <option value='73' >H 哈弗</option>
-                            <option value='74' >J Jeep</option>
-                            <option value='75' >J 吉利汽车</option>
-                            <option value='76' >J 江淮</option>
-                            <option value='77' >J 江铃</option>
-                            <option value='78' >J 江南</option>
-                            <option value='79' >J 金杯</option>
-                            <option value='80' >J 金龙联合</option>
-                            <option value='81' >J 金程</option>
-                            <option value='82' >J 捷豹</option>
-                            <option value='83' >J 吉林江北</option>
-                            <option value='84' >J 九龙</option>
-                            <option value='85' >J 金旅客车</option>
-                            <option value='86' >K 克莱斯勒</option>
-                            <option value='87' >K 凯迪拉克</option>
-                            <option value='88' >K 科尼塞克</option>
-                            <option value='89' >K 开瑞</option>
-                            <option value='90' >K 卡尔森</option>
-                            <option value='91' >K KTM</option>
-                            <option value='92' >K 卡威</option>
-                            <option value='93' >L 铃木</option>
-                            <option value='94' >L 陆风</option>
-                            <option value='95' >L 力帆</option>
-                            <option value='96' >L 劳斯莱斯</option>
-                            <option value='97' >L 路特斯</option>
-                            <option value='98' >L 兰博基尼</option>
-                            <option value='99' >L 雷克萨斯</option>
-                            <option value='100' >L 林肯</option>
-                            <option value='101' >L 路虎</option>
-                            <option value='102' >L 雷诺</option>
-                            <option value='103' >L 罗孚</option>
-                            <option value='104' >L 莲花</option>
-                            <option value='105' >L 猎豹汽车</option>
-                            <option value='106' >L 理念</option>
-                            <option value='107' >L 蓝海房车</option>
-                            <option value='108' >M 马自达</option>
-                            <option value='109' >M 美亚</option>
-                            <option value='110' >M MG</option>
-                            <option value='111' >M MINI</option>
-                            <option value='112' >M 迈巴赫</option>
-                            <option value='113' >M 玛莎拉蒂</option>
-                            <option value='114' >M 迈凯伦</option>
-                            <option value='115' >M 摩根</option>
-                            <option value='116' >N 纳智捷</option>
-                            <option value='117' >O 讴歌</option>
-                            <option value='118' >O 欧宝</option>
-                            <option value='119' >O 欧朗</option>
-                            <option value='120' >P 旁蒂克</option>
-                            <option value='121' >P 帕加尼</option>
-                            <option value='122' >P 皮特比尔特卡车</option>
-                            <option value='123' >Q 起亚</option>
-                            <option value='124' >Q 奇瑞</option>
-                            <option value='125' >Q 庆铃</option>
-                            <option value='126' >Q 启辰</option>
-                            <option value='127' >R 日产</option>
-                            <option value='128' >R 荣威</option>
-                            <option value='129' >R 瑞麒</option>
-                            <option value='130' >S 斯柯达</option>
-                            <option value='131' >S 三菱</option>
-                            <option value='132' >S 双环</option>
-                            <option value='133' >S 顺旅</option>
-                            <option value='134' >s  smart</option>
-                            <option value='135' >S 双龙</option>
-                            <option value='136' >S 萨博</option>
-                            <option value='137' >S 斯巴鲁</option>
-                            <option value='138' >S 三星</option>
-                            <option value='139' >S 世爵</option>
-                            <option value='140' >S 上汽大通MAXUS</option>
-                            <option value='141' >S 陕汽通家</option>
-                            <option value='142' >S 绅宝</option>
-                            <option value='143' >S 山姆</option>
-                            <option value='144' >T 天马</option>
-                            <option value='145' >T 通田</option>
-                            <option value='146' >T 塔菲克</option>
-                            <option value='147' >T 腾势</option>
-                            <option value='148' >T 特斯拉</option>
-                            <option value='149' >T 泰卡特</option>
-                            <option value='150' >W 沃尔沃</option>
-                            <option value='151' >W 万丰</option>
-                            <option value='152' >W 五菱</option>
-                            <option value='153' >W 五十铃</option>
-                            <option value='154' >W 威麟</option>
-                            <option value='155' >W 威兹曼</option>
-                            <option value='156' >X 雪铁龙</option>
-                            <option value='157' >X 现代</option>
-                            <option value='158' >X 雪佛兰</option>
-                            <option value='159' >X 新雅途</option>
-                            <option value='160' >X 新大地</option>
-                            <option value='161' >X 新凯</option>
-                            <option value='162' >X 西雅特</option>
-                            <option value='163' >X 星客特</option>
-                            <option value='164' >Y 依维柯</option>
-                            <option value='165' >Y 仪征</option>
-                            <option value='166' >Y 一汽</option>
-                            <option value='167' >Y 永源</option>
-                            <option value='168' >Y 英菲尼迪</option>
-                            <option value='169' >Y 云豹</option>
-                            <option value='170' >Y 云雀</option>
-                            <option value='171' >Y 野马汽车</option>
-                            <option value='172' >Y 友谊客车</option>
-                            <option value='173' >Y 宇通</option>
-                            <option value='174' >Y 扬州亚星客车</option>
-                            <option value='175' >Z 中兴</option>
-                            <option value='176' >Z 中华</option>
-                            <option value='177' >Z 中客华北</option>
-                            <option value='178' >Z 中顺</option>
-                            <option value='179' >Z 众泰</option>
-                            <option value='180' >Z 中欧</option>
-                            <option value='181' >Z 中通客车</option>
-                            <option value='182' >Z 浙江卡尔森</option>
+                        <div id="brands">
+                            <select name="brand_level1" class="brand1">
 
-                        </select>
-                        <select class="subbrand" id="subbrand" name="p_subbrand" datatype="n" nullmsg="请选择车系！">
-                            <option  value="">请选择车系</option>
+                            </select>
+                            <select class="brand2" name="brand_level2">
 
-                        </select> &nbsp;<select class="subbrand" id="subsubbrand" name="p_subsubbrand" datatype="n" nullmsg="请选择款式！">
-                            <option  value="">请选择款式</option>
+                            </select>
+                            <select class="brand3" name="brand_level3">
 
-                        </select>
+                            </select>
+                            <select class="brand4" name="carmodel">
+
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th> 日租金：</th>
+                    <td>
+                        <input type="text" name="dayprice"  size="5" value="">
+                        <span class="gray">元/天</span>
+                    </td>
                     </tr>
                     <tr>
-                        <th> 车型选择：</th>
-                        <td><select name="p_model" datatype="n" nullmsg="请选择车型！">
-                            <option value=''>请选择车型</option>
-                            <option value='40' >轿车</option>
-                            <option value='41' >婚庆</option>
-
-                        </select></td>
+                        <th> 月租金：</th>
+                        <td><input type="text" name="monthprice"  size="5" value="">
+                            <span class="gray">元/月</span>
+                        </td>
                     </tr>
                     <tr>
-                        <th> 日租金：</th>
-                        <td><input type="text" name="dayprice"  size="5" value="" datatype="s" nullmsg="请填写日租金！">
-                            <span class="gray">元/天</span></td>
-                        </tr>
-                        <tr>
-                            <th> 月租金：</th>
-                            <td><input type="text" name="monthprice"  size="5" value="" datatype="s" nullmsg="请填写月租金！">
-                                <span class="gray">元/月</span></td>
-                            </tr>
-                            <tr>
-                                <th>图片：</th>
-                                <td colspan="3">
-                                    <ul id="piclist" class="clearfix">
-                                    </ul>
-                                    <input type="button" id="J_selectImage" value="批量上传图片" class="uploadbut"/>
-                                    <div id="mainpic">
-
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>补充描述：</th>
-                                <td colspan="5"><textarea  name="p_details" rows="2" cols="90" class="textarea01"></textarea></td>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <td colspan="5">
-                                    <div class="buttons">
-                                        <input type="submit" value="提 交" class="submit">
-                                        <input type="hidden" name="a" value="addrentcar">
-                                        <input type="hidden" name="id" value="">
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </form>        		</div>
-                </div>
-            </div>
+                        <th>图片：</th>
+                        <td colspan="3">
+                            <input type="file" name="img" value="">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>补充描述：</th>
+                        <td colspan="5">
+                            <textarea  name="details" rows="2" cols="90" class="textarea01"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td colspan="5">
+                            <div class="buttons">
+                                <input type="submit" value="提 交" class="submit">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
 {/block}

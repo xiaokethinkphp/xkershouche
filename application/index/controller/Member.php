@@ -192,12 +192,53 @@ class Member extends Common
 
     public function rentcarslst()
     {
+        $rentcars_select = db('rentcars')->where('member_id',cookie('member')['id'])->select();
+        $this->assign('rentcars',$rentcars_select);
+        // dump($rentcars_select);
         return view();
     }
 
     public function rentcarsadd()
     {
         return view();
+    }
+
+    public function rentcarsAddHanddle()
+    {
+        if (request()->isPost()) {
+            // 先验证POST信息，此处略
+            $data = input('post.');
+            $file = request()->file('img');
+            if (empty($file)) {
+                $this->error('请选择图片');
+            }
+            $info = $file->move( '../uploads/rentcars');
+            if($info){
+                $data['listtime'] = strtotime("now");
+                $data['member_id'] = cookie('member')['id'];
+                $data['full_name'] = db('brand')->where('id',$data['brand_level1'])->value('name')
+                ." ".db('brand')->where('id',$data['brand_level2'])->value('name')
+                ." ".db('brand')->where('id',$data['brand_level3'])->value('name')
+                ." ".db('carmodel')->where('id',$data['carmodel'])->value('style')
+                ."款 ".db('carmodel')->where('id',$data['carmodel'])->value('edition');
+                unset($data['brand_level1']);
+                unset($data['brand_level2']);
+                unset($data['brand_level3']);
+                unset($data['carmodel']);
+                $data['img'] = 'rentcars/'.$info->getSaveName();
+                $rentcars_add_result = db('rentcars')->insert($data);
+                if ($rentcars_add_result) {
+                    $this->success('数据插入成功','index/member/rentcarslst');
+                } else {
+                    $this->error("数据插入失败");
+                }
+
+            }else{
+                $this->error('图片上传失败');
+            }
+        } else{
+            $this->redirect("index/member/membercenter");
+        }
     }
 
 }
