@@ -142,7 +142,7 @@ class Member extends Common
                 }
             });
             session('cars_img',null);
-            $this->redirect("index/member/memberershouchelst");
+            $this->redirect("index/member/ershouchelst");
         } else {
             $this->redirect("index/member/membercenter");
         }
@@ -188,6 +188,16 @@ class Member extends Common
             $this->error("车辆删除失败！");
         }
 
+    }
+
+    public function rentcarslst()
+    {
+        return view();
+    }
+
+    public function rentcarsadd()
+    {
+        return view();
     }
 
 }
