@@ -1,0 +1,88 @@
+{extend name="base" /}
+{block name="title"}车源列表{/block}
+    {block name="right"}
+        <div class="row J_mainContent" id="content-main" style="overflow-y:scroll">
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>租车管理</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <strong>车源管理</strong>
+                        </li>
+                        <li>
+                            车源列表
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row ibox-content">
+                <div class="col-sm-2">
+
+                </div>
+                <div class="col-sm-10">
+                    <div id="brand_select">
+                        <div class="col-sm-2">
+                            <select class="form-control province">
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <select class="form-control city">
+                            </select>
+                        </div>
+                        <div class="col-sm-2">
+                            <select class="form-control county">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content" id="ajaxpage">
+                            {include file="rentcars/ajaxpage"}
+                            {$rentcars|raw}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/block}
+    {block name="js"}
+    {__block__}
+    <script src="__ADMIN__/js/hAdmin.js?v=4.1.0"></script>
+    <script src="__ADMIN__/js/plugins/pace/pace.min.js"></script>
+    <script src="__ADMIN__/js/jquery.cxselect.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#brand_select").cxSelect({
+                url:"__INDEX__/static/area.json",
+                selects:['province','city','county'],
+                jsonName:"name",
+                jsonValue:"code",
+                jsonSub:"children"
+            });
+
+            $(".county").change(function(event) {
+                county_id = $(".county").val()
+                $.ajax({
+                    url: '{:url("admin/rentcars/lst")}',
+                    type: 'post',
+                    data: {county_id: county_id}
+                })
+                .done(function(data) {
+                    $("#ajaxpage").html(data);
+                    $(document).click();
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                    console.log("complete");
+                });
+
+            });
+        })
+    </script>
+
+    {/block}

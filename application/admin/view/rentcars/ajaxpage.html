@@ -1,0 +1,50 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>标题</th>
+            <th>车名</th>
+            <th>车主</th>
+            <th>电话</th>
+            <th>发布时间</th>
+            <th>状态</th>
+            <th>图片</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {volist name="rentcars" id="vo"}
+        <tr>
+            <td>{$vo.rid}</td>
+            <td>{$vo.title}</td>
+            <td><a href="{:url('index/rentcars/rentcarsdetails',array('id'=>$vo.rid))}">{$vo.full_name}</a></td>
+            <td>{$vo.member_name}</td>
+            <td>{$vo.mobile_number}</td>
+            <td>{$vo.listtime|date="Y年m月d日"}</td>
+            <td>
+                {switch $vo.status}
+                    {case 1}已出租{/case}
+                    {case 0}未出租{/case}
+                    {default /}未审核
+                {/switch}
+            </td>
+            <td><img src="__UPLOADS__/{$vo.img}" alt="" width="100"></td>
+            <td>
+                <div class="btn-group open">
+                    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        {if $vo.status == -1}
+                        <li><a href="{:url('admin/rentcars/verify',array('id'=>$vo.rid))}">审核</a>
+                        </li>
+                        {/if}
+
+                        <li><a href="javascript:if(confirm('确认删除？')) location='{:url('admin/rentcars/del',array('id'=>$vo.rid))}'">删除</a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        {/volist}
+    </tbody>
+</table>

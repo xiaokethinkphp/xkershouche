@@ -16,8 +16,24 @@
     <div class="carbox clearfix">
         <div class="carbox_left">
             <div class="carpicbox">
-                <img src="__UPLOADS__/{$car.carsimg[0]['url']}"/>
+                <img src="__UPLOADS__/{$car.carsimg[0]['url']}" id="BigImg"/>
             </div>
+            <div class="ladyScroll">
+				<a class="prev" href="javascript:void(0)"></a>
+				<div class="scrollWrap">
+					<div class="dlList">
+                        {volist name="$car.carsimg" id="vo1"}
+						<dl>
+						    <dt><img src="__UPLOADS__/{$vo1.url}" onmousemove="javascript:document.getElementById('BigImg').src='__UPLOADS__/{$vo1.url}'"></dt>
+					    </dl>
+                        {/volist}
+					</div>
+				</div>
+				<a class="next" href="javascript:void(0)"></a>
+			</div>
+            <script type="text/javascript">
+				jQuery(".ladyScroll").slide({ mainCell:".dlList", effect:"leftLoop",vis:5, autoPlay:true});
+			</script>
         </div>
         <div class="carbox_center">
             <ul class="clearfix">

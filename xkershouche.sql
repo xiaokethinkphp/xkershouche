@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 19/06/2018 11:33:05
+ Date: 23/06/2018 20:38:07
 */
 
 SET NAMES utf8mb4;
@@ -160,14 +160,15 @@ CREATE TABLE `xk_cars`  (
   `full_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `clicks` int(255) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of xk_cars
 -- ----------------------------
-INSERT INTO `xk_cars` VALUES (16, 120000, 120100, 120101, 13, 51, 58, 9, 1, 12.80, 20.00, 1, '白色', '1.0L', '手动', '1527782400', 13, '国产', '国一', '1527782400', '1527782400', 1528857148, 2, 12, '111', '宝马 进口宝马 宝马1系（进口） 2015款 118i 领先型', 12);
 INSERT INTO `xk_cars` VALUES (17, 110000, 110100, 110101, 13, 50, 55, 8, 1, 16.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
 INSERT INTO `xk_cars` VALUES (18, 120000, 120100, 120101, 13, 50, 55, 8, 1, 12.00, 13.00, 1, '黑色', '3.5L', '手动', '1528300800', 12, '国产', '国一', '1529942400', '1528300800', 1529119637, 2, 1, '昨天买的今天卖', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
+INSERT INTO `xk_cars` VALUES (19, 220000, 220100, 220103, 13, 51, 58, 9, 1, 0.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1529477528, 2, 12, '', '宝马 进口宝马 宝马1系（进口） 2015款 118i 领先型', 0);
+INSERT INTO `xk_cars` VALUES (20, 360000, 360200, 360202, 15, 60, 62, 13, 1, 0.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1529479626, 2, 12, '11111111111', '奥迪 一汽大众奥迪 奥迪A3 2018款 TFSI 时尚型', 0);
 
 -- ----------------------------
 -- Table structure for xk_cars_selfattribute
@@ -184,33 +185,6 @@ CREATE TABLE `xk_cars_selfattribute`  (
 -- ----------------------------
 -- Records of xk_cars_selfattribute
 -- ----------------------------
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 28, '是');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 22, '是');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 1, '是');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 2, '运营');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 3, '有');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 5, '是');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 6, '有');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 7, '是');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 8, '是');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 9, '有');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 10, '有');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 11, '有');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 12, '有');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 13, '有');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 14, '有');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 15, '有');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 16, '有');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 17, '有');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 18, '是');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 19, '是');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 20, '是');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 23, '是');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 24, '是');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 25, '是');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 26, '是');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 27, '是');
-INSERT INTO `xk_cars_selfattribute` VALUES (16, 29, '有');
 INSERT INTO `xk_cars_selfattribute` VALUES (17, 28, '是');
 INSERT INTO `xk_cars_selfattribute` VALUES (17, 22, '是');
 INSERT INTO `xk_cars_selfattribute` VALUES (17, 1, '是');
@@ -265,6 +239,60 @@ INSERT INTO `xk_cars_selfattribute` VALUES (18, 25, '是');
 INSERT INTO `xk_cars_selfattribute` VALUES (18, 26, '是');
 INSERT INTO `xk_cars_selfattribute` VALUES (18, 27, '是');
 INSERT INTO `xk_cars_selfattribute` VALUES (18, 29, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 28, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 22, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 1, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 2, '运营');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 3, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 5, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 6, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 7, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 8, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 9, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 10, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 11, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 12, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 13, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 14, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 15, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 16, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 17, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 18, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 19, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 20, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 23, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 24, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 25, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 26, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 27, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (19, 29, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 28, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 22, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 1, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 2, '运营');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 3, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 5, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 6, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 7, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 8, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 9, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 10, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 11, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 12, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 13, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 14, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 15, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 16, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 17, '有');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 18, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 19, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 20, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 23, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 24, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 25, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 26, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 27, '是');
+INSERT INTO `xk_cars_selfattribute` VALUES (20, 29, '有');
 
 -- ----------------------------
 -- Table structure for xk_carsimg
@@ -277,19 +305,11 @@ CREATE TABLE `xk_carsimg`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `cars_id`(`cars_id`) USING BTREE,
   CONSTRAINT `cars_id` FOREIGN KEY (`cars_id`) REFERENCES `xk_cars` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 54 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of xk_carsimg
 -- ----------------------------
-INSERT INTO `xk_carsimg` VALUES (34, 16, 'cars/20180613/c9bea0ce75c426e619813ba492abaaf1.jpg');
-INSERT INTO `xk_carsimg` VALUES (35, 16, 'cars/20180613/6c31678ed26282863d5eb7daed84620d.jpg');
-INSERT INTO `xk_carsimg` VALUES (36, 16, 'cars/20180613/7c37795f221cd8708ba1d78be1e06056.jpg');
-INSERT INTO `xk_carsimg` VALUES (37, 16, 'cars/20180613/a22eddfc4e31cdf1b540e3ea3d80d047.jpg');
-INSERT INTO `xk_carsimg` VALUES (38, 16, 'cars/20180613/cecd8a570d06b022bf8eb2b5ada4e84b.jpg');
-INSERT INTO `xk_carsimg` VALUES (39, 16, 'cars/20180613/62cd2ca6cbcf67303f60c3b2495a39f5.jpg');
-INSERT INTO `xk_carsimg` VALUES (40, 16, 'cars/20180613/7dd4aa01754d60380c044d71f09467f3.jpg');
-INSERT INTO `xk_carsimg` VALUES (41, 16, 'cars/20180613/78c684a2aa050b3d2403b07b3e832c43.jpg');
 INSERT INTO `xk_carsimg` VALUES (42, 17, 'cars/20180613/4ffa8116ad102beb803c02701d3105e9.jpg');
 INSERT INTO `xk_carsimg` VALUES (43, 17, 'cars/20180613/fd221c086c3437641e3c4b71ec2f2a0b.jpg');
 INSERT INTO `xk_carsimg` VALUES (44, 17, 'cars/20180613/4b56b74bf3750062c474ca26f053edf6.jpg');
@@ -302,6 +322,10 @@ INSERT INTO `xk_carsimg` VALUES (50, 18, 'cars/20180616/532117216bb8709d0f1f468f
 INSERT INTO `xk_carsimg` VALUES (51, 18, 'cars/20180616/3d1a8d5d0464ebcc9d2b3e3bb52bc673.jpg');
 INSERT INTO `xk_carsimg` VALUES (52, 18, 'cars/20180616/877a60e0107b23c28713ef3cc97c32d2.jpg');
 INSERT INTO `xk_carsimg` VALUES (53, 18, 'cars/20180616/52f0f6f7efa18654788543d075c15c17.jpg');
+INSERT INTO `xk_carsimg` VALUES (54, 19, 'cars/20180620/bd525ff823dadbd8698e262091d8a262.jpg');
+INSERT INTO `xk_carsimg` VALUES (55, 19, 'cars/20180620/30306d516d894c7f72406f7a24cb0994.jpg');
+INSERT INTO `xk_carsimg` VALUES (56, 20, 'cars/20180620/123e315bc90de3ad145fc287be9ad849.jpg');
+INSERT INTO `xk_carsimg` VALUES (57, 20, 'cars/20180620/8cc0e8abe80fd8019e1af5c6d637ed60.jpg');
 
 -- ----------------------------
 -- Table structure for xk_level
@@ -347,6 +371,36 @@ CREATE TABLE `xk_member`  (
 -- ----------------------------
 INSERT INTO `xk_member` VALUES (1, '11', 'e10adc3949ba59abbe56e057f20f883e', 13344445440, 1, 1, 1, 1527782400);
 INSERT INTO `xk_member` VALUES (12, '1123', 'e10adc3949ba59abbe56e057f20f883e', 15040360448, 120000, 120100, 120102, 1527782400);
+
+-- ----------------------------
+-- Table structure for xk_rentcars
+-- ----------------------------
+DROP TABLE IF EXISTS `xk_rentcars`;
+CREATE TABLE `xk_rentcars`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `province_id` int(11) NULL DEFAULT NULL,
+  `city_id` int(11) NULL DEFAULT NULL,
+  `county_id` int(11) NULL DEFAULT NULL,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `full_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `dayprice` int(10) NULL DEFAULT NULL,
+  `monthprice` int(10) NULL DEFAULT NULL,
+  `details` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `member_id` int(11) NULL DEFAULT NULL,
+  `listtime` int(11) NULL DEFAULT NULL,
+  `status` int(255) NOT NULL DEFAULT -1 COMMENT '1已出租0未出租-1未审核',
+  `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of xk_rentcars
+-- ----------------------------
+INSERT INTO `xk_rentcars` VALUES (3, 120000, 120100, 120101, '11111111111', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 1, 2, '4444', 12, 1529566335, -1, 'rentcars/20180621/73fecf709b7eb7a3a437bfd0f8a7c762.jpg');
+INSERT INTO `xk_rentcars` VALUES (4, 150000, 150100, 150101, '奥迪双钻，我的伙伴', '奥迪 一汽大众奥迪 奥迪A3 2018款 TFSI 时尚型', 120, 3000, '奥迪双钻，我的伙伴', 1, 1529638053, -1, 'rentcars/20180622/04424a8ed9810b5d8f6816d66153c4dd.jpg');
+INSERT INTO `xk_rentcars` VALUES (5, 120000, 120200, 120221, '宝马宝马', '宝马 进口宝马 宝马1系（进口） 2015款 118i 领先型', 200, 5000, '宝马宝马', 1, 1529638125, 1, 'rentcars/20180622/553b2db8c1519b19b0e092a4ea230e64.jpg');
+INSERT INTO `xk_rentcars` VALUES (6, 130000, 0, NULL, '大奔驰开着就是爽', '奔驰 北京奔驰 奔驰C级 2018款 C 200 运动版', 300, 8000, '大奔驰开着就是爽', 1, 1529638293, -1, 'rentcars/20180622/06cae52aff9a21e32bbff01c330e97f9.jpg');
+INSERT INTO `xk_rentcars` VALUES (7, 210000, 210300, 210302, '宝马租车一天100', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 100, 5000, '宝马租车一天100', 12, 1529719009, -1, 'rentcars/20180623/07c8db44e878ebc18f0b427347ef09ae.jpg');
 
 -- ----------------------------
 -- Table structure for xk_selfattribute

@@ -1,0 +1,119 @@
+{extend name="base"/}
+{block name="title"}{$rentcars.full_name}{/block}
+{block name="header"}
+{__block__}
+<link href="/simcms/templates/default/default/css/car1.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="/simcms/static/js/jquery.inputtext.js"></script>
+{/block}
+        {block name="main"}
+<div class="nav">您当前的位置：
+    <a href="{:url('index/index/index')}">首页</a>
+    <span>></span>
+    <a href="/simcms/index.php?m=rentcar">租车</a>
+</div>
+<div class="main mt10">
+	<div class="carbox clearfix">
+		<div class="carbox_left">
+			<div class="carpicbox">
+				<img src="__UPLOADS__/{$rentcars.img}" id="BigImg"/>
+			</div>
+			<div class="ladyScroll">
+				<a class="prev" href="javascript:void(0)"></a>
+				<div class="scrollWrap">
+					<div class="dlList">
+						<dl>
+						    <dt><img src="/simcms/upload/image/20151026/20151026164237_73487_small.bmp" onmousemove="javascript:document.getElementById('BigImg').src='/simcms/upload/image/20151026/20151026164237_73487.bmp'"></dt>
+					    </dl>
+						<dl>
+						    <dt><img src="/simcms/upload/image/20151026/20151026183957_19841_small.jpg" onmousemove="javascript:document.getElementById('BigImg').src='/simcms/upload/image/20151026/20151026183957_19841.jpg'"></dt>
+					    </dl>
+					    <dl>
+							<dt><img src="/simcms/upload/image/20151026/20151026183957_46669_small.jpg" onmousemove="javascript:document.getElementById('BigImg').src='/simcms/upload/image/20151026/20151026183957_46669.jpg'"></dt>
+						</dl>
+						<dl>
+							<dt><img src="/simcms/upload/image/20151026/20151026183958_71732_small.jpg" onmousemove="javascript:document.getElementById('BigImg').src='/simcms/upload/image/20151026/20151026183958_71732.jpg'"></dt>
+						</dl>
+			            <dl>
+							<dt><img src="/simcms/upload/image/20151026/20151026183958_50838_small.jpg" onmousemove="javascript:document.getElementById('BigImg').src='/simcms/upload/image/20151026/20151026183958_50838.jpg'"></dt>
+						</dl>
+					    <dl>
+							<dt><img src="/simcms/upload/image/20151026/20151026183958_67068_small.jpg" onmousemove="javascript:document.getElementById('BigImg').src='/simcms/upload/image/20151026/20151026183958_67068.jpg'"></dt>
+						</dl>
+						<dl>
+							<dt><img src="/simcms/upload/image/20151026/20151026183958_59801_small.jpg" onmousemove="javascript:document.getElementById('BigImg').src='/simcms/upload/image/20151026/20151026183958_59801.jpg'"></dt>
+						</dl>
+					</div>
+				</div>
+				<a class="next" href="javascript:void(0)"></a>
+			</div>
+			<script type="text/javascript">
+				jQuery(".ladyScroll").slide({ mainCell:".dlList", effect:"leftLoop",vis:5, autoPlay:true});
+			</script>
+		</div>
+		<div class="carbox_right">
+			<div class="carname">{$rentcars.full_name}</div>
+			<div class="rentcarname">{$rentcars.title}</div>
+			<p class="gray01 mt20">
+                发布日期：{$rentcars.listtime|date="Y年y月d日"}
+            </p>
+			<div class="detail01 mt10">
+				<ul class="clearfix">
+					<li class="li01 mb10">价格：
+                        <span class="price">{$rentcars.dayprice}</span>
+                        元/天 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="price">{$rentcars.monthprice}</span>
+                        元/月
+                    </li>
+				</ul>
+				<div class="rentcarname">
+                    <h3>免费咨询电话（8:30-17:00 周六日休息）</h3>
+                </div>
+				<div class="contactbox">
+					<div class="telbox">
+                        <p class="tel">
+                            <span class="fb">{$rentcars.mobile_number}</span>
+                        </p>
+						<p class="tel">联系人：{$rentcars.member_name}</p>
+					</div>
+				</div>
+				<div class="ensure"><!--保障服务-->
+                    <label>保障服务</label>
+                    <i class="i-yb"></i>车况良好&nbsp;&nbsp;&nbsp;<i class="i-ckb"></i>车辆崭新&nbsp;&nbsp;&nbsp;<i class="i-dk"></i>保险齐全
+    			</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="main mt20 clearfix">
+	<div class="main_left">
+		<div class="cardetailbox">
+			<ul class="title_tab">
+				<li class="here"><a href="#B">租车描述</a></li>
+				<li><a href="#D">大图展示</a></li>
+			</ul>
+			<div class="box">
+				<h3 id="B">
+                    <span class="title">租车描述</span>
+                </h3>
+				<div class="p20 cardetail">
+					{$rentcars.details}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="main_right">
+				<div class="commonbox01">
+			<h3><span class="title">同车系其他车源</span></h3>
+			<div class="box">
+				<ul class="carlist clearfix"></ul>
+			</div>
+		</div>
+		<div class="commonbox01 mt10">
+			<h3><span class="title">同价位其他车源</span></h3>
+			<div class="box">
+				<ul class="carlist clearfix"></ul>
+			</div>
+		</div>
+	</div>
+</div>
+{/block}

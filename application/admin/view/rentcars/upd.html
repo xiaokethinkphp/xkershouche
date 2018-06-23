@@ -1,0 +1,153 @@
+{extend name="base" /}
+{block name="title"}车源审核{/block}
+    {block name="right"}
+        <div class="row J_mainContent" id="content-main" style="overflow-y:auto">
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>二手车管理</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <strong>车源管理</strong>
+                        </li>
+                        <li>
+                            车源审核
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+                            <form action="{:url('admin/rentcars/verifyHanddle')}"
+                            method="post" class="form-horizontal row"
+                            enctype="multipart/form-data" id="form1">
+                            <input type="hidden" name="id" value="{$rentcars_find.rid}">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">车源名称</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" value={$rentcars_find.full_name} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">点击次数</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" value={$rentcars_find.title} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">车源地址</label>
+                                        <div id="brand_select">
+                                            <div class="col-sm-2">
+                                                <select class="form-control brand1" disabled>
+                                                    <option value="{$rentcars_find.rprovince_id}"></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <select class="form-control brand2" disabled>
+                                                    <option value="{$rentcars_find.rcity_id}"></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <select class="form-control brand3" disabled>
+                                                    <option value="{$rentcars_find.rcounty_id}"></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">报价</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" value="{$rentcars_find.dayprice|format='%.2f'}元/天|{$rentcars_find.monthprice|format='%.2f'}元/月" type="text" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">上架时间</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" value="{$rentcars_find.listtime|date='Y年m月d日'}" type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">车主描述</label>
+                                        <div class="col-sm-6">
+                                            <textarea rows="8" cols="80" readonly>{$rentcars_find.details}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">车主名称</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" value={$rentcars_find.member_name} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">车主电话</label>
+                                        <div class="col-sm-6">
+                                            <input class="form-control" value={$rentcars_find.mobile_number} type="text" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">车辆图片</label>
+                                        <div class="col-sm-6">
+                                            <img src="__UPLOADS__/{$rentcars_find.img}" alt="" width="500">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"></label>
+                                        <div class="col-sm-3">
+                                            <input class="form-control" type="submit" value="审核通过">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/block}
+    {block name="js"}
+    {__block__}
+    <script src="__ADMIN__/js/hAdmin.js?v=4.1.0"></script>
+    <script src="__ADMIN__/js/plugins/pace/pace.min.js"></script>
+    <script src="__ADMIN__/js/jquery.cxselect.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $(function(){
+            $("#brand_select").cxSelect({
+                url:"__INDEX__/static/area.json",
+                selects:['province','city','county'],
+                jsonName:"name",
+                jsonValue:"code",
+                jsonSub:"children"
+            });
+
+            province_id = $(".brand1 option").val();
+            city_id = $(".brand2 option").val();
+            county_id = $(".brand3 option").val();
+            $.ajax({
+                url: '{:url("admin/cars/areaAjax")}',
+                type: 'post',
+                data: {
+                    province_id: province_id,
+                    city_id:city_id,
+                    county_id:county_id
+                }
+            })
+            .done(function(data) {
+                $(".brand1 option").html(data.province_name);
+                $(".brand2 option").html(data.city_name);
+                $(".brand3 option").html(data.county_name);
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+
+        })
+    </script>
+    {/block}

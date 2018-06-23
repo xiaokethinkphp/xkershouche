@@ -225,7 +225,7 @@ class Member extends Common
                 unset($data['brand_level2']);
                 unset($data['brand_level3']);
                 unset($data['carmodel']);
-                $data['img'] = 'rentcars/'.$info->getSaveName();
+                $data['img'] = str_replace('\\','/','rentcars/'.$info->getSaveName());
                 $rentcars_add_result = db('rentcars')->insert($data);
                 if ($rentcars_add_result) {
                     $this->success('数据插入成功','index/member/rentcarslst');
@@ -238,6 +238,16 @@ class Member extends Common
             }
         } else{
             $this->redirect("index/member/membercenter");
+        }
+    }
+
+    public function rentcarsdel($id='')
+    {
+        $rentcars_del_result = db('rentcars')->where('member_id',cookie('member')['id'])->delete($id);
+        if ($rentcars_del_result) {
+            $this->success('删除成功');
+        } else {
+            $this->error('删除失败');
         }
     }
 

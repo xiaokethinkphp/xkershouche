@@ -21,7 +21,7 @@
                     <img src="__UPLOADS__/{$vo.img}" alt="" width="100">
                 </td>
                 <td align="left">
-                    <p><a href="rentcars/2018/06/21/99.html" target="_blank" class="f14 fb">{$vo.title}</a></p>
+                    <p><a href="{:url('index/rentcars/rentcarsdetails',array('id'=>$vo.id))}" target="_blank" class="f14 fb">{$vo.title}</a></p>
                     <p class="gray">{$vo.full_name}</p>
                     <p class="gray">刷新时间：{$vo.listtime|date="Y年m月d日"}</p>
                 </td>
@@ -34,7 +34,7 @@
                     {/switch}
                 </td>
                 <td align="center" class="acmenu">
-                    <a href="javascript:if(confirm('确实要删除吗?'))location='index.php?m=user&ac=delrentcar&id=99&page=1'">
+                    <a href="javascript:if(confirm('确实要删除吗?'))location='{:url('index/member/rentcarsdel',array('id'=>$vo.id))}'">
                         删除</a>
                 </td>
             </tr>
