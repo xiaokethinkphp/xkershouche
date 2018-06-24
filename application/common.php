@@ -23,7 +23,7 @@ function getChildren($list,$pid=0)
     return $arr;
 }
 /*由父类得到全部子类，得到一个二维数组*/
-function getChildren2($list,$pid)
+function getChildren2($list,$pid=0)
 {
     static $arr = array();
     foreach ($list as $key => $value) {

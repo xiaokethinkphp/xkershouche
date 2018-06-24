@@ -1,0 +1,135 @@
+{extend name="base" /}
+{block name="title"}新闻分类{/block}
+{block name="css"}
+{__block__}
+</style>
+{/block}
+    {block name="right"}
+        <div class="row J_mainContent" id="content-main" style="overflow-y:scroll">
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>新闻管理</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <strong>新闻分类管理</strong>
+                        </li>
+                        <li>
+                            新闻分类列表
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row ibox-content">
+                <div class="col-sm-2">
+                    <button class="btn btn-success" type="button" id="addBrand">
+                        <i class="fa fa-plus-square"></i>&nbsp;&nbsp;
+                        <span class="bold">添加分类</span>
+                    </button>
+                </div>
+                <div class="col-sm-10">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>分类名称</th>
+                                        <th>排序</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {volist name="news" id="vo"}
+                                    <tr>
+                                        <td>{$vo.id}</td>
+                                        <td>{$vo.name}</td>
+                                        <td><input type="text" value="{$vo.order}" name=""></td>
+                                        <td>
+                                            <div class="btn-group open">
+                                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="{:url('admin/news/cateadd',array('id'=>$vo.id))}">添加子分类</a>
+                                                    </li>
+                                                    <li><a href="javascript:if(confirm('确认删除？')) location='{:url('admin/news/del',array('id'=>$vo.id))}'">删除</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {volist name="$vo.children" id="vo1"}
+                                    <tr>
+                                        <td>{$vo1.id}</td>
+                                        <td>|————{$vo1.name}</td>
+                                        <td><input type="text" value="{$vo1.order}" name=""></td>
+                                        <td>
+                                            <div class="btn-group open">
+                                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="javascript:if(confirm('确认删除？')) location='{:url('admin/news/del',array('id'=>$vo1.id))}'">删除</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {/volist}
+                                    {/volist}
+                                </tbody>
+                            </table>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <button class="btn btn-success" type="button" id="changeOrder">
+                                        <i class="fa fa-plus-square"></i>&nbsp;&nbsp;
+                                        <span class="bold">排序</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    {/block}
+    {block name="js"}
+    {__block__}
+    <script src="__ADMIN__/js/hAdmin.js?v=4.1.0"></script>
+    <script src="__ADMIN__/js/plugins/pace/pace.min.js"></script>
+    <script type="text/javascript">
+        $("#addBrand").click(function(event) {
+            /* Act on the event */
+            window.location.href = "{:url('admin/news/cateadd')}";
+        });
+
+        $("#changeOrder").click(function(event) {
+            /* Act on the event */
+            var json = {};
+            $("input").not('#top-search').each(function(index, el) {
+                json[$(this).attr('name')] = $(this).val();
+            });
+            $.ajax({
+                url: '{:url("admin/level/changeOrderAjax")}',
+                type: 'post',
+                data: json
+            })
+            .done(function() {
+                alert("排序成功");
+                window.location.reload();
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+
+        });
+
+    </script>
+    {/block}

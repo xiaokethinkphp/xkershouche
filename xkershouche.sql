@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 23/06/2018 20:38:07
+ Date: 24/06/2018 10:07:58
 */
 
 SET NAMES utf8mb4;
@@ -371,6 +371,34 @@ CREATE TABLE `xk_member`  (
 -- ----------------------------
 INSERT INTO `xk_member` VALUES (1, '11', 'e10adc3949ba59abbe56e057f20f883e', 13344445440, 1, 1, 1, 1527782400);
 INSERT INTO `xk_member` VALUES (12, '1123', 'e10adc3949ba59abbe56e057f20f883e', 15040360448, 120000, 120100, 120102, 1527782400);
+
+-- ----------------------------
+-- Table structure for xk_newsfenlei
+-- ----------------------------
+DROP TABLE IF EXISTS `xk_newsfenlei`;
+CREATE TABLE `xk_newsfenlei`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pid` int(11) NOT NULL DEFAULT 0,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `order` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of xk_newsfenlei
+-- ----------------------------
+INSERT INTO `xk_newsfenlei` VALUES (1, 0, '二手车新闻', '0');
+INSERT INTO `xk_newsfenlei` VALUES (2, 0, '租车新闻', '0');
+INSERT INTO `xk_newsfenlei` VALUES (3, 0, '新车新闻', '0');
+INSERT INTO `xk_newsfenlei` VALUES (4, 0, '法律法规', '0');
+INSERT INTO `xk_newsfenlei` VALUES (5, 0, '交易事项', '0');
+INSERT INTO `xk_newsfenlei` VALUES (6, 0, '公告', '0');
+INSERT INTO `xk_newsfenlei` VALUES (7, 1, '入门级别二手车新闻', '0');
+INSERT INTO `xk_newsfenlei` VALUES (9, 1, '豪华二手车新闻', '0');
+INSERT INTO `xk_newsfenlei` VALUES (10, 2, '短期租车新闻', '0');
+INSERT INTO `xk_newsfenlei` VALUES (11, 2, '长期租车新闻', '0');
+INSERT INTO `xk_newsfenlei` VALUES (12, 6, '新手须知', '0');
+INSERT INTO `xk_newsfenlei` VALUES (13, 0, '二手车新闻1', '0');
 
 -- ----------------------------
 -- Table structure for xk_rentcars
