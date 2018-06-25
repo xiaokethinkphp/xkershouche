@@ -9,9 +9,6 @@ class News extends Controller
     public function cate()
     {
         $news_model = model("Newsfenlei");
-        // $list = db("newsfenlei")->order('order desc')->select();
-        // $news = $news_model->getNews($list);
-        // $this->assign("news",$news);
         if (request()->isAjax()) {
             $post = input('post.');
             foreach ($post as $key => $value) {
@@ -97,7 +94,8 @@ class News extends Controller
 
     public function lst()
     {
-
+        $news_select = db('news')->paginate(2);
+        $this->assign('news',$news_select);
         return view();
     }
 
@@ -112,6 +110,18 @@ class News extends Controller
 
     public function addhanddle()
     {
-        dump(input('post.'));
+        if (!request()->isPost()) {
+            $this->redirect('admin/news/lst');
+        }
+        $data = input('post.');
+        $data['addtime'] = strtotime('now');
+        $data['updtime'] = strtotime('now');
+        $news_add_result = db('news')->insert($data);
+        if ($news_add_result) {
+            $this->success("新闻添加成功",'admin/news/lst');
+        } else {
+            $this->error("新闻添加失败",'admin/news/lst');
+        }
+
     }
 }

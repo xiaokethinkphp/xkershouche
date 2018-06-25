@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 24/06/2018 10:07:58
+ Date: 25/06/2018 19:00:38
 */
 
 SET NAMES utf8mb4;
@@ -166,7 +166,7 @@ CREATE TABLE `xk_cars`  (
 -- Records of xk_cars
 -- ----------------------------
 INSERT INTO `xk_cars` VALUES (17, 110000, 110100, 110101, 13, 50, 55, 8, 1, 16.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
-INSERT INTO `xk_cars` VALUES (18, 120000, 120100, 120101, 13, 50, 55, 8, 1, 12.00, 13.00, 1, '黑色', '3.5L', '手动', '1528300800', 12, '国产', '国一', '1529942400', '1528300800', 1529119637, 2, 1, '昨天买的今天卖', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
+INSERT INTO `xk_cars` VALUES (18, 120000, 120100, 120101, 13, 50, 55, 8, 1, 12.80, 13.00, 1, '黑色', '3.5L', '手动', '1528300800', 12, '国产', '国一', '1529942400', '1528300800', 1529119637, 2, 1, '昨天买的今天卖', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
 INSERT INTO `xk_cars` VALUES (19, 220000, 220100, 220103, 13, 51, 58, 9, 1, 0.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1529477528, 2, 12, '', '宝马 进口宝马 宝马1系（进口） 2015款 118i 领先型', 0);
 INSERT INTO `xk_cars` VALUES (20, 360000, 360200, 360202, 15, 60, 62, 13, 1, 0.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1529479626, 2, 12, '11111111111', '奥迪 一汽大众奥迪 奥迪A3 2018款 TFSI 时尚型', 0);
 
@@ -373,6 +373,22 @@ INSERT INTO `xk_member` VALUES (1, '11', 'e10adc3949ba59abbe56e057f20f883e', 133
 INSERT INTO `xk_member` VALUES (12, '1123', 'e10adc3949ba59abbe56e057f20f883e', 15040360448, 120000, 120100, 120102, 1527782400);
 
 -- ----------------------------
+-- Table structure for xk_news
+-- ----------------------------
+DROP TABLE IF EXISTS `xk_news`;
+CREATE TABLE `xk_news`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `contents` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `author` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `addtime` int(11) NULL DEFAULT NULL,
+  `updtime` int(11) NULL DEFAULT NULL,
+  `pid` int(11) NULL DEFAULT NULL,
+  `clicks` int(255) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
 -- Table structure for xk_newsfenlei
 -- ----------------------------
 DROP TABLE IF EXISTS `xk_newsfenlei`;
@@ -387,18 +403,17 @@ CREATE TABLE `xk_newsfenlei`  (
 -- ----------------------------
 -- Records of xk_newsfenlei
 -- ----------------------------
-INSERT INTO `xk_newsfenlei` VALUES (1, 0, '二手车新闻', '0');
-INSERT INTO `xk_newsfenlei` VALUES (2, 0, '租车新闻', '0');
-INSERT INTO `xk_newsfenlei` VALUES (3, 0, '新车新闻', '0');
+INSERT INTO `xk_newsfenlei` VALUES (1, 0, '二手车新闻', '44');
+INSERT INTO `xk_newsfenlei` VALUES (2, 0, '租车新闻', '1');
+INSERT INTO `xk_newsfenlei` VALUES (3, 0, '新车新闻', '3');
 INSERT INTO `xk_newsfenlei` VALUES (4, 0, '法律法规', '0');
 INSERT INTO `xk_newsfenlei` VALUES (5, 0, '交易事项', '0');
-INSERT INTO `xk_newsfenlei` VALUES (6, 0, '公告', '0');
-INSERT INTO `xk_newsfenlei` VALUES (7, 1, '入门级别二手车新闻', '0');
+INSERT INTO `xk_newsfenlei` VALUES (6, 0, '公告', '5');
+INSERT INTO `xk_newsfenlei` VALUES (7, 1, '入门级别二手车新闻2', '1');
 INSERT INTO `xk_newsfenlei` VALUES (9, 1, '豪华二手车新闻', '0');
-INSERT INTO `xk_newsfenlei` VALUES (10, 2, '短期租车新闻', '0');
+INSERT INTO `xk_newsfenlei` VALUES (10, 2, '短期租车新闻', '2');
 INSERT INTO `xk_newsfenlei` VALUES (11, 2, '长期租车新闻', '0');
 INSERT INTO `xk_newsfenlei` VALUES (12, 6, '新手须知', '0');
-INSERT INTO `xk_newsfenlei` VALUES (13, 0, '二手车新闻1', '0');
 
 -- ----------------------------
 -- Table structure for xk_rentcars

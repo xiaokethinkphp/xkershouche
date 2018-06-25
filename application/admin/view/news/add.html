@@ -4,7 +4,7 @@
 {__block__}
 {/block}
     {block name="right"}
-        <div class="row J_mainContent" id="content-main">
+        <div class="row J_mainContent" id="content-main" style="overflow-y:auto">
             <div class="row wrapper border-bottom white-bg page-heading">
                 <div class="col-sm-4">
                     <h2>新闻管理</h2>
@@ -66,7 +66,10 @@
                                             <script type="text/javascript" src="__ADMIN__/ue/ueditor.all.js"></script>
                                             <!-- 实例化编辑器 -->
                                             <script type="text/javascript">
-                                                var ue = UE.getEditor('container');
+                                                var ue = UE.getEditor('container',{
+                                                        autoHeightEnabled: true,
+                                                        autoFloatEnabled: false
+                                                    });
                                             </script>
                                         </div>
                                     </div>
@@ -75,7 +78,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-3 control-label"></label>
                                         <div class="col-sm-3">
-                                            <input class="form-control" type="submit" value="添加分类">
+                                            <input class="form-control" type="submit" value="添加新闻">
                                         </div>
                                     </div>
                                 </div>

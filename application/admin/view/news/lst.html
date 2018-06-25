@@ -34,40 +34,47 @@
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
                             <table class="table table-bordered">
-
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>分类名称</th>
-                                            <th>排序</th>
-                                            <th>操作</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td><input type="text" value="" name=""></td>
-                                            <td>
-                                                <div class="btn-group open">
-                                                    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a href="">添加子分类</a>
-                                                        </li>
-                                                        <li><a href="">修改</a>
-                                                        </li>
-                                                        <li><a href="">删除</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-
-                                    </tbody>
-
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>标题</th>
+                                        <th>作者</th>
+                                        <th>所属分类</th>
+                                        <th>发布时间</th>
+                                        <th>更新时间</th>
+                                        <th>点击量</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {volist name="news" id="vo"}
+                                    <tr>
+                                        <td>{$vo.id}</td>
+                                        <td></td>
+                                        <td>{$vo.author}</td>
+                                        <td>{$vo.pid}</td>
+                                        <td>{$vo.addtime|date="Y-m-d h:i:s"}</td>
+                                        <td>{$vo.updtime|date="Y-m-d h:i:s"}</td>
+                                        <td>{$vo.clicks}</td>
+                                        <td>
+                                            <div class="btn-group open">
+                                                <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="">添加子分类</a>
+                                                    </li>
+                                                    <li><a href="">修改</a>
+                                                    </li>
+                                                    <li><a href="">删除</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {/volist}
+                                </tbody>
                             </table>
+                            {$news|raw}
                             <div class="row">
                                 <div class="col-sm-2">
                                     <button class="btn btn-success" type="button" id="changeOrder">
@@ -92,30 +99,5 @@
             /* Act on the event */
             window.location.href = "{:url('admin/news/add')}";
         });
-
-        $("#changeOrder").click(function(event) {
-            /* Act on the event */
-            var json = {};
-            $("input").not('#top-search').each(function(index, el) {
-                json[$(this).attr('name')] = $(this).val();
-            });
-            $.ajax({
-                url: '{:url("admin/news/cate")}',
-                type: 'post',
-                data: json
-            })
-            .done(function(data) {
-                $(".table-bordered").html(data);
-                $(document).click();
-            })
-            .fail(function() {
-                console.log("error");
-            })
-            .always(function() {
-                console.log("complete");
-            });
-
-        });
-
     </script>
     {/block}
