@@ -1,0 +1,51 @@
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>分类名称</th>
+            <th>排序</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {volist name="news" id="vo"}
+        <tr>
+            <td>{$vo.id}</td>
+            <td>{$vo.name}</td>
+            <td><input type="text" value="{$vo.order}" name="{$vo.id}"></td>
+            <td>
+                <div class="btn-group open">
+                    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="{:url('admin/news/cateadd',array('id'=>$vo.id))}">添加子分类</a>
+                        </li>
+                        <li><a href="{:url('admin/news/cateupd',array('id'=>$vo.id))}">修改</a>
+                        </li>
+                        <li><a href="javascript:if(confirm('确认删除？')) location='{:url('admin/news/del',array('id'=>$vo.id))}'">删除</a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        {volist name="$vo.children" id="vo1"}
+        <tr>
+            <td>{$vo1.id}</td>
+            <td>|————{$vo1.name}</td>
+            <td><input type="text" value="{$vo1.order}" name="{$vo1.id}"></td>
+            <td>
+                <div class="btn-group open">
+                    <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="{:url('admin/news/cateupd',array('id'=>$vo1.id))}">修改</a>
+                        </li>
+                        <li><a href="javascript:if(confirm('确认删除？')) location='{:url('admin/news/del',array('id'=>$vo1.id))}'">删除</a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        {/volist}
+        {/volist}
+    </tbody>

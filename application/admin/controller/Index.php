@@ -7,4 +7,8 @@ class Index
     {
         return view();
     }
+    public function ue()
+    {
+        return view();
+    }
 }
