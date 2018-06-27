@@ -251,4 +251,63 @@ class Member extends Common
         }
     }
 
+    public function changepassword()
+    {
+        return view();
+    }
+
+    public function changepasswordHanddle()
+    {
+        if(!request()->isPost()){
+            $this->redirect("index/member/membercenter");
+        }
+        if (cookie('member')['member_password']!=md5(input('post.oldpassword'))) {
+            $this->error('原密码错误，请重新输入');
+        }
+        $password_upd_result = db('member')->update([
+            'id'    =>  cookie('member')['id'],
+            'member_password'   =>  md5(input('post.password'))
+        ]);
+        if ($password_upd_result!==false) {
+            $this->updcookie();
+            $this->success('密码修改成功');
+        } else{
+            $this->error('密码修改失败');
+        }
+    }
+    public function changethumb()
+    {
+        return view();
+    }
+
+    public function changethumbHanddle()
+    {
+        $file = request()->file('thumb');
+    // 移动到框架应用根目录/uploads/ 目录下
+        $info = $file->move( '../uploads/member');
+        if($info){
+            $thumb_upd_result = db('member')->update([
+                'id'    =>  cookie('member')['id'],
+                'thumb' =>  str_replace('\\','/','member/'.$info->getSaveName())
+            ]);
+            if ($thumb_upd_result) {
+                $this->updcookie();
+                $this->success('头像修改成功','index/member/membercenter');
+            } else {
+                $this->error('头像修改失败','index/member/membercenter');
+            }
+
+        }else{
+            $this->error('图片上传失败');
+        }
+    }
+
+    private function updcookie()
+    {
+        $member = db('member')->find(cookie('member')['id']);
+        if ($member) {
+            cookie('member',$member);
+        }
+    }
+
 }

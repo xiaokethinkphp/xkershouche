@@ -22,7 +22,7 @@
                         </li>
                         <li><a href="{:url('admin/news/cateupd',array('id'=>$vo.id))}">修改</a>
                         </li>
-                        <li><a href="javascript:if(confirm('确认删除？')) location='{:url('admin/news/del',array('id'=>$vo.id))}'">删除</a>
+                        <li><a href="javascript:if(confirm('确认删除？')) location='{:url('admin/news/catedel',array('id'=>$vo.id))}'">删除</a>
                         </li>
                     </ul>
                 </div>
@@ -40,7 +40,7 @@
                     <ul class="dropdown-menu">
                         <li><a href="{:url('admin/news/cateupd',array('id'=>$vo1.id))}">修改</a>
                         </li>
-                        <li><a href="javascript:if(confirm('确认删除？')) location='{:url('admin/news/del',array('id'=>$vo1.id))}'">删除</a>
+                        <li><a href="javascript:if(confirm('确认删除？')) location='{:url('admin/news/catedel',array('id'=>$vo1.id))}'">删除</a>
                         </li>
                     </ul>
                 </div>

@@ -51,7 +51,7 @@ class News extends Controller
 
     }
 
-    public function del($id='')
+    public function catedel($id='')
     {
         $new_model = model("Newsfenlei");
         $newscate_del_result = $new_model->newsCateDel($id);
@@ -94,7 +94,11 @@ class News extends Controller
 
     public function lst()
     {
-        $news_select = db('news')->paginate(2);
+        $field = 'n.id as nid,title,author,name,addtime,updtime,clicks';
+        $news_select = db('news')->alias('n')
+        ->join('newsfenlei f','n.pid=f.id')
+        ->field($field)->paginate(2);
+        // dump($news_select);
         $this->assign('news',$news_select);
         return view();
     }
@@ -123,5 +127,37 @@ class News extends Controller
             $this->error("新闻添加失败",'admin/news/lst');
         }
 
+    }
+
+    public function upd($id='')
+    {
+        $field = 'n.id as nid,title,author,name,addtime,updtime,clicks,content,n.pid as npid';
+        $news_find = db('news')->alias('n')
+        ->join('newsfenlei f','n.pid=f.id')
+        ->field($field)->find($id);
+        if (empty($news_find)) {
+            $this->redirect('admin/news/lst');
+        }
+        $this->assign('news',$news_find);
+
+        $news_model = model("Newsfenlei");
+        $list = db("newsfenlei")->order('order desc')->select();
+        $cate = $news_model->getNews($list);
+        $this->assign("cate",$cate);
+
+        return view();
+    }
+
+    public function updhanddle()
+    {
+        if (!request()->isPost()) {
+            $this->redirect('admin/news/lst');
+        }
+        $news_upd_result = db("news")->update(input('post.'));
+        if ($news_upd_result!==false) {
+            $this->success("新闻修改成功",'admin/news/lst');
+        } else{
+            $this->error("新闻修改失败",'admin/news/lst');
+        }
     }
 }

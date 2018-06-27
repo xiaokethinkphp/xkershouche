@@ -21,4 +21,11 @@ class Newsfenlei extends Model
         return $result;
     }
 
+    public function newsCategetParents($id='')
+    {
+        $list = db("newsfenlei")->select();
+        $pids = getParents($list,$id);
+        return $pids;
+    }
+
 }

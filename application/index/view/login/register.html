@@ -92,6 +92,7 @@
             var $mobile_number = $("input[name='mobile_number']").val();
             if ($mobile_number=='') {
                 alert("请输入手机号码");
+                return;
             }
             /* Act on the event */
             $.ajax({
@@ -99,6 +100,24 @@
                 type: 'post',
                 data: {mobile_number: $mobile_number}
             })
+
+            var time=60;
+            settime($(this));
+            function settime(obj){
+                if(time==0){
+                    $(obj).attr('disabled',false);
+                    $(obj).html("点击获取验证码");
+                    time = 60;
+                    return;
+                } else {
+                    $(obj).attr("disabled",true);
+                    $(obj).html(time+'秒后重新发送');
+                    time--;
+                }
+                setTimeout(function(){
+                    settime(obj);
+                },1000)
+            }
 
         });
     })

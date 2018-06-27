@@ -1,0 +1,106 @@
+{extend name="base" /}
+{block name="title"}会员列表{/block}
+{block name="right"}
+    <div class="row J_mainContent" id="content-main" style="overflow-y:scroll">
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>会员管理</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <strong>会员管理</strong>
+                    </li>
+                    <li>
+                        会员列表
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>名称</th>
+                                    <th>头像</th>
+                                    <th>所在地区</th>
+                                    <th>联系电话</th>
+                                    <th>注册时间</th>
+                                    <th>审核</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {volist name="member_list" id="vo"}
+                                <tr>
+                                    <td>{$vo.id}</td>
+                                    <td>{$vo.member_name}</td>
+                                    <td><img src="__UPLOADS__/{$vo.thumb}" alt="" height="50"></td>
+                                    <td>
+                                        {$vo.area.province_name} {$vo.area.city_name} {$vo.area.county_name}
+                                    </td>
+                                    <td>{$vo.mobile_number}</td>
+                                    <td>{$vo.register_time|date='Y-m-d H:i:s'}</td>
+                                    <td>
+                                        {if $vo.status==0}
+                                        <button type="button" name="button" class="btn btn-primary shenhe">审核通过</button>
+                                        {/if}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group open">
+                                            <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="javascript:if(confirm('确认删除？')) location='{:url('admin/member/del',array('id'=>$vo.id))}'">删除</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {/volist}
+                            </tbody>
+
+                        </table>
+                        {$member_list|raw}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{/block}
+{block name="js"}
+{__block__}
+<script src="__ADMIN__/js/hAdmin.js?v=4.1.0"></script>
+<script src="__ADMIN__/js/plugins/pace/pace.min.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('.shenhe').click(function(event) {
+        var _this = $(this);
+        var id = $(this).parents('tr').find('td:eq(0)').html();
+        $.ajax({
+            url: '{:url("admin/member/verify")}',
+            type: 'post',
+            data: {id: id}
+        })
+        .done(function(data) {
+            if (data) {
+                alert('操作成功');
+                _this.parent('td').html('');
+            };
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
+
+    });
+
+})
+</script>
+{/block}

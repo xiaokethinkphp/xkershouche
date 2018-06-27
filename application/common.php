@@ -37,17 +37,17 @@ function getChildren2($list,$pid=0)
 }
 
 /*无线级分类由子类得到全部父类*/
-// function getParents($list,$pid)
-// {
-//     static $arr = array();
-//     foreach ($list as $key => $value) {
-//         if ($value['id']==$pid) {
-//             array_unshift($arr,$value);
-//             getParents($list,$value['pid']);
-//         }
-//     }
-//     return $arr;
-// }
+function getParents($list,$pid)
+{
+    static $arr = array();
+    foreach ($list as $key => $value) {
+        if ($value['id']==$pid) {
+            array_unshift($arr,$value);
+            getParents($list,$value['pid']);
+        }
+    }
+    return $arr;
+}
 function explode2($str)
 {
     return explode('|',$str);
@@ -87,4 +87,70 @@ function getfiles2($dir)
     }
     closedir($handdle);
     return $files;
+}
+
+function msubstr($str, $start=0, $length, $charset="utf-8", $suffix=false){
+
+ if(function_exists("mb_substr")){
+
+  if($suffix)
+
+   return mb_substr($str, $start, $length, $charset)."...";
+
+  else
+
+   return mb_substr($str, $start, $length, $charset);
+
+ }elseif(function_exists('iconv_substr')) {
+
+  if($suffix)
+
+   return iconv_substr($str,$start,$length,$charset)."...";
+
+  else
+
+   return iconv_substr($str,$start,$length,$charset);
+
+ }
+
+ $re['utf-8'] = "/[x01-x7f]|[xc2-xdf][x80-xbf]|[xe0-xef][x80-xbf]{2}|[xf0-xff][x80-xbf]{3}/";
+
+ $re['gb2312'] = "/[x01-x7f]|[xb0-xf7][xa0-xfe]/";
+
+ $re['gbk'] = "/[x01-x7f]|[x81-xfe][x40-xfe]/";
+
+ $re['big5'] = "/[x01-x7f]|[x81-xfe]([x40-x7e]|xa1-xfe])/";
+
+ preg_match_all($re[$charset], $str, $match);
+
+ $slice = join("",array_slice($match[0], $start, $length));
+
+ if($suffix) return $slice."…";
+
+ return $slice;
+
+}
+
+function getArea($province_id='',$city_id='',$county_id='')
+{
+    $fileName = '../public/static/index/static/area.json';
+    $string = file_get_contents($fileName);
+    $data = json_decode($string,true);
+    $arr = array();
+    foreach ($data as $key => $value) {
+        if ($value['code']==$province_id) {
+            $arr['province_name'] = $value['name'];
+            foreach ($value['children'] as $key1 => $value1) {
+                if ($value1['code']==$city_id) {
+                    $arr['city_name'] = $value1['name'];
+                    foreach ($value1['children'] as $key2 => $value2) {
+                        if ($value2['code']==$county_id) {
+                            $arr['county_name'] = $value2['name'];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return $arr;
 }

@@ -14,15 +14,18 @@
     <div class="userinfo">
         <div class="clearfix">
             <div class="userinfo_left">
-                <img src="/simcms/upload/image/20180601/20180601093506_90299.png"/>
+                {if $Think.cookie.member['thumb']}
+                <img src="__UPLOADS__/{$Think.cookie.member['thumb']}"/>
+                {else/}
+                <h3>请上传头像</h3>
+                {/if}
             </div>
             <div class="userinfo_right">
                 <p class="fb">{$Think.cookie.member['member_name']}</p>
                 <div class="mt10 gray01" id="user_menu">账户信息
                     <ul class="userinfomenu hide">
-                        <li><a href="/simcms/index.php?m=user&a=upinfo">修改资料</a></li>
-                        <li><a href="/simcms/index.php?m=user&a=uppwd">修改密码</a></li>
-                        <li><a href="/simcms/index.php?m=user&a=addlogo">修改头像</a></li>
+                        <li><a href="{:url('index/member/changepassword')}">修改密码</a></li>
+                        <li><a href="{:url('index/member/changethumb')}">修改头像</a></li>
                     </ul>
                 </div>
             </div>
@@ -47,6 +50,6 @@
         </ul>
     </div>
     <div class="usermenu">
-        <h3><a href="/simcms/index.php?m=user&a=logout">退出</a></h3>
+        <h3><a href="{:url('index/member/logout')}">退出</a></h3>
     </div>
 </div>

@@ -129,5 +129,32 @@ class Login extends Controller
 
     }
 
+    public function verify()
+    {
+        $config =    [
+            // 验证码字体大小
+            'fontSize'    =>    15,
+            // 验证码位数
+            'length'      =>    3,
+            // 关闭验证码杂点
+            'useNoise'    =>    false,
+            'imageH'    =>  30,
+            'reset' =>  false
+        ];
+        $captcha = new \think\captcha\Captcha($config);
+        return $captcha->entry();
+    }
+
+    public function checkcapcha()
+    {
+        $captcha = new \think\captcha\Captcha();
+        if( !$captcha->check(input('post.captcha')))
+        {
+        	return false;
+        }else{
+            return true;
+        }
+    }
+
 
 }

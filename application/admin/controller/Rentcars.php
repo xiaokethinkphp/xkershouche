@@ -11,7 +11,7 @@ class Rentcars extends Controller
         $rentcars_select = db('rentcars')
         ->alias('r')
         ->join('member m','r.member_id=m.id')
-        ->field('r.id as rid,title,full_name,member_name,mobile_number,listtime,img,status');
+        ->field('r.id as rid,title,full_name,member_name,mobile_number,listtime,img,r.status as status');
         if (request()->isAjax()) {
             $rentcars_select = $rentcars_select->where('r.county_id',input('post.county_id'))->select();
             $this->assign('rentcars',$rentcars_select);

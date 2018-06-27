@@ -1,0 +1,129 @@
+{extend name="base" /}
+{block name="title"}修改新闻{/block}
+{block name="css"}
+{__block__}
+{/block}
+    {block name="right"}
+        <div class="row J_mainContent" id="content-main" style="overflow-y:auto">
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-4">
+                    <h2>新闻管理</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <strong>新闻管理</strong>
+                        </li>
+                        <li>
+                            添加新闻
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-content">
+
+                            <form action="{:url('admin/news/updhanddle')}"
+                            method="post" class="form-horizontal row"
+                            enctype="multipart/form-data" id="form1">
+                                <input type="hidden" name="id" value="{$news.nid}">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label">新闻标题</label>
+                                        <div class="col-sm-11">
+                                            <input name="title" class="form-control" value="{$news.title}" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label">作者</label>
+                                        <div class="col-sm-11">
+                                            <input name="author" class="form-control" value="{$news.author}" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label">所属分类</label>
+                                        <div class="col-sm-3">
+                                            <select class="form-control" name="pid">
+                                                {volist name="cate" id="vo"}
+                                                <option value="{$vo.id}"
+                                                {if $vo.id==$news.npid}
+                                                selected
+                                                {/if}
+                                                >{$vo.name}</option>
+                                                {volist name="$vo.children" id="vo1"}
+                                                <option value="{$vo1.id}"
+                                                {if $vo1.id==$news.npid}
+                                                selected
+                                                {/if}
+                                                >|————{$vo1.name}</option>
+                                                {/volist}
+                                                {/volist}
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-1 control-label">文章内容</label>
+                                        <div class="col-sm-11">
+                                            <!-- 加载编辑器的容器 -->
+                                            <script id="container" name="content" type="text/plain">
+                                                {$news.content|raw}
+                                            </script>
+                                            <!-- 配置文件 -->
+                                            <script type="text/javascript" src="__ADMIN__/ue/ueditor.config.js"></script>
+                                            <!-- 编辑器源码文件 -->
+                                            <script type="text/javascript" src="__ADMIN__/ue/ueditor.all.js"></script>
+                                            <!-- 实例化编辑器 -->
+                                            <script type="text/javascript">
+                                                var ue = UE.getEditor('container',{
+                                                        autoHeightEnabled: true,
+                                                        autoFloatEnabled: false
+                                                    });
+                                            </script>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label"></label>
+                                        <div class="col-sm-3">
+                                            <input class="form-control" type="submit" value="修改新闻">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/block}
+    {block name="js"}
+    {__block__}
+    <script src="__ADMIN__/js/hAdmin.js?v=4.1.0"></script>
+    <script src="__ADMIN__/js/plugins/pace/pace.min.js"></script>
+    <script src="__ADMIN__/js/plugins/validate/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        $().ready(function(){
+            $("#form1").validate({
+                rules:{
+                    name:{
+                        required:true,
+                        rangelength:[1,10],
+                        remote:{
+                            url:"{:url('admin/news/checkNameCateAjax')}",
+                            type:"post"
+                        }
+                    },
+                },
+                messages:{
+                    name:{
+                        required:"请输入级别名称",
+                        rangelength:"名称长度在1-10之间",
+                        remote:"该分类已经存在"
+                    },
+                }
+            });
+        })
+    </script>
+    {/block}
