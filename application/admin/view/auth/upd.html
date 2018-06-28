@@ -1,0 +1,122 @@
+{extend name="base" /}
+{block name="title"}添加权限{/block}
+{block name="right"}
+    <div class="row J_mainContent" id="content-main">
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>管理员管理</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <strong>权限管理</strong>
+                    </li>
+                    <li>
+                        修改权限
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+
+                        <form action="{:url('admin/auth/updhanddle')}"
+                        method="post" class="form-horizontal row"
+                        enctype="multipart/form-data" id="form1">
+                        <input type="hidden" name="id" value="{$auth_find.id}">
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">上级权限</label>
+                                    <div class="col-sm-9">
+                                        <select class="form-control" name="pid"
+                                        {if $auth_find.pid==0}
+                                        disabled
+                                        {/if}
+                                        >
+                                            <option value="0">顶级权限</option>
+                                            {volist name="auth" id="vo"}
+                                            <option value="{$vo.id}"
+                                            {if $vo.id == $auth_find.pid} selected
+                                            {/if}
+                                            >{$vo.title}</option>
+                                            {/volist}
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">权限名称</label>
+                                    <div class="col-sm-9">
+                                        <input name="title" class="form-control" value="{$auth_find.title}" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">对应方法</label>
+                                    <div class="col-sm-9">
+                                        <input name="name" class="form-control" value="{$auth_find.name}" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">对应方法</label>
+                                    <div class="col-sm-9">
+                                        <label for="">
+                                            启用：<input type="radio" name="status" value="1"
+                                            {if $auth_find.status==1}
+                                            checked
+                                            {/if}>
+                                        </label>
+                                        <label for="">
+                                            禁用：<input type="radio" name="status" value="0"
+                                            {if $auth_find.status==0}
+                                            checked
+                                            {/if}>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"></label>
+                                    <div class="col-sm-3">
+                                        <input class="form-control" type="submit" value="修改权限">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}
+{block name="js"}
+{__block__}
+<script src="__ADMIN__/js/hAdmin.js?v=4.1.0"></script>
+<script src="__ADMIN__/js/plugins/pace/pace.min.js"></script>
+<script src="__ADMIN__/js/plugins/validate/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    $().ready(function(){
+        $("#form1").validate({
+            // var $id = {$auth_find.id};
+            rules:{
+                name:{
+                    required:true,
+                    remote:{
+                        data:{id:{$auth_find.id}
+                        },
+                        url:"{:url('admin/auth/checkAuthNameAjax')}",
+                        type:"post"
+                    }
+                },
+            },
+            messages:{
+                name:{
+                    required:"请输入权限名称",
+                    remote:"该权限已经存在"
+                },
+            }
+        });
+    })
+</script>
+{/block}

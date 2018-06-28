@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 28/06/2018 10:10:53
+ Date: 28/06/2018 23:05:04
 */
 
 SET NAMES utf8mb4;
@@ -28,15 +28,70 @@ CREATE TABLE `xk_admin`  (
   `last_login_time` int(11) NULL DEFAULT NULL,
   `last_login_ip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `status` int(255) NOT NULL DEFAULT 0 COMMENT '1：启用 0：禁用',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `admin_name`(`name`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of xk_admin
 -- ----------------------------
-INSERT INTO `xk_admin` VALUES (1, '小明', 'e10adc3949ba59abbe56e057f20f883e', 1530149931, '::1', 0);
-INSERT INTO `xk_admin` VALUES (2, '小明', 'e10adc3949ba59abbe56e057f20f883e', 1530150009, '', 0);
-INSERT INTO `xk_admin` VALUES (3, '小明', 'e10adc3949ba59abbe56e057f20f883e', 1530150202, 'localhost', 0);
+INSERT INTO `xk_admin` VALUES (7, '小白', 'e10adc3949ba59abbe56e057f20f883e', 1530169534, '::1', 0);
+INSERT INTO `xk_admin` VALUES (6, '小刚', 'e10adc3949ba59abbe56e057f20f883e', 1530152472, '::1', 0);
+INSERT INTO `xk_admin` VALUES (5, '小红', 'e10adc3949ba59abbe56e057f20f883e', 1530152459, '::1', 0);
+INSERT INTO `xk_admin` VALUES (4, '小明', 'e10adc3949ba59abbe56e057f20f883e', 1530152037, '::1', 0);
+INSERT INTO `xk_admin` VALUES (8, '大白', 'e10adc3949ba59abbe56e057f20f883e', 1530170128, '::1', 0);
+
+-- ----------------------------
+-- Table structure for xk_auth_group
+-- ----------------------------
+DROP TABLE IF EXISTS `xk_auth_group`;
+CREATE TABLE `xk_auth_group`  (
+  `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `title` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `rules` char(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Table structure for xk_auth_group_access
+-- ----------------------------
+DROP TABLE IF EXISTS `xk_auth_group_access`;
+CREATE TABLE `xk_auth_group_access`  (
+  `uid` mediumint(8) UNSIGNED NOT NULL,
+  `group_id` mediumint(8) UNSIGNED NOT NULL,
+  UNIQUE INDEX `uid_group_id`(`uid`, `group_id`) USING BTREE,
+  INDEX `uid`(`uid`) USING BTREE,
+  INDEX `group_id`(`group_id`) USING BTREE
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Table structure for xk_auth_rule
+-- ----------------------------
+DROP TABLE IF EXISTS `xk_auth_rule`;
+CREATE TABLE `xk_auth_rule`  (
+  `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` char(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `title` char(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `type` tinyint(1) NOT NULL DEFAULT 1,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `condition` char(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
+  `pid` mediumint(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `name`(`name`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Records of xk_auth_rule
+-- ----------------------------
+INSERT INTO `xk_auth_rule` VALUES (4, '租车管理', '租车管理', 1, 1, '', 0);
+INSERT INTO `xk_auth_rule` VALUES (3, '二手车管理', '二手车管理', 1, 1, '', 0);
+INSERT INTO `xk_auth_rule` VALUES (5, '新闻管理', '新闻管理', 1, 1, '', 0);
+INSERT INTO `xk_auth_rule` VALUES (6, 'admin/brand', '品牌管理', 1, 1, '', 3);
+INSERT INTO `xk_auth_rule` VALUES (7, 'admin/carmodel', '车型管理', 1, 1, '', 3);
+INSERT INTO `xk_auth_rule` VALUES (8, 'admin/level', '级别管理', 1, 1, '', 3);
+INSERT INTO `xk_auth_rule` VALUES (9, '会员管理', '会员管理', 1, 1, '', 0);
+INSERT INTO `xk_auth_rule` VALUES (10, 'admin/index1', '首页', 1, 1, '', 0);
 
 -- ----------------------------
 -- Table structure for xk_brand
