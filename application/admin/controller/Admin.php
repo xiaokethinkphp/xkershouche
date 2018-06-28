@@ -21,7 +21,7 @@ class Admin extends Controller
         $post = input('post.');
         $post['password'] = md5($post['password']);
         $post['last_login_time'] = strtotime('now');
-        $post['last_login_ip'] = request()->host();
+        $post['last_login_ip'] = request()->ip();
         db("admin")->insert($post);
     }
 }

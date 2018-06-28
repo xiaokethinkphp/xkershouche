@@ -11,11 +11,32 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 25/06/2018 19:00:38
+ Date: 28/06/2018 10:10:53
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for xk_admin
+-- ----------------------------
+DROP TABLE IF EXISTS `xk_admin`;
+CREATE TABLE `xk_admin`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `last_login_time` int(11) NULL DEFAULT NULL,
+  `last_login_ip` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` int(255) NOT NULL DEFAULT 0 COMMENT '1：启用 0：禁用',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of xk_admin
+-- ----------------------------
+INSERT INTO `xk_admin` VALUES (1, '小明', 'e10adc3949ba59abbe56e057f20f883e', 1530149931, '::1', 0);
+INSERT INTO `xk_admin` VALUES (2, '小明', 'e10adc3949ba59abbe56e057f20f883e', 1530150009, '', 0);
+INSERT INTO `xk_admin` VALUES (3, '小明', 'e10adc3949ba59abbe56e057f20f883e', 1530150202, 'localhost', 0);
 
 -- ----------------------------
 -- Table structure for xk_brand
@@ -43,7 +64,7 @@ INSERT INTO `xk_brand` VALUES (19, '雪铁龙', 1, 'm_6.png', 'X', 0, 0, 1);
 INSERT INTO `xk_brand` VALUES (17, 'JEEP', 1, 'm_4.png', 'J', 0, 0, 1);
 INSERT INTO `xk_brand` VALUES (18, '标致', 0, 'm_5.png', 'B', 30, 0, 1);
 INSERT INTO `xk_brand` VALUES (16, '奥克斯', 0, 'm_12.png', 'A', 0, 0, 1);
-INSERT INTO `xk_brand` VALUES (15, '奥迪', 1, 'm_9.png', 'A', 5, 0, 1);
+INSERT INTO `xk_brand` VALUES (15, '奥迪', 0, 'm_9.png', 'A', 5, 0, 1);
 INSERT INTO `xk_brand` VALUES (14, '丰田', 1, 'm_7.png', 'F', 0, 0, 1);
 INSERT INTO `xk_brand` VALUES (13, '宝马', 1, 'm_3.png', 'B', 150, 0, 1);
 INSERT INTO `xk_brand` VALUES (12, '奔驰', 1, 'm_2.png', 'B', 200, 0, 1);
@@ -356,21 +377,23 @@ CREATE TABLE `xk_member`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `member_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名称',
   `member_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户密码',
-  `mobile_number` float(20, 0) NOT NULL COMMENT '用户手机',
+  `mobile_number` char(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户手机',
   `province_id` int(11) NOT NULL COMMENT '用户省',
   `city_id` int(11) NOT NULL COMMENT '用户市',
   `county_id` int(11) NOT NULL COMMENT '用户县',
   `register_time` int(11) NULL DEFAULT NULL,
+  `thumb` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `status` int(255) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `member_name`(`member_name`) USING BTREE,
   UNIQUE INDEX `mobile_number`(`mobile_number`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of xk_member
 -- ----------------------------
-INSERT INTO `xk_member` VALUES (1, '11', 'e10adc3949ba59abbe56e057f20f883e', 13344445440, 1, 1, 1, 1527782400);
-INSERT INTO `xk_member` VALUES (12, '1123', 'e10adc3949ba59abbe56e057f20f883e', 15040360448, 120000, 120100, 120102, 1527782400);
+INSERT INTO `xk_member` VALUES (12, '1123', 'fcea920f7412b5da7be0cf42b8c93759', '15040360448', 120000, 120100, 120102, 1527782400, 'member/20180627/c4c711e60235ec96cf2712072add65f4.png', 0);
+INSERT INTO `xk_member` VALUES (15, '小明', 'e10adc3949ba59abbe56e057f20f883e', '15040360478', 370000, 371500, 371581, 1529999510, NULL, 1);
 
 -- ----------------------------
 -- Table structure for xk_news
@@ -379,14 +402,22 @@ DROP TABLE IF EXISTS `xk_news`;
 CREATE TABLE `xk_news`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `contents` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   `author` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `addtime` int(11) NULL DEFAULT NULL,
   `updtime` int(11) NULL DEFAULT NULL,
   `pid` int(11) NULL DEFAULT NULL,
   `clicks` int(255) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of xk_news
+-- ----------------------------
+INSERT INTO `xk_news` VALUES (1, '三菱新款帕杰罗7月1日开卖 外观微调/配置升级', '<p style=\"text-indent: 2em;\">帕杰罗是三菱旗下一款中大型SUV，目前以进口的方式引入国内销售。网上车市从三菱汽车官方获悉，2019款帕杰罗将在7月1日正式上市。新车作为年度改款车型，仅在前脸造型做出了调整，并增加了部分内部配置，动力方面仍搭载3.0L V6自然吸气发动机。</p><p style=\"text-align:center\"><img src=\"/xkershouche/uploads/news/20180625/1529926133116973.jpeg\" title=\"1529926133116973.jpeg\" alt=\"1.jpeg\"/></p><p style=\"text-align: center;\"><img src=\"/xkershouche/uploads/news/20180625/1529927213636784.jpeg\" title=\"1529927213636784.jpeg\" alt=\"2.jpeg\"/></p><p style=\"text-indent: 2em;\">2019款帕杰罗针对前脸造型进行了小幅调整，前格栅内部采用三横幅设计（现款为双幅式），并且两侧银色镀铬装饰面积加大，与头灯组相连，引擎盖前部配有“PAJERO”金色标识。车身侧面配备了集成转向灯的外后视镜，新车尾部预计与现款保持一致，竖置尾灯配以外挂式备胎设计，彰显硬派风格。</p><p style=\"text-indent: 2em; text-align: center;\"><img src=\"/xkershouche/uploads/news/20180625/1529927263616731.jpeg\" title=\"1529927263616731.jpeg\" alt=\"3.jpeg\"/></p><p style=\"text-indent: 2em;\">内饰方面，2019款帕杰罗预计与现款保持一致，采用2+3+2的7座布局，装备四辐式多功能方向盘、双炮筒式仪表以及9英寸中控屏，该屏幕集成北斗+GPS双模导航，并支持手机互联功能。空调出风口位于屏幕两侧，双圆形控制旋钮位于屏幕下方。</p><p style=\"text-indent: 2em; text-align: center;\"><img src=\"/xkershouche/uploads/news/20180625/1529927345405961.jpeg\" title=\"1529927345405961.jpeg\" alt=\"4.jpeg\"/></p><p style=\"text-indent: 2em;\">2019款帕杰罗将搭载3.0L V6 SOHC发动机，最大功率128kW，峰值扭矩255Nm。传动系统，新车匹配5速手自一体变速箱，配备了第二代超选四轮驱动系统，并采用承载式车身。</p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p>', '小可老师', NULL, NULL, 7, 1);
+INSERT INTO `xk_news` VALUES (2, '三菱新款帕杰罗7月1日开卖 外观微调/配置升级111', '<p style=\"text-indent: 2em;\"><strong>帕杰罗是三菱旗下一款中大型SUV，目前以进口的方式引入国内销售。网上车市从三菱汽车官方获悉，2019款帕杰罗将在7月1日正式上市。新车作为年度改款车型，仅在前脸造型做出了调整，并增加了部分内部配置，动力方面仍搭载3.0L V6自然吸气发动机。</strong></p><p style=\"text-align:center\"><img src=\"/xkershouche/uploads/news/20180625/1529926133116973.jpeg\" title=\"1529926133116973.jpeg\" alt=\"1.jpeg\"/></p><p style=\"text-align: center;\"><img src=\"/xkershouche/uploads/news/20180625/1529927213636784.jpeg\" title=\"1529927213636784.jpeg\" alt=\"2.jpeg\"/></p><p style=\"text-indent: 2em;\">2019款帕杰罗针对前脸造型进行了小幅调整，前格栅内部采用三横幅设计（现款为双幅式），并且两侧银色镀铬装饰面积加大，与头灯组相连，引擎盖前部配有“PAJERO”金色标识。车身侧面配备了集成转向灯的外后视镜，新车尾部预计与现款保持一致，竖置尾灯配以外挂式备胎设计，彰显硬派风格。</p><p style=\"text-indent: 2em; text-align: center;\"><img src=\"/xkershouche/uploads/news/20180625/1529927263616731.jpeg\" title=\"1529927263616731.jpeg\" alt=\"3.jpeg\"/></p><p style=\"text-indent: 2em;\">内饰方面，2019款帕杰罗预计与现款保持一致，采用2+3+2的7座布局，装备四辐式多功能方向盘、双炮筒式仪表以及9英寸中控屏，该屏幕集成北斗+GPS双模导航，并支持手机互联功能。空调出风口位于屏幕两侧，双圆形控制旋钮位于屏幕下方。</p><p style=\"text-indent: 2em; text-align: center;\"><img src=\"/xkershouche/uploads/news/20180625/1529927345405961.jpeg\" title=\"1529927345405961.jpeg\" alt=\"4.jpeg\"/></p><p style=\"text-indent: 2em;\">2019款帕杰罗将搭载3.0L V6 SOHC发动机，最大功率128kW，峰值扭矩255Nm。传动系统，新车匹配5速手自一体变速箱，配备了第二代超选四轮驱动系统，并采用承载式车身。</p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p>', '小可老师111', NULL, NULL, 12, 0);
+INSERT INTO `xk_news` VALUES (3, '三菱新款帕杰罗7月1日开卖 外观微调/配置升级', '<p style=\"text-indent: 2em;\">帕杰罗是三菱旗下一款中大型SUV，目前以进口的方式引入国内销售。网上车市从三菱汽车官方获悉，2019款帕杰罗将在7月1日正式上市。新车作为年度改款车型，仅在前脸造型做出了调整，并增加了部分内部配置，动力方面仍搭载3.0L V6自然吸气发动机。</p><p style=\"text-indent: 2em;\"><img src=\"/xkershouche/uploads/news/20180625/1529927686894458.jpeg\" title=\"1529927686894458.jpeg\" alt=\"1.jpeg\"/></p>', 'xiaoke', NULL, NULL, 3, 21);
+INSERT INTO `xk_news` VALUES (4, '帕杰罗是三菱旗下一款中大型SUV，目前以进口的方式引入国内销售。网上车市从三菱汽车官方获悉，2019款帕杰罗将在7月1日正式上市。新车作为年度改款车型，仅在前脸造型做出了调整，并增加了部分内部配置，动力方面仍搭载3.0L V6自然吸气发动机。', '<p style=\"text-indent: 2em;\">帕杰罗是三菱旗下一款中大型SUV，目前以进口的方式引入国内销售。网上车市从三菱汽车官方获悉，2019款帕杰罗将在7月1日正式上市。新车作为年度改款车型，仅在前脸造型做出了调整，并增加了部分内部配置，动力方面仍搭载3.0L V6自然吸气发动机。</p><p style=\"text-indent: 2em;\"><img src=\"/xkershouche/uploads/news/20180625/1529927733124559.jpeg\" title=\"1529927733124559.jpeg\" alt=\"1.jpeg\"/></p>', 'xiaoke', 1529927735, 1529927735, 3, 0);
 
 -- ----------------------------
 -- Table structure for xk_newsfenlei
