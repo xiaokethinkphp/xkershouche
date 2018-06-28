@@ -1,0 +1,92 @@
+{extend name="base" /}
+{block name="title"}添加管理员{/block}
+{block name="right"}
+    <div class="row J_mainContent" id="content-main">
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>管理员管理</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <strong>管理员管理</strong>
+                    </li>
+                    <li>
+                        添加管理员
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+
+                        <form action="{:url('admin/admin/addhanddle')}"
+                        method="post" class="form-horizontal row"
+                        enctype="multipart/form-data" id="form1">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">管理员名称</label>
+                                    <div class="col-sm-9">
+                                        <input name="name" class="form-control" placeholder="请输入管理员名称" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">密码</label>
+                                    <div class="col-sm-9">
+                                        <input name="password" class="form-control" placeholder="请输入密码" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"></label>
+                                    <div class="col-sm-3">
+                                        <input class="form-control" type="submit" value="添加级别">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}
+{block name="js"}
+{__block__}
+<script src="__ADMIN__/js/hAdmin.js?v=4.1.0"></script>
+<script src="__ADMIN__/js/plugins/pace/pace.min.js"></script>
+<script src="__ADMIN__/js/plugins/validate/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    $().ready(function(){
+        $("#form1").validate({
+            rules:{
+                name:{
+                    required:true,
+                    rangelength:[1,10],
+                    remote:{
+                        url:"{:url('admin/level/checkNameAjax')}",
+                        type:"post"
+                    }
+                },
+                thumb:{
+                    required:true,
+                    remote:{
+                        url:"{:url('admin/level/checkNameAjax')}",
+                        type:"post"
+                    }
+                },
+            },
+            messages:{
+                name:{
+                    required:"请输入级别名称",
+                    rangelength:"名称长度在1-10之间",
+                    remote:"该级别已经存在"
+                },
+                thumb:{
+                    required:"请选择图标",
+                    remote:"该图标已经存在"
+                },
+            }
+        });
+    })
+</script>
+{/block}
