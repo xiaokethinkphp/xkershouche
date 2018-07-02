@@ -48,9 +48,9 @@
                                     <td>{$vo.name}</td>
                                     <td>
                                         {if $vo.status==1}
-                                        启用
+                                        <button class="btn btn-success status">启用</button>
                                         {else/}
-                                        禁用
+                                        <button class="btn btn-danger status">禁用</button>
                                         {/if}
                                     </td>
                                     <td>
@@ -73,9 +73,9 @@
                                     <td>{$vo1.name}</td>
                                     <td>
                                         {if $vo1.status==1}
-                                        启用
+                                        <button class="btn btn-success status">启用</button>
                                         {else/}
-                                        禁用
+                                        <button class="btn btn-danger status">禁用</button>
                                         {/if}
                                     </td>
                                     <td>
@@ -110,6 +110,31 @@
 <script type="text/javascript">
     $("#addAdmin").click(function(event) {
         window.location="{:url('admin/auth/add')}"
+    });
+
+    $(document).on('click', '.status', function(event) {
+        var _this = $(this);
+        id = $(this).parents("tr").find("td:eq(0)").html();
+        $.ajax({
+            url: '{:url("admin/auth/changeStatus")}',
+            type: 'post',
+            data: {id: id}
+        })
+        .done(function(data) {
+            if (data==1) {
+                _this.parent('td').html('<button class="btn btn-success status">启用</button>');
+            } else if(data==0) {
+                _this.parent('td').html('<button class="btn btn-danger status">禁用</button>');
+            } else {
+                alert("操作失败");
+            }
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
     });
 </script>
 {/block}

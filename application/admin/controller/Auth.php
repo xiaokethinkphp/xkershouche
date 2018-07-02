@@ -79,4 +79,26 @@ class Auth extends Controller
         }
 
     }
+
+    public function changeStatus()
+    {
+        if (!request()->isAjax()) {
+            $this->redirect('admin/auth/lst');
+        }
+        $status_find = db("authRule")->find(input('post.'));
+        if (empty($status_find)) {
+            return -1;
+        }
+        $status_upd_result = db('authRule')->update([
+            'id'    =>  input('post.id'),
+            'status'    =>  1 xor $status_find['status']
+        ]);
+        if ($status_upd_result) {
+            return 1 xor $status_find['status'];
+        } else {
+            return -1;
+        }
+
+
+    }
 }
