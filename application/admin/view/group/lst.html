@@ -34,18 +34,28 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>级别名称</th>
+                                    <th>组名称</th>
+                                    <th>拥有权限</th>
                                     <th>状态</th>
                                     <th>操作</th>
                                 </tr>
                             </thead>
                             <tbody>
-
+                                {volist name="group" id="vo"}
                                 <tr>
-                                    <td></td>
-                                    <td></td>
+                                    <td>{$vo.id}</td>
+                                    <td>{$vo.title}</td>
+                                    <td>{volist name="$vo.rule_array" id="vo1"}
+                                            名称：{$vo1.title}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;操作:{$vo1.name}
+                                            <br/>
+                                        {/volist}
+                                    </td>
                                     <td>
-
+                                        {if $vo.status==1}
+                                        <button class="btn btn-success status">启用</button>
+                                        {else/}
+                                        <button class="btn btn-danger status">禁用</button>
+                                        {/if}
                                     </td>
                                     <td>
                                         <div class="btn-group open">
@@ -60,7 +70,7 @@
                                         </div>
                                     </td>
                                 </tr>
-
+                                {/volist}
                             </tbody>
 
                         </table>
@@ -78,6 +88,27 @@
 <script type="text/javascript">
     $("#addAdmin").click(function(event) {
         window.location="{:url('admin/group/add')}"
+    });
+    $(".status").click(function(event) {
+        /* Act on the event */
+        var _this = $(this);
+        id = $(this).parents("tr").find("td:eq(0)").html();
+        $.ajax({
+            url: '{:url("admin/group/changeStatus")}',
+            type: 'post',
+            data: {id: id}
+        })
+        .done(function(data) {
+            if (data==1) {
+                _this.addClass('btn-success').removeClass('btn-danger');
+                _this.html('启用');
+            } else if(data==0) {
+                _this.addClass('btn-danger').removeClass('btn-success');
+                _this.html('禁用');
+            } else {
+                alert("操作失败");
+            }
+        })
     });
 </script>
 {/block}

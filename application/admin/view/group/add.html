@@ -48,7 +48,10 @@
                                                     <td>
                                                         {volist name="$vo.children" id="vo1"}
                                                         <label for="">
-                                                            {$vo1.title}：<input type="checkbox" name="rules[]" value="{$vo1.id}">
+                                                            {$vo1.title}：<input type="checkbox" name="rules[]" value="{$vo1.id}"
+                                                            {if $vo1.title=='首页管理'}
+                                                            checked onclick="return false;"
+                                                            {/if}>&nbsp;&nbsp;&nbsp;&nbsp;
                                                         </label>
                                                         {/volist}
                                                     </td>

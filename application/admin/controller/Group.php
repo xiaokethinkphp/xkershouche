@@ -7,6 +7,9 @@ use \think\Controller;
 class Group extends Controller
 {
     public function lst(){
+        $group_model = model('AuthGroup');
+        $group_select = $group_model->getAuthGroupList();
+        $this->assign('group',$group_select);
         return view();
     }
 
@@ -30,7 +33,12 @@ class Group extends Controller
         $data = array();
         $data['title'] = input('post.title');
         $data['rules'] = implode(',', $post['rules']);
-        db("authGroup")->insert($data);
+        $group_add_result = db("authGroup")->insert($data);
+        if ($group_add_result) {
+            $this->success("组添加成功",'admin/group/lst');
+        } else {
+            $this->error('组添加失败','admin/group/lst');
+        }
 
     }
 
@@ -41,5 +49,27 @@ class Group extends Controller
         }
         $validate = validate("Group");
         return $validate->check(input("post."));
+    }
+
+    public function changeStatus()
+    {
+        if (!request()->isAjax()) {
+            $this->redirect('admin/group/lst');
+        }
+        $status_find = db("authGroup")->find(input('post.'));
+        if (empty($status_find)) {
+            return -1;
+        }
+        $status_upd_result = db('authGroup')->update([
+            'id'    =>  input('post.id'),
+            'status'    =>  1 xor $status_find['status']
+        ]);
+        if ($status_upd_result) {
+            return 1 xor $status_find['status'];
+        } else {
+            return -1;
+        }
+
+
     }
 }
