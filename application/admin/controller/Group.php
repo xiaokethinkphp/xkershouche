@@ -15,10 +15,15 @@ class Group extends Controller
 
     public function add()
     {
+        $this->getAuthList();
+        return view();
+    }
+
+    private function getAuthList()
+    {
         $auth_model = model("authRule");
         $auth_list = $auth_model->getAuthList();
         $this->assign("auth",$auth_list);
-        return view();
     }
 
     public function addhanddle()
@@ -71,5 +76,42 @@ class Group extends Controller
         }
 
 
+    }
+
+    public function upd($id='')
+    {
+        $group_find = Model('AuthGroup')->getAuth($id);
+        $this->assign('group',$group_find);
+        $this->getAuthList();
+        return view();
+    }
+
+    public function updhanddle()
+    {
+        if (!request()->isPost()) {
+            $this->redirect('admin/group/lst');
+        }
+        $post = input('post.');
+        $data = array();
+        $data['id'] = input('post.id');
+        $data['title'] = input('post.title');
+        $data['rules'] = implode(',', $post['rules']);
+        $group_add_result = db("authGroup")->update($data);
+        if ($group_add_result!==false) {
+            $this->success("组修改成功",'admin/group/lst');
+        } else {
+            $this->error('组修改失败','admin/group/lst');
+        }
+
+    }
+
+    public function del($id='')
+    {
+        $group_del_result = db('authGroup')->delete($id);
+        if ($group_del_result) {
+            $this->success("组删除成功",'admin/group/lst');
+        } else {
+            $this->error('组删除失败','admin/group/lst');
+        }
     }
 }

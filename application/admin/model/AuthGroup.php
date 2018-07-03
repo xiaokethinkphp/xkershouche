@@ -24,4 +24,11 @@ class AuthGroup extends Model
         }
         return $rules_array;
     }
+
+    public function getAuth($id='')
+    {
+        $auth_group_get = AuthGroup::get($id);
+        // $auth_group_get['rule_array'] = $this->getAuthRuleList($auth_group_get['rules']);
+        return $auth_group_get;
+    }
 }

@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 28/06/2018 23:05:04
+ Date: 02/07/2018 16:10:11
 */
 
 SET NAMES utf8mb4;
@@ -51,7 +51,14 @@ CREATE TABLE `xk_auth_group`  (
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `rules` char(80) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+
+-- ----------------------------
+-- Records of xk_auth_group
+-- ----------------------------
+INSERT INTO `xk_auth_group` VALUES (7, '二手车管理员', 1, '6,7,8,13');
+INSERT INTO `xk_auth_group` VALUES (5, '租车管理员', 1, '14,13');
+INSERT INTO `xk_auth_group` VALUES (6, '会员管理员', 0, '12,13');
 
 -- ----------------------------
 -- Table structure for xk_auth_group_access
@@ -79,19 +86,23 @@ CREATE TABLE `xk_auth_rule`  (
   `pid` mediumint(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `name`(`name`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+) ENGINE = MyISAM AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
 
 -- ----------------------------
 -- Records of xk_auth_rule
 -- ----------------------------
-INSERT INTO `xk_auth_rule` VALUES (4, '租车管理', '租车管理', 1, 1, '', 0);
-INSERT INTO `xk_auth_rule` VALUES (3, '二手车管理', '二手车管理', 1, 1, '', 0);
-INSERT INTO `xk_auth_rule` VALUES (5, '新闻管理', '新闻管理', 1, 1, '', 0);
+INSERT INTO `xk_auth_rule` VALUES (4, '租车管理', '租车管理', 1, 0, '', 0);
+INSERT INTO `xk_auth_rule` VALUES (3, '二手车管理', '二手车管理', 1, 0, '', 0);
+INSERT INTO `xk_auth_rule` VALUES (5, '新闻管理', '新闻管理', 1, 0, '', 0);
 INSERT INTO `xk_auth_rule` VALUES (6, 'admin/brand', '品牌管理', 1, 1, '', 3);
 INSERT INTO `xk_auth_rule` VALUES (7, 'admin/carmodel', '车型管理', 1, 1, '', 3);
-INSERT INTO `xk_auth_rule` VALUES (8, 'admin/level', '级别管理', 1, 1, '', 3);
+INSERT INTO `xk_auth_rule` VALUES (8, 'admin/level', '级别管理', 1, 0, '', 3);
 INSERT INTO `xk_auth_rule` VALUES (9, '会员管理', '会员管理', 1, 1, '', 0);
-INSERT INTO `xk_auth_rule` VALUES (10, 'admin/index1', '首页', 1, 1, '', 0);
+INSERT INTO `xk_auth_rule` VALUES (10, '首页', '首页', 1, 1, '', 0);
+INSERT INTO `xk_auth_rule` VALUES (11, 'admin/cate', '新闻管理', 1, 1, '', 5);
+INSERT INTO `xk_auth_rule` VALUES (12, 'admin/member', '会员管理', 1, 1, '', 9);
+INSERT INTO `xk_auth_rule` VALUES (13, 'admin/index', '首页管理', 1, 1, '', 10);
+INSERT INTO `xk_auth_rule` VALUES (14, 'admin/rentcars', '租车管理', 1, 1, '', 4);
 
 -- ----------------------------
 -- Table structure for xk_brand
@@ -447,7 +458,7 @@ CREATE TABLE `xk_member`  (
 -- ----------------------------
 -- Records of xk_member
 -- ----------------------------
-INSERT INTO `xk_member` VALUES (12, '1123', 'fcea920f7412b5da7be0cf42b8c93759', '15040360448', 120000, 120100, 120102, 1527782400, 'member/20180627/c4c711e60235ec96cf2712072add65f4.png', 0);
+INSERT INTO `xk_member` VALUES (12, '1123', 'fcea920f7412b5da7be0cf42b8c93759', '15040360448', 120000, 120100, 120102, 1527782400, 'member/20180627/c4c711e60235ec96cf2712072add65f4.png', 1);
 INSERT INTO `xk_member` VALUES (15, '小明', 'e10adc3949ba59abbe56e057f20f883e', '15040360478', 370000, 371500, 371581, 1529999510, NULL, 1);
 
 -- ----------------------------

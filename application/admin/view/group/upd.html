@@ -1,0 +1,115 @@
+{extend name="base" /}
+{block name="title"}添加组{/block}
+{block name="right"}
+    <div class="row J_mainContent" id="content-main">
+        <div class="row wrapper border-bottom white-bg page-heading">
+            <div class="col-sm-4">
+                <h2>管理员管理</h2>
+                <ol class="breadcrumb">
+                    <li>
+                        <strong>组管理</strong>
+                    </li>
+                    <li>
+                        修改组
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+
+                        <form action="{:url('admin/group/updhanddle')}"
+                        method="post" class="form-horizontal row"
+                        enctype="multipart/form-data" id="form1">
+                        <input type="hidden" name="id" value="{$group.id}">
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">组名称</label>
+                                    <div class="col-sm-9">
+                                        <input name="title" class="form-control" value="{$group.title}" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">选择权限</label>
+                                    <div class="col-sm-9">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>父级权限</th>
+                                                    <th>子级权限</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {volist name="auth" id="vo"}
+                                                <tr>
+                                                    <td><b>{$vo.title}</b></td>
+                                                    <td>
+                                                        {volist name="$vo.children" id="vo1"}
+                                                        <label for="">
+                                                            {$vo1.title}：<input type="checkbox" name="rules[]" value="{$vo1.id}"
+                                                            {if $vo1.title=='首页管理'}
+                                                            checked onclick="return false;"
+                                                            {/if}&nbsp;&nbsp;&nbsp;&nbsp;
+
+                                                            {in name="$vo1.id" value="$group.rules"}
+                                                            checked
+                                                            {/in}
+                                                            >
+                                                        </label>
+                                                        {/volist}
+                                                    </td>
+                                                </tr>
+                                                {/volist}
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"></label>
+                                    <div class="col-sm-3">
+                                        <input class="form-control" type="submit" value="修改组">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}
+{block name="js"}
+{__block__}
+<script src="__ADMIN__/js/hAdmin.js?v=4.1.0"></script>
+<script src="__ADMIN__/js/plugins/pace/pace.min.js"></script>
+<script src="__ADMIN__/js/plugins/validate/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    $().ready(function(){
+        $("#form1").validate({
+            rules:{
+                title:{
+                    required:true,
+                    remote:{
+                        data:{
+                            id:{$group.id}
+                        },
+                        url:"{:url('admin/group/checkAuthNameAjax')}",
+                        type:"post"
+                    }
+                },
+            },
+            messages:{
+                title:{
+                    required:"请输入组名称",
+                    remote:"该组已经存在"
+                },
+            }
+        });
+    })
+</script>
+{/block}
