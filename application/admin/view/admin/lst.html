@@ -36,6 +36,9 @@
                                     <th>ID</th>
                                     <th>级别名称</th>
                                     <th>状态</th>
+                                    <th>上次登录时间</th>
+                                    <th>上次登录ip</th>
+                                    <th>所属组</th>
                                     <th>操作</th>
                                 </tr>
                             </thead>
@@ -46,17 +49,26 @@
                                     <td>{$vo.name}</td>
                                     <td>
                                         {if $vo.status==1}
-                                        启用
+                                        <button class="btn btn-success status">启用</button>
                                         {else/}
-                                        禁用
+                                        <button class="btn btn-danger status">禁用</button>
                                         {/if}
+                                    </td>
+                                    <td>{$vo.last_login_time|date='Y-m-d H:i:s'}</td>
+                                    <td>{$vo.last_login_ip}</td>
+                                    <td>
+                                        {volist name="$vo.group" id="vo1"}
+                                        {$vo1.title}<br/>
+                                        {/volist}
                                     </td>
                                     <td>
                                         <div class="btn-group open">
                                             <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle" aria-expanded="true">操作 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="">修改</a>
+                                                <li><a href="{:url('admin/admin/changePassword',array('id'=>$vo.id))}">修改密码</a>
+                                                </li>
+                                                <li><a href="">修改权限</a>
                                                 </li>
                                                 <li><a href="">删除</a>
                                                 </li>
@@ -82,6 +94,31 @@
 <script type="text/javascript">
     $("#addAdmin").click(function(event) {
         window.location="{:url('admin/admin/add')}"
+    });
+
+    $(document).on('click', '.status', function(event) {
+        var _this = $(this);
+        id = $(this).parents("tr").find("td:eq(0)").html();
+        $.ajax({
+            url: '{:url("admin/admin/changeStatus")}',
+            type: 'post',
+            data: {id: id}
+        })
+        .done(function(data) {
+            if (data==1) {
+                _this.parent('td').html('<button class="btn btn-success status">启用</button>');
+            } else if(data==0) {
+                _this.parent('td').html('<button class="btn btn-danger status">禁用</button>');
+            } else {
+                alert("操作失败");
+            }
+        })
+        .fail(function() {
+            console.log("error");
+        })
+        .always(function() {
+            console.log("complete");
+        });
     });
 </script>
 {/block}

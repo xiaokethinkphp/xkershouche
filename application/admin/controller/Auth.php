@@ -72,6 +72,7 @@ class Auth extends Controller
     public function del($id='')
     {
         $auth_model = model("AuthRule");
+        // dump($auth_model->delAuth($id));die;
         if ($auth_model->delAuth($id)) {
             $this->success('规则删除成功','admin/auth/lst');
         } else {

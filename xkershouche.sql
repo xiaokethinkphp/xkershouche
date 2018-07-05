@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 02/07/2018 16:10:11
+ Date: 03/07/2018 14:52:28
 */
 
 SET NAMES utf8mb4;
@@ -57,8 +57,7 @@ CREATE TABLE `xk_auth_group`  (
 -- Records of xk_auth_group
 -- ----------------------------
 INSERT INTO `xk_auth_group` VALUES (7, '二手车管理员', 1, '6,7,8,13');
-INSERT INTO `xk_auth_group` VALUES (5, '租车管理员', 1, '14,13');
-INSERT INTO `xk_auth_group` VALUES (6, '会员管理员', 0, '12,13');
+INSERT INTO `xk_auth_group` VALUES (5, '租车管理员', 0, '14,13');
 
 -- ----------------------------
 -- Table structure for xk_auth_group_access
