@@ -36,14 +36,15 @@ class Cars extends Model
         }
     }
 
-    public function getCarsList()
+    public function getCarsList($paginate=2)
     {
-        $cars_list = Cars::paginate(2)->each(function($value,$key){
+        $cars_list = Cars::paginate($paginate)->each(function($value,$key){
             $level_find = db("level")->where('id',$value['level'])->value('name');
             $value['level_name'] = $level_find;
             $value->carsimg;
             $value->member;
             $value->selfattribute;
+            $value['area'] = getArea($value['province_id'],$value['city_id'],$value['county_id']);
         });
         return $cars_list;
     }

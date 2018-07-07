@@ -4,7 +4,7 @@ use \think\Controller;
 /**
  * 品牌控制器
  */
-class Brand extends Controller
+class Brand extends Common
 {
     var $brand_model;//声明一个品牌模型
     public function __construct()

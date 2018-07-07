@@ -11,7 +11,7 @@ class Rentcars extends Controller
         $rentcars_find = db("rentcars")->alias('r')
         ->join('member m','r.member_id=m.id')
         ->field('r.id as rid,title,full_name,member_name,
-        mobile_number,listtime,img,status,
+        mobile_number,listtime,img,r.status as status,
         r.province_id as rprovince_id,r.city_id as rcity_id,
         r.county_id as rcounty_id,dayprice,monthprice,
         details'

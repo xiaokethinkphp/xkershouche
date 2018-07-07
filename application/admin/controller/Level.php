@@ -4,7 +4,7 @@ use \think\Controller;
 /**
  * 车辆级别控制器
  */
-class Level extends Controller
+class Level extends Common
 {
     // 车辆级别列表
    public function lst()

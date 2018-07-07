@@ -5,7 +5,7 @@ use \think\Controller;
  * 自定义属性控制器
  * selfattribute
  */
-class Selfattribute extends Controller
+class Selfattribute extends Common
 {
     public function lst()
     {

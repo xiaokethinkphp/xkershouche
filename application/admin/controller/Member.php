@@ -4,7 +4,7 @@ use \think\Controller;
 /**
  *
  */
-class Member extends Controller
+class Member extends Common
 {
     public function lst()
     {

@@ -40,4 +40,19 @@ class AuthGroup extends Model
     {
         return $this->belongsToMany('Admin','auth_group_access','uid','group_id');
     }
+
+    public function delGroup($id='')
+    {
+        $group_get = AuthGroup::get($id);
+        if (!$group_get) {
+            return false;
+        }
+        $group_get->admin;
+        $admins = array_column($group_get['admin']->toArray() ,'id');
+        \think\Db::transaction(function() use($admins,$group_get){
+            $group_get->admin()->detach($admins);
+            $group_get->delete();
+        });
+        return true;
+    }
 }

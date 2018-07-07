@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 03/07/2018 14:52:28
+ Date: 05/07/2018 21:41:24
 */
 
 SET NAMES utf8mb4;
@@ -30,16 +30,14 @@ CREATE TABLE `xk_admin`  (
   `status` int(255) NOT NULL DEFAULT 0 COMMENT '1：启用 0：禁用',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `admin_name`(`name`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of xk_admin
 -- ----------------------------
-INSERT INTO `xk_admin` VALUES (7, '小白', 'e10adc3949ba59abbe56e057f20f883e', 1530169534, '::1', 0);
-INSERT INTO `xk_admin` VALUES (6, '小刚', 'e10adc3949ba59abbe56e057f20f883e', 1530152472, '::1', 0);
-INSERT INTO `xk_admin` VALUES (5, '小红', 'e10adc3949ba59abbe56e057f20f883e', 1530152459, '::1', 0);
-INSERT INTO `xk_admin` VALUES (4, '小明', 'e10adc3949ba59abbe56e057f20f883e', 1530152037, '::1', 0);
-INSERT INTO `xk_admin` VALUES (8, '大白', 'e10adc3949ba59abbe56e057f20f883e', 1530170128, '::1', 0);
+INSERT INTO `xk_admin` VALUES (13, '小明', 'e10adc3949ba59abbe56e057f20f883e', 1530672063, '::1', 0);
+INSERT INTO `xk_admin` VALUES (14, '大白', 'e10adc3949ba59abbe56e057f20f883e', 1530672125, '::1', 1);
+INSERT INTO `xk_admin` VALUES (16, '小红', 'e10adc3949ba59abbe56e057f20f883e', 1530672236, '::1', 0);
 
 -- ----------------------------
 -- Table structure for xk_auth_group
@@ -64,12 +62,18 @@ INSERT INTO `xk_auth_group` VALUES (5, '租车管理员', 0, '14,13');
 -- ----------------------------
 DROP TABLE IF EXISTS `xk_auth_group_access`;
 CREATE TABLE `xk_auth_group_access`  (
-  `uid` mediumint(8) UNSIGNED NOT NULL,
-  `group_id` mediumint(8) UNSIGNED NOT NULL,
-  UNIQUE INDEX `uid_group_id`(`uid`, `group_id`) USING BTREE,
-  INDEX `uid`(`uid`) USING BTREE,
-  INDEX `group_id`(`group_id`) USING BTREE
-) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Fixed;
+  `uid` int(8) UNSIGNED NOT NULL,
+  `group_id` int(8) UNSIGNED NOT NULL,
+  UNIQUE INDEX `uid,group_id`(`uid`, `group_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of xk_auth_group_access
+-- ----------------------------
+INSERT INTO `xk_auth_group_access` VALUES (13, 5);
+INSERT INTO `xk_auth_group_access` VALUES (14, 5);
+INSERT INTO `xk_auth_group_access` VALUES (14, 7);
+INSERT INTO `xk_auth_group_access` VALUES (16, 5);
 
 -- ----------------------------
 -- Table structure for xk_auth_rule
@@ -101,7 +105,7 @@ INSERT INTO `xk_auth_rule` VALUES (10, '首页', '首页', 1, 1, '', 0);
 INSERT INTO `xk_auth_rule` VALUES (11, 'admin/cate', '新闻管理', 1, 1, '', 5);
 INSERT INTO `xk_auth_rule` VALUES (12, 'admin/member', '会员管理', 1, 1, '', 9);
 INSERT INTO `xk_auth_rule` VALUES (13, 'admin/index', '首页管理', 1, 1, '', 10);
-INSERT INTO `xk_auth_rule` VALUES (14, 'admin/rentcars', '租车管理', 1, 1, '', 4);
+INSERT INTO `xk_auth_rule` VALUES (14, 'admin/rentcars', '租车管理', 1, 0, '', 4);
 
 -- ----------------------------
 -- Table structure for xk_brand

@@ -4,7 +4,7 @@ use \think\Controller;
 /**
  * 租车控制器
  */
-class Rentcars extends Controller
+class Rentcars extends Common
 {
     public function lst()
     {

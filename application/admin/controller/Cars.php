@@ -4,7 +4,7 @@ use \think\Controller;
 /**
  * 车源控制器
  */
-class Cars extends Controller
+class Cars extends Common
 {
     public function clearimg()
     {

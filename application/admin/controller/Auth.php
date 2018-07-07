@@ -4,7 +4,7 @@ use \think\Controller;
 /**
  *规则控制器
  */
-class Auth extends Controller
+class Auth extends Common
 {
     public function lst()
     {

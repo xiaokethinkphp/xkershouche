@@ -4,7 +4,7 @@ use \think\Controller;
 /**
  * 组控制器
  */
-class Group extends Controller
+class Group extends Common
 {
     public function lst(){
         $group_model = model('AuthGroup');
@@ -105,9 +105,20 @@ class Group extends Controller
 
     }
 
-    public function del($id='')
+    public function del1($id='')
     {
         $group_del_result = db('authGroup')->delete($id);
+        if ($group_del_result) {
+            $this->success("组删除成功",'admin/group/lst');
+        } else {
+            $this->error('组删除失败','admin/group/lst');
+        }
+    }
+
+    public function del($id='')
+    {
+        $group_model = Model("AuthGroup");
+        $group_del_result = $group_model->delGroup($id);
         if ($group_del_result) {
             $this->success("组删除成功",'admin/group/lst');
         } else {

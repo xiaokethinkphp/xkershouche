@@ -68,9 +68,9 @@
                                             <ul class="dropdown-menu">
                                                 <li><a href="{:url('admin/admin/changePassword',array('id'=>$vo.id))}">修改密码</a>
                                                 </li>
-                                                <li><a href="">修改权限</a>
+                                                <li><a href="{:url('admin/admin/changeAuth',array('id'=>$vo.id))}">修改权限</a>
                                                 </li>
-                                                <li><a href="">删除</a>
+                                                <li><a href="javascript:if(confirm('确认删除管理员{$vo.name}？')) location='{:url('admin/admin/del',array('id'=>$vo.id))}'">删除</a>
                                                 </li>
                                             </ul>
                                         </div>

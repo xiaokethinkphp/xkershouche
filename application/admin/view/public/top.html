@@ -10,10 +10,10 @@
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
-                    <i class="fa fa-envelope"></i> <span class="label label-warning">16</span>
+                    欢迎回来:<i>{$Think.cookie.admin['name']}</i>
                 </a>
                 <ul class="dropdown-menu dropdown-messages">
-                    <li class="m-t-xs">
+                    <!-- <li class="m-t-xs">
                         <div class="dropdown-messages-box">
                             <a href="profile.html" class="pull-left">
                                 <img alt="image" class="img-circle" src="__ADMIN__/img/a7.jpg">
@@ -40,17 +40,25 @@
                             </div>
                         </div>
                     </li>
+                    <li class="divider"></li> -->
+                    <li>
+                        <div class="text-center">
+                            <a class="J_menuItem" href="{:url('admin/index/changePasswordSelf')}">
+                                <strong>修改密码</strong>
+                            </a>
+                        </div>
+                    </li>
                     <li class="divider"></li>
                     <li>
-                        <div class="text-center link-block">
-                            <a class="J_menuItem" href="mailbox.html">
-                                <i class="fa fa-envelope"></i> <strong> 查看所有消息</strong>
+                        <div class="text-center">
+                            <a class="1J_menuItem" href="{:url('admin/index/logout')}">
+                                <strong>退出</strong>
                             </a>
                         </div>
                     </li>
                 </ul>
             </li>
-            <li class="dropdown">
+            <!-- <li class="dropdown">
                 <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                     <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
                 </a>
@@ -82,7 +90,7 @@
                         </div>
                     </li>
                 </ul>
-            </li>
+            </li> -->
         </ul>
     </nav>
 </div>

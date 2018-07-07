@@ -4,7 +4,7 @@ use \think\Controller;
 /**
  *车型控制器
  */
-class Carmodel extends Controller
+class Carmodel extends Common
 {
     // 车型列表显示
     public function lst($initial="A")

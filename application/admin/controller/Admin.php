@@ -4,7 +4,7 @@ use \think\Controller;
 /**
  *
  */
-class Admin extends Controller
+class Admin extends Common
 {
     public function lst1()
     {
@@ -16,7 +16,7 @@ class Admin extends Controller
     public function lst()
     {
         $admin_model = model("Admin");
-        $admin_all = $admin_model::all();
+        $admin_all = $admin_model->where('status','neq',2)->select();
         foreach ($admin_all as $key => $value) {
             $value->group;
         }
@@ -106,8 +106,65 @@ class Admin extends Controller
         } else {
             return -1;
         }
+    }
 
+    public function changeAuth($id='')
+    {
+        $admin_model = model("Admin");
+        $admin_get =$admin_model->field('id,name')->find($id);
+        if (!$admin_get) {
+            $this->redirect("admin/admin/lst");
+        }
+        $admin_get->group;
+        $group = $admin_get['group']->toArray();
+        $admin_get['groups'] = array_column($group, 'id');
+        $this->assign('admin',$admin_get);
+        // dump($admin_get);
+        $group_model = model('AuthGroup');
+        $group_select = $group_model->getAuthGroupList();
+        $this->assign('group',$group_select);
+        return view();
+    }
+
+    public function changAuthhanddle()
+    {
+        if (!request()->isPost()) {
+            $this->redirect("admin/admin/lst");
+        }
+        $admin_model = Model("Admin");
+        $post = input('post.');
+        $admin_get = $admin_model->get($post['id']);
+        \think\Db::transaction(function () use($post,$admin_get){
+            db('authGroupAccess')->where('uid',$post['id'])->delete();
+            $admin_get->group()->attach($post['groups']);
+        });
+    }
+
+    public function del($id='')
+    {
+        $admin_model = Model("Admin");
+        $admin_del_result = $admin_model->delAdmin($id);
+        if ($admin_del_result) {
+            $this->success("管理员删除成功",'admin/admin/lst');
+        } else {
+            $this->error("管理员删除失败",'admin/admin/lst');
+        }
 
     }
 
+    public function logout()
+    {
+        cookie('admin',null);
+        $this->redirect("admin/login/index");
+    }
+
+    public function changePasswordSelf()
+    {
+        $admin_get = db('admin')->find(cookie('admin')['id']);
+        if (!$admin_get) {
+            $this->redirect("admin/admin/lst");
+        }
+        $this->assign('admin',$admin_get);
+        return view();
+    }
 }

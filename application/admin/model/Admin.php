@@ -25,4 +25,19 @@ class Admin extends Model
             $admin_get->group()->save($groups);
         });
     }
+
+    public function delAdmin($id='')
+    {
+        $admin_get = Admin::get($id);
+        if (!$admin_get) {
+            return false;
+        }
+        $admin_get->group;
+        $groups = array_column($admin_get['group']->toArray(), 'id');
+        \think\Db::transaction(function() use($groups,$admin_get){
+            $admin_get->group()->detach($groups);
+            $admin_get->delete();
+        });
+        return true;
+    }
 }
