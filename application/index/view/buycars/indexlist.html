@@ -1,0 +1,136 @@
+{extend name="base"/}
+{block name="title"}买车-二手车网{/block}
+{block name="main"}
+<style media="screen">
+    .pagination>li{display:inline}
+</style>
+<div class="nav">您当前的位置：<a href="/simcms/">首页</a> <span>></span> <a href="/simcms/">买车</a></div>
+<div class="main clearfix mt10">
+    <div class="search_box mb15">
+        <div class="condition">
+            <span class="fl gray pl20">已选条件：</span>
+            <ul class="condition_list fl">
+            </ul>
+            <span class="del">
+                <a href="/simcms/index.php?m=search&clear=1">
+                    <i class="i-del"></i>清空全部条件
+                </a>
+            </span>
+        </div>
+        <ul class="search_list">
+            <form method="get" action="/simcms/index.php">
+                <li>品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌
+                    <a href="/simcms/index.php?m=search&c=b_0" class="here">全部</a>
+                    <a href="/simcms/index.php?m=search&c=b_1" >奥迪</a>
+                    <a href="/simcms/index.php?m=search&c=b_11" >本田</a>
+                    <a href="/simcms/index.php?m=search&c=b_16" >别克</a>
+                    <a href="/simcms/index.php?m=search&c=b_29" >大众</a>
+                    <a href="/simcms/index.php?m=search&c=b_41" >丰田</a>
+                    <a href="/simcms/index.php?m=search&c=b_42" >福特</a>
+                    <a href="/simcms/index.php?m=search&c=b_157" >现代</a>
+                    <a href="/simcms/index.php?m=search&c=b_158" >雪佛兰</a>
+                    <select id="brand" name="c">
+                        <option value=''>请选择品牌</option>
+                        <option value='b_1' >A 奥迪</option>
+                    </select>
+                    <select id="subbrand" name="sb">
+                        <option value="">请选择车系</option>
+                    </select>
+                    <input type="hidden" name="m" value="search">
+                    <input type="submit" value="搜索" class="cbutton">
+                </li>
+            </form>
+        <li>车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型
+            <a href="{:url('index/buycars/index')}" class="here">全部</a>
+            {volist name="level" id="vo"}
+            <a href="{:url('index/buycars/index',array('key'=>'level','val'=>$vo.id))}">{$vo.name}</a>
+            {/volist}
+        </li>
+        <li>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格
+            <a href="{:url('index/buycars/index')}"  class="here">全部</a>
+            <a href="{:url('index/buycars/index',array('key'=>'price','val'=>3))}" >3万以下</a>
+            <a href="{:url('index/buycars/index',array('key'=>'price','val'=>5))}" >3-5万</a>
+            <a href="{:url('index/buycars/index',array('key'=>'price','val'=>8))}" >5-8万</a>
+            <a href="{:url('index/buycars/index',array('key'=>'price','val'=>12))}" >8-12万</a>
+            <a href="{:url('index/buycars/index',array('key'=>'price','val'=>18))}" >12-18万</a>
+            <a href="{:url('index/buycars/index',array('key'=>'price','val'=>24))}" >18-24万</a>
+            <a href="{:url('index/buycars/index',array('key'=>'price','val'=>35))}" >24-35万</a>
+            <a href="{:url('index/buycars/index',array('key'=>'price','val'=>50))}" >35-50万</a>
+            <a href="{:url('index/buycars/index',array('key'=>'price','val'=>100))}" >50-100万</a>
+            <a href="{:url('index/buycars/index',array('key'=>'price','val'=>0))}" >100万以上</a>
+        </li>
+        <li>车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄
+            <a href="{:url('index/buycars/index')}"  class="here">全部</a>
+            <a href="{:url('index/buycars/index',array('key'=>'plate','val'=>1))}" >1年以内</a>
+            <a href="{:url('index/buycars/index',array('key'=>'plate','val'=>3))}" >1-3年</a>
+            <a href="{:url('index/buycars/index',array('key'=>'plate','val'=>5))}" >3-5年</a>
+            <a href="{:url('index/buycars/index',array('key'=>'plate','val'=>0))}" >5年以上</a>
+        </li>
+        <li>排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量
+            <a href="{:url('index/buycars/index')}"  class="here">全部</a>
+            <a href="{:url('index/buycars/index',array('key'=>'gas','val'=>1))}" >1.0L以下</a>
+            <a href="{:url('index/buycars/index',array('key'=>'gas','val'=>1.5))}" >1.1-1.5L</a>
+            <a href="{:url('index/buycars/index',array('key'=>'gas','val'=>2))}" >1.6-2.0L</a>
+            <a href="{:url('index/buycars/index',array('key'=>'gas','val'=>3))}" >2.1-3.0L</a>
+            <a href="{:url('index/buycars/index',array('key'=>'gas','val'=>0))}" >3.0L及以上</a>
+        </li>
+    </ul>
+</div>
+</div>
+<div class="main clearfix">
+    <div class="main_left">
+        <div class="search_big_box">
+            <div class="orderlist">
+                <ul class="fl">
+                    <li><a href="{:url('index/buycars/index',array('order'=>'listtime'))}" class="or01">时间</a></li>
+                    <li><a href="{:url('index/buycars/index',array('order'=>'price'))}" class="or02">价格</a></li>
+                    <li><a href="{:url('index/buycars/index',array('order'=>'kilometer'))}" class="or02">里程</a></li>
+                    <li><a href="{:url('index/buycars/index',array('order'=>'plate'))}"  class="or02">车龄</a></li>
+                </ul>
+                <div class="showtype">
+                    <span class="type01"><a href="{:url('index/buycars/index',array('view'=>'indexlist'))}">列表</a></span>
+                    <span class="type04"><a href="{:url('index/buycars/index',array('view'=>'indeximg'))}">大图</a></span>
+                </div>
+                <div class="page_num">
+                    <span>每页显示：</span>
+                    <span class="num"><a href="{:url('index/buycars/index',array('paginate'=>'1'))}" class="fb orange01">30</a></span>
+                    <span class="num"><a href="{:url('index/buycars/index',array('paginate'=>'2'))}" >60</a></span>
+                    <span class="num"><a href="{:url('index/buycars/index',array('paginate'=>'3'))}" >90</a></span>
+                </div>
+            </div>
+            <div class="box">
+                {volist name="buycars" id="vo"}
+                <div class="listcar clearfix">
+                    <div class="img">
+                        <a href="{:url('index/cars/carsdetails',array('id'=>$vo.id))}" target="_blank" title="{$vo.full_name} {$vo.gas}">
+                            <img src="__UPLOADS__/{$vo.carsimg[0]['url']}"/>
+                        </a>
+                    </div>
+                    <div class="word">
+                        <p class="clearfix">
+                            <span class="carname fl">
+                                <a href="{:url('index/cars/carsdetails',array('id'=>$vo.id))}" target="_blank">{$vo.full_name} {$vo.gas}</a>
+                            </span>
+                        </p>
+                        <p class="gray">
+                            <span class="orange01">{$vo.plate|date='Y年m月d日'}</span> 上牌 &nbsp;&nbsp;/&nbsp;&nbsp;
+                            <span class="orange01">{$vo.kilometer|format='%.2f'}</span> 万公里 &nbsp;&nbsp;/&nbsp;&nbsp;
+                            {$vo.area.province_name}&nbsp;{$vo.area.city_name}&nbsp;{$vo.area.county_name}
+                            信息编号：{$vo.id}
+                        </p>
+                        <p class="gray f14">车主说明：{$vo.details}</p>
+                        <p class="gray f12">{$vo.listtime|date="Y-m-d"}更新</p>
+                    </div>
+                    <div class="price">
+                        <span class="fb f30">{$vo.price|format='%.2f'}</span> 万
+                    </div>
+                </div>
+                {/volist}
+                <div class="page_list">
+                    {$buycars|raw}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
