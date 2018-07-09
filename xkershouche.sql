@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 05/07/2018 21:41:24
+ Date: 08/07/2018 15:44:59
 */
 
 SET NAMES utf8mb4;
@@ -35,8 +35,8 @@ CREATE TABLE `xk_admin`  (
 -- ----------------------------
 -- Records of xk_admin
 -- ----------------------------
-INSERT INTO `xk_admin` VALUES (13, '小明', 'e10adc3949ba59abbe56e057f20f883e', 1530672063, '::1', 0);
-INSERT INTO `xk_admin` VALUES (14, '大白', 'e10adc3949ba59abbe56e057f20f883e', 1530672125, '::1', 1);
+INSERT INTO `xk_admin` VALUES (13, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 1530887081, '::1', 2);
+INSERT INTO `xk_admin` VALUES (14, '大白', 'e10adc3949ba59abbe56e057f20f883e', 1530886908, '::1', 1);
 INSERT INTO `xk_admin` VALUES (16, '小红', 'e10adc3949ba59abbe56e057f20f883e', 1530672236, '::1', 0);
 
 -- ----------------------------
@@ -55,7 +55,7 @@ CREATE TABLE `xk_auth_group`  (
 -- Records of xk_auth_group
 -- ----------------------------
 INSERT INTO `xk_auth_group` VALUES (7, '二手车管理员', 1, '6,7,8,13');
-INSERT INTO `xk_auth_group` VALUES (5, '租车管理员', 0, '14,13');
+INSERT INTO `xk_auth_group` VALUES (5, '租车管理员', 1, '14,13');
 
 -- ----------------------------
 -- Table structure for xk_auth_group_access
@@ -105,7 +105,7 @@ INSERT INTO `xk_auth_rule` VALUES (10, '首页', '首页', 1, 1, '', 0);
 INSERT INTO `xk_auth_rule` VALUES (11, 'admin/cate', '新闻管理', 1, 1, '', 5);
 INSERT INTO `xk_auth_rule` VALUES (12, 'admin/member', '会员管理', 1, 1, '', 9);
 INSERT INTO `xk_auth_rule` VALUES (13, 'admin/index', '首页管理', 1, 1, '', 10);
-INSERT INTO `xk_auth_rule` VALUES (14, 'admin/rentcars', '租车管理', 1, 0, '', 4);
+INSERT INTO `xk_auth_rule` VALUES (14, 'admin/rentcars', '租车管理', 1, 1, '', 4);
 
 -- ----------------------------
 -- Table structure for xk_brand
@@ -250,7 +250,7 @@ CREATE TABLE `xk_cars`  (
   `full_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `clicks` int(255) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of xk_cars
@@ -259,6 +259,10 @@ INSERT INTO `xk_cars` VALUES (17, 110000, 110100, 110101, 13, 50, 55, 8, 1, 16.0
 INSERT INTO `xk_cars` VALUES (18, 120000, 120100, 120101, 13, 50, 55, 8, 1, 12.80, 13.00, 1, '黑色', '3.5L', '手动', '1528300800', 12, '国产', '国一', '1529942400', '1528300800', 1529119637, 2, 1, '昨天买的今天卖', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
 INSERT INTO `xk_cars` VALUES (19, 220000, 220100, 220103, 13, 51, 58, 9, 1, 0.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1529477528, 2, 12, '', '宝马 进口宝马 宝马1系（进口） 2015款 118i 领先型', 0);
 INSERT INTO `xk_cars` VALUES (20, 360000, 360200, 360202, 15, 60, 62, 13, 1, 0.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1529479626, 2, 12, '11111111111', '奥迪 一汽大众奥迪 奥迪A3 2018款 TFSI 时尚型', 0);
+INSERT INTO `xk_cars` VALUES (21, 110000, 110100, 110101, 13, 50, 55, 8, 1, 16.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
+INSERT INTO `xk_cars` VALUES (22, 110000, 110100, 110101, 13, 50, 55, 8, 1, 16.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
+INSERT INTO `xk_cars` VALUES (23, 110000, 110100, 110101, 13, 50, 55, 8, 1, 16.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
+INSERT INTO `xk_cars` VALUES (24, 110000, 110100, 110101, 13, 50, 55, 8, 1, 16.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
 
 -- ----------------------------
 -- Table structure for xk_cars_selfattribute
@@ -395,7 +399,7 @@ CREATE TABLE `xk_carsimg`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `cars_id`(`cars_id`) USING BTREE,
   CONSTRAINT `cars_id` FOREIGN KEY (`cars_id`) REFERENCES `xk_cars` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 58 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 62 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of xk_carsimg
@@ -416,6 +420,10 @@ INSERT INTO `xk_carsimg` VALUES (54, 19, 'cars/20180620/bd525ff823dadbd8698e2620
 INSERT INTO `xk_carsimg` VALUES (55, 19, 'cars/20180620/30306d516d894c7f72406f7a24cb0994.jpg');
 INSERT INTO `xk_carsimg` VALUES (56, 20, 'cars/20180620/123e315bc90de3ad145fc287be9ad849.jpg');
 INSERT INTO `xk_carsimg` VALUES (57, 20, 'cars/20180620/8cc0e8abe80fd8019e1af5c6d637ed60.jpg');
+INSERT INTO `xk_carsimg` VALUES (58, 21, 'cars/20180620/8cc0e8abe80fd8019e1af5c6d637ed60.jpg');
+INSERT INTO `xk_carsimg` VALUES (59, 22, 'cars/20180620/8cc0e8abe80fd8019e1af5c6d637ed60.jpg');
+INSERT INTO `xk_carsimg` VALUES (60, 23, 'cars/20180620/8cc0e8abe80fd8019e1af5c6d637ed60.jpg');
+INSERT INTO `xk_carsimg` VALUES (61, 24, NULL);
 
 -- ----------------------------
 -- Table structure for xk_level

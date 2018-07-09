@@ -10,6 +10,18 @@
         <div class="condition">
             <span class="fl gray pl20">已选条件：</span>
             <ul class="condition_list fl">
+                {if $Think.cookie.level['name']}
+                <li><a class="condition" href="{:url('index/buycars/index',array('key'=>'level'))}">{$Think.cookie.level['name']}</a></li>
+                {/if}
+                {if $Think.cookie.price['name']}
+                <li><a class="condition" href="{:url('index/buycars/index',array('key'=>'price'))}">{$Think.cookie.price['name']}</a></li>
+                {/if}
+                {if $Think.cookie.plate['name']}
+                <li><a class="condition" href="{:url('index/buycars/index',array('key'=>'plate'))}">{$Think.cookie.plate['name']}</a></li>
+                {/if}
+                {if $Think.cookie.gas['name']}
+                <li><a class="condition" href="{:url('index/buycars/index',array('key'=>'gas'))}">{$Think.cookie.gas['name']}</a></li>
+                {/if}
             </ul>
             <span class="del">
                 <a href="/simcms/index.php?m=search&clear=1">
@@ -41,13 +53,13 @@
                 </li>
             </form>
         <li>车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型
-            <a href="{:url('index/buycars/index')}" class="here">全部</a>
+            <a href="{:url('index/buycars/index',array('key'=>'level'))}" class="here">全部</a>
             {volist name="level" id="vo"}
             <a href="{:url('index/buycars/index',array('key'=>'level','val'=>$vo.id))}">{$vo.name}</a>
             {/volist}
         </li>
         <li>价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格
-            <a href="{:url('index/buycars/index')}"  class="here">全部</a>
+            <a href="{:url('index/buycars/index',array('key'=>'price'))}"  class="here">全部</a>
             <a href="{:url('index/buycars/index',array('key'=>'price','val'=>3))}" >3万以下</a>
             <a href="{:url('index/buycars/index',array('key'=>'price','val'=>5))}" >3-5万</a>
             <a href="{:url('index/buycars/index',array('key'=>'price','val'=>8))}" >5-8万</a>
@@ -60,14 +72,14 @@
             <a href="{:url('index/buycars/index',array('key'=>'price','val'=>0))}" >100万以上</a>
         </li>
         <li>车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄
-            <a href="{:url('index/buycars/index')}"  class="here">全部</a>
+            <a href="{:url('index/buycars/index',array('key'=>'plate'))}"  class="here">全部</a>
             <a href="{:url('index/buycars/index',array('key'=>'plate','val'=>1))}" >1年以内</a>
             <a href="{:url('index/buycars/index',array('key'=>'plate','val'=>3))}" >1-3年</a>
             <a href="{:url('index/buycars/index',array('key'=>'plate','val'=>5))}" >3-5年</a>
             <a href="{:url('index/buycars/index',array('key'=>'plate','val'=>0))}" >5年以上</a>
         </li>
         <li>排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量
-            <a href="{:url('index/buycars/index')}"  class="here">全部</a>
+            <a href="{:url('index/buycars/index',array('key'=>'gas'))}"  class="here">全部</a>
             <a href="{:url('index/buycars/index',array('key'=>'gas','val'=>1))}" >1.0L以下</a>
             <a href="{:url('index/buycars/index',array('key'=>'gas','val'=>1.5))}" >1.1-1.5L</a>
             <a href="{:url('index/buycars/index',array('key'=>'gas','val'=>2))}" >1.6-2.0L</a>
