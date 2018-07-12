@@ -36,9 +36,9 @@ class Cars extends Model
         }
     }
 
-    public function getCarsList($paginate=5,$where='')
+    public function getCarsList($paginate=5,$where='',$order='')
     {
-        $cars_list = Cars::where($where)->paginate($paginate)->each(function($value,$key){
+        $cars_list = Cars::where($where)->order($order)->paginate($paginate)->each(function($value,$key){
             $level_find = db("level")->where('id',$value['level'])->value('name');
             $value['level_name'] = $level_find;
             $value->carsimg;
