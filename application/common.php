@@ -154,3 +154,21 @@ function getArea($province_id='',$city_id='',$county_id='')
     }
     return $arr;
 }
+
+function assessmentPrice($carmodel,$year,$month,$kilometre)
+{
+    $current_year = date("Y",time());
+    $current_month = date('m',time());
+    $newprice = db('cars')->where('carmodel',$carmodel)->avg('new_price');
+    if (empty($newprice)) {
+        return 0;
+    }
+    $mk = $kilometre>($current_year-$year)*6?($current_year-$year)*6:$kilometre;
+    $gl = $mk>30?0.15:($mk/360);
+    $month_all = ($current_year-$year)*12+($current_month-$month);
+    $cx = $month_all>180?0.15:($month_all/180);
+    $radio = ((1-$gl)+(1-$cx))/2;
+    $assessment_price = ceil($newprice*$radio);
+    return $assessment_price;
+
+}

@@ -1,0 +1,41 @@
+{extend name="base"/}
+{block name="title"}估价结果{/block}
+{block name="header"}
+{__block__}
+<link href="__INDEX__/default/css/assess.css" rel="stylesheet" type="text/css"/>
+{/block}
+{block name="main"}
+<div class="main mt15">
+	<div class="lay1" id="evalute_result">
+        <div class="car_info">
+            <div class="left">
+				<span title="{$assessment.full_name}">{$assessment.full_name}</span>
+			</div>
+            <div class="right">
+                <span class="time">上牌年份<strong>{$assessment.year}年{$assessment.month}月</strong></span>
+				<span class="mileage">行驶里程<strong>{$assessment.kilometre}万公里</strong></span>
+            </div>
+        </div>
+        <div class="eva_info">
+            <div class="logo">
+                <div class="logo_switch">
+                     <div class="hasdata"></div>
+                 </div>
+            </div>
+            <div class="detail_info">
+                <p class="p1">通过专业估价算法分析，得出以下结果：</p>
+                <p class="p2">预计成交价<span>{$price}</span>万元</p>
+                <div class="note_box">
+                    <p>以上报价是基于该车在<strong class="color-red">正常保养情况</strong>下行驶<strong class="color-red">{$assessment.kilometre}万公里</strong>后的车况进行评估，该车况可能与您的实际情况有所偏差，您可在此基础上进行微调。</p>
+                </div>
+            </div>
+            <div class="choose">
+			  <div class="item">
+				<a class="btn" href="{:url('index/assessment/index')}">再次评估</a>
+				<a target="_blank" href="{:url('index/member/membererchoucheadd')}" class="buy_car">我要卖车</a>
+			  </div>
+			</div>
+        </div>
+    </div>
+</div>
+{/block}

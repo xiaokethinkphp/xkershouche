@@ -3,35 +3,41 @@
 {block name="header"}
 {__block__}
 <link href="__INDEX__/default/css/page.css" rel="stylesheet" type="text/css"/>
+<script src="__ADMIN__/js/jquery.cxselect.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#brands").cxSelect({
+            url:"{:url('index/assessment/brandJsonGet')}",
+            selects:['brand1','brand2','brand3','brand4'],
+            jsonName:'name',
+            jsonValue:'id',
+            jsonSub:'children',
+        })
+
+    })
+</script>
 {/block}
 {block name="main"}
 <div class="assess_banner">
     <div class="assessbox">
 		<div class="form_title"><span>免费评估车源</span></div>
-		<form name="carform" class="carform" method="post" action="/simcms/index.php?m=assesscar">
+		<form name="carform" class="carform" method="post" action="{:url('index/assessment/assesshanddle')}">
 			<table cellspacing="0" cellpadding="0" width="100%"  class="sell_table">
-				<tr>
+
+                <tr id="brands">
 					<th> 品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：</th>
 					<td colspan="3">
-                        <select name="p_brand" id="brand" datatype="n" nullmsg="请选择品牌！" class="select01">
-							<option value=''>请选择品牌</option>
+                        <select name="brand_level1" class="select01 brand1">
+							<option value=''>请选择母品牌</option>
 						</select>
-					</td>
-				</tr>
-
-				<tr>
-					<th> 车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系：</th>
-					<td>
-						<select id="subbrand" name="p_subbrand" datatype="n" nullmsg="请选择车系！" class="select01">
-							<option value="" selected>请选择车系</option>
+                        <select name="brand_level2" class="select01 brand2">
+							<option value="" selected>请选择子车系</option>
 						</select>
-					</td>
-				</tr>
 
-				<tr>
-				    <th> 车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</th>
-					<td>
-						<select id="subsubbrand" name="p_subsubbrand" datatype="n" nullmsg="请选择款式！" class="select01">
+                        <select name="brand_level3" class="select01 brand3">
+							<option value="" selected>请选择车品牌</option>
+						</select>
+                        <select name="carmodel" class="select01 brand4">
 							<option value="" selected>请选择款式</option>
 						</select>
 					</td>
@@ -40,11 +46,26 @@
 				<tr>
 					<th>上牌日期：</th>
 					<td>
-                        <select name="p_year" datatype="n" nullmsg="请选择年份！" class="select02">
+                        <select name="year" datatype="n" nullmsg="请选择年份！" class="select02">
 						    <option value=''>请选择年份</option>
+                            {volist name="years" id="vo"}
+                            <option value='{$vo}'>{$vo}年</option>
+                            {/volist}
 						</select>
-						<select name="p_month" datatype="n" nullmsg="请选择月份！" class="select02">
+						<select name="month" datatype="n" nullmsg="请选择月份！" class="select02">
 							<option value=''>请选择月份</option>
+							<option value='1'>1月份</option>
+							<option value='2'>2月份</option>
+							<option value='3'>3月份</option>
+							<option value='4'>4月份</option>
+							<option value='5'>5月份</option>
+							<option value='6'>6月份</option>
+							<option value='7'>7月份</option>
+							<option value='8'>8月份</option>
+							<option value='9'>9月份</option>
+							<option value='10'>10月份</option>
+							<option value='11'>11月份</option>
+							<option value='12'>12月份</option>
 						</select>
 					</td>
 				</tr>
@@ -52,26 +73,16 @@
 				<tr>
 					<th>行驶里程：</th>
 					<td>
-                        <input name="p_kilometre" type="text" id="p_kilometre" size="15" />
+                        <input name="kilometre" type="text" size="15" />
 						<span class="gray">(万公里)</span>
                     </td>
-				</tr>
-
-				<tr>
-					<th>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</th>
-					<td><input name="p_contact_tel" type="text" size="30" class="inp01" value="" datatype="m" nullmsg="请填写手机号！"/></td>
-				</tr>
-
-				<tr>
-					<th>验&nbsp;&nbsp;证&nbsp;&nbsp;码：</th>
-					<td colspan="5"><input name="authcode" id="cftcode"  type="text"  class="inp02" datatype="s" ajaxurl="/simcms/index.php?m=ajax&ajax=1" nullmsg="请输入验证码！" errormsg="请输入正确的验证码！"/> <img src="/simcms/include/kcaptcha/" width="70" height="30" onclick="this.src='/simcms/include/kcaptcha/?'+Math.random();" title="点击刷新验证码" style="cursor:pointer" id="checkcode" align="absmiddle"></td>
 				</tr>
 
 				<tr>
 					<td></td>
 					<td>
                         <input type="submit" value="立刻发布" class="sell_but02">
-						<input type="hidden" name="action" value="sellcar">
+
                     </td>
 				</tr>
 			</table>
@@ -91,13 +102,15 @@
                         <th>行驶里程</th>
                         <th>评估价</th>
                     </tr>
+                    {volist name="assessment_list" id="vo"}
 					<tr>
-					    <td align="center">别克 凯越 2013 款 1.5L 手动 尊享型</td>
-					    <td align="center">2009年1月</td>
+					    <td align="center">{$vo.full_name}</td>
+					    <td align="center">{$vo.year}年{$vo.month}月</td>
 
-					    <td align="center">15.00万公里</td>
-					    <td align="center" class="red">4.50万元</td>
+					    <td align="center">{$vo.kilometre|format="%.2f"}万公里</td>
+					    <td align="center" class="red">{$vo.assessment_price|format="%.2f"}万元</td>
 					</tr>
+                    {/volist}
 				</table>
 			</div>
 		</div>
