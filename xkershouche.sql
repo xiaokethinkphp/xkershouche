@@ -11,7 +11,7 @@
  Target Server Version : 50721
  File Encoding         : 65001
 
- Date: 08/07/2018 15:44:59
+ Date: 19/07/2018 17:55:16
 */
 
 SET NAMES utf8mb4;
@@ -35,9 +35,36 @@ CREATE TABLE `xk_admin`  (
 -- ----------------------------
 -- Records of xk_admin
 -- ----------------------------
-INSERT INTO `xk_admin` VALUES (13, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 1530887081, '::1', 2);
+INSERT INTO `xk_admin` VALUES (13, 'admin', 'e10adc3949ba59abbe56e057f20f883e', 1531963757, '::1', 2);
 INSERT INTO `xk_admin` VALUES (14, '大白', 'e10adc3949ba59abbe56e057f20f883e', 1530886908, '::1', 1);
 INSERT INTO `xk_admin` VALUES (16, '小红', 'e10adc3949ba59abbe56e057f20f883e', 1530672236, '::1', 0);
+
+-- ----------------------------
+-- Table structure for xk_assessment
+-- ----------------------------
+DROP TABLE IF EXISTS `xk_assessment`;
+CREATE TABLE `xk_assessment`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `brand_level1` int(255) NULL DEFAULT NULL,
+  `brand_level2` int(255) NULL DEFAULT NULL,
+  `brand_level3` int(255) NULL DEFAULT NULL,
+  `carmodel` int(255) NULL DEFAULT NULL,
+  `full_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `kilometre` int(255) NULL DEFAULT NULL,
+  `year` int(255) NULL DEFAULT NULL,
+  `month` int(255) NULL DEFAULT NULL,
+  `addtime` int(11) NULL DEFAULT NULL,
+  `assessment_price` int(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of xk_assessment
+-- ----------------------------
+INSERT INTO `xk_assessment` VALUES (1, 13, 50, 55, 8, '宝马 华晨宝马 宝马3系 2013 118i 运动版', 10, 2009, 6, 1531443500, 21);
+INSERT INTO `xk_assessment` VALUES (2, 13, 50, 55, 8, '宝马 华晨宝马 宝马3系 2013 118i 运动版', 10, 2009, 6, 1531443599, 21);
+INSERT INTO `xk_assessment` VALUES (3, 13, 50, 55, 8, '宝马 华晨宝马 宝马3系 2013 118i 运动版', 50, 2012, 11, 1531443558, 22);
+INSERT INTO `xk_assessment` VALUES (4, 13, 50, 55, 8, '宝马 华晨宝马 宝马3系 2013 118i 运动版', 20, 2017, 2, 1531921759, 29);
 
 -- ----------------------------
 -- Table structure for xk_auth_group
@@ -255,14 +282,14 @@ CREATE TABLE `xk_cars`  (
 -- ----------------------------
 -- Records of xk_cars
 -- ----------------------------
-INSERT INTO `xk_cars` VALUES (17, 110000, 110100, 110101, 13, 50, 55, 8, 1, 16.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
-INSERT INTO `xk_cars` VALUES (18, 120000, 120100, 120101, 13, 50, 55, 8, 1, 12.80, 13.00, 1, '黑色', '3.5L', '手动', '1528300800', 12, '国产', '国一', '1529942400', '1528300800', 1529119637, 2, 1, '昨天买的今天卖', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
-INSERT INTO `xk_cars` VALUES (19, 220000, 220100, 220103, 13, 51, 58, 9, 1, 0.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1529477528, 2, 12, '', '宝马 进口宝马 宝马1系（进口） 2015款 118i 领先型', 0);
-INSERT INTO `xk_cars` VALUES (20, 360000, 360200, 360202, 15, 60, 62, 13, 1, 0.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1529479626, 2, 12, '11111111111', '奥迪 一汽大众奥迪 奥迪A3 2018款 TFSI 时尚型', 0);
-INSERT INTO `xk_cars` VALUES (21, 110000, 110100, 110101, 13, 50, 55, 8, 1, 16.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
-INSERT INTO `xk_cars` VALUES (22, 110000, 110100, 110101, 13, 50, 55, 8, 1, 16.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
-INSERT INTO `xk_cars` VALUES (23, 110000, 110100, 110101, 13, 50, 55, 8, 1, 16.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
-INSERT INTO `xk_cars` VALUES (24, 110000, 110100, 110101, 13, 50, 55, 8, 1, 16.00, 0.00, 0, '白色', '1.0L', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
+INSERT INTO `xk_cars` VALUES (17, 110000, 110100, 110101, 13, 50, 55, 8, 2, 16.00, 30.00, 0, '白色', '1.0', '手动', '1227782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
+INSERT INTO `xk_cars` VALUES (18, 120000, 120100, 120101, 13, 50, 55, 8, 2, 12.80, 13.00, 1, '黑色', '3.5', '手动', '1528300800', 12, '国产', '国一', '1529942400', '1528300800', 1529119637, 2, 1, '昨天买的今天卖', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
+INSERT INTO `xk_cars` VALUES (19, 220000, 220100, 220103, 13, 51, 58, 9, 2, 0.00, 0.00, 0, '白色', '1.2', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1529477528, 2, 12, '', '宝马 进口宝马 宝马1系（进口） 2015款 118i 领先型', 0);
+INSERT INTO `xk_cars` VALUES (20, 360000, 360200, 360202, 15, 60, 62, 13, 2, 0.00, 0.00, 0, '白色', '1.0', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1529479626, 2, 12, '11111111111', '奥迪 一汽大众奥迪 奥迪A3 2018款 TFSI 时尚型', 0);
+INSERT INTO `xk_cars` VALUES (21, 110000, 110100, 110101, 13, 50, 55, 8, 1, 150.00, 35.00, 0, '白色', '1.0', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
+INSERT INTO `xk_cars` VALUES (22, 110000, 110100, 110101, 13, 50, 55, 8, 1, 16.00, 38.00, 0, '白色', '1.0', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
+INSERT INTO `xk_cars` VALUES (23, 110000, 110100, 110101, 13, 50, 55, 8, 1, 16.00, 29.00, 0, '白色', '1.0', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
+INSERT INTO `xk_cars` VALUES (24, 110000, 110100, 110101, 13, 50, 55, 8, 1, 16.00, 33.00, 0, '白色', '1.0', '手动', '1527782400', 0, '国产', '国一', '1527782400', '1527782400', 1528857195, 1, 12, '', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 0);
 
 -- ----------------------------
 -- Table structure for xk_cars_selfattribute
@@ -486,15 +513,17 @@ CREATE TABLE `xk_news`  (
   `pid` int(11) NULL DEFAULT NULL,
   `clicks` int(255) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of xk_news
 -- ----------------------------
-INSERT INTO `xk_news` VALUES (1, '三菱新款帕杰罗7月1日开卖 外观微调/配置升级', '<p style=\"text-indent: 2em;\">帕杰罗是三菱旗下一款中大型SUV，目前以进口的方式引入国内销售。网上车市从三菱汽车官方获悉，2019款帕杰罗将在7月1日正式上市。新车作为年度改款车型，仅在前脸造型做出了调整，并增加了部分内部配置，动力方面仍搭载3.0L V6自然吸气发动机。</p><p style=\"text-align:center\"><img src=\"/xkershouche/uploads/news/20180625/1529926133116973.jpeg\" title=\"1529926133116973.jpeg\" alt=\"1.jpeg\"/></p><p style=\"text-align: center;\"><img src=\"/xkershouche/uploads/news/20180625/1529927213636784.jpeg\" title=\"1529927213636784.jpeg\" alt=\"2.jpeg\"/></p><p style=\"text-indent: 2em;\">2019款帕杰罗针对前脸造型进行了小幅调整，前格栅内部采用三横幅设计（现款为双幅式），并且两侧银色镀铬装饰面积加大，与头灯组相连，引擎盖前部配有“PAJERO”金色标识。车身侧面配备了集成转向灯的外后视镜，新车尾部预计与现款保持一致，竖置尾灯配以外挂式备胎设计，彰显硬派风格。</p><p style=\"text-indent: 2em; text-align: center;\"><img src=\"/xkershouche/uploads/news/20180625/1529927263616731.jpeg\" title=\"1529927263616731.jpeg\" alt=\"3.jpeg\"/></p><p style=\"text-indent: 2em;\">内饰方面，2019款帕杰罗预计与现款保持一致，采用2+3+2的7座布局，装备四辐式多功能方向盘、双炮筒式仪表以及9英寸中控屏，该屏幕集成北斗+GPS双模导航，并支持手机互联功能。空调出风口位于屏幕两侧，双圆形控制旋钮位于屏幕下方。</p><p style=\"text-indent: 2em; text-align: center;\"><img src=\"/xkershouche/uploads/news/20180625/1529927345405961.jpeg\" title=\"1529927345405961.jpeg\" alt=\"4.jpeg\"/></p><p style=\"text-indent: 2em;\">2019款帕杰罗将搭载3.0L V6 SOHC发动机，最大功率128kW，峰值扭矩255Nm。传动系统，新车匹配5速手自一体变速箱，配备了第二代超选四轮驱动系统，并采用承载式车身。</p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p>', '小可老师', NULL, NULL, 7, 1);
+INSERT INTO `xk_news` VALUES (1, '1三菱新款帕杰罗7月1日开卖 外观微调/配置升级', '<p style=\"text-indent: 2em;\">帕杰罗是三菱旗下一款中大型SUV，目前以进口的方式引入国内销售。网上车市从三菱汽车官方获悉，2019款帕杰罗将在7月1日正式上市。新车作为年度改款车型，仅在前脸造型做出了调整，并增加了部分内部配置，动力方面仍搭载3.0L V6自然吸气发动机。</p><p style=\"text-align:center\"><img src=\"/xkershouche/uploads/news/20180625/1529926133116973.jpeg\" title=\"1529926133116973.jpeg\" alt=\"1.jpeg\"/></p><p style=\"text-align: center;\"><img src=\"/xkershouche/uploads/news/20180625/1529927213636784.jpeg\" title=\"1529927213636784.jpeg\" alt=\"2.jpeg\"/></p><p style=\"text-indent: 2em;\">2019款帕杰罗针对前脸造型进行了小幅调整，前格栅内部采用三横幅设计（现款为双幅式），并且两侧银色镀铬装饰面积加大，与头灯组相连，引擎盖前部配有“PAJERO”金色标识。车身侧面配备了集成转向灯的外后视镜，新车尾部预计与现款保持一致，竖置尾灯配以外挂式备胎设计，彰显硬派风格。</p><p style=\"text-indent: 2em; text-align: center;\"><img src=\"/xkershouche/uploads/news/20180625/1529927263616731.jpeg\" title=\"1529927263616731.jpeg\" alt=\"3.jpeg\"/></p><p style=\"text-indent: 2em;\">内饰方面，2019款帕杰罗预计与现款保持一致，采用2+3+2的7座布局，装备四辐式多功能方向盘、双炮筒式仪表以及9英寸中控屏，该屏幕集成北斗+GPS双模导航，并支持手机互联功能。空调出风口位于屏幕两侧，双圆形控制旋钮位于屏幕下方。</p><p style=\"text-indent: 2em; text-align: center;\"><img src=\"/xkershouche/uploads/news/20180625/1529927345405961.jpeg\" title=\"1529927345405961.jpeg\" alt=\"4.jpeg\"/></p><p style=\"text-indent: 2em;\">2019款帕杰罗将搭载3.0L V6 SOHC发动机，最大功率128kW，峰值扭矩255Nm。传动系统，新车匹配5速手自一体变速箱，配备了第二代超选四轮驱动系统，并采用承载式车身。</p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p>', '小可老师', NULL, NULL, 7, 2);
 INSERT INTO `xk_news` VALUES (2, '三菱新款帕杰罗7月1日开卖 外观微调/配置升级111', '<p style=\"text-indent: 2em;\"><strong>帕杰罗是三菱旗下一款中大型SUV，目前以进口的方式引入国内销售。网上车市从三菱汽车官方获悉，2019款帕杰罗将在7月1日正式上市。新车作为年度改款车型，仅在前脸造型做出了调整，并增加了部分内部配置，动力方面仍搭载3.0L V6自然吸气发动机。</strong></p><p style=\"text-align:center\"><img src=\"/xkershouche/uploads/news/20180625/1529926133116973.jpeg\" title=\"1529926133116973.jpeg\" alt=\"1.jpeg\"/></p><p style=\"text-align: center;\"><img src=\"/xkershouche/uploads/news/20180625/1529927213636784.jpeg\" title=\"1529927213636784.jpeg\" alt=\"2.jpeg\"/></p><p style=\"text-indent: 2em;\">2019款帕杰罗针对前脸造型进行了小幅调整，前格栅内部采用三横幅设计（现款为双幅式），并且两侧银色镀铬装饰面积加大，与头灯组相连，引擎盖前部配有“PAJERO”金色标识。车身侧面配备了集成转向灯的外后视镜，新车尾部预计与现款保持一致，竖置尾灯配以外挂式备胎设计，彰显硬派风格。</p><p style=\"text-indent: 2em; text-align: center;\"><img src=\"/xkershouche/uploads/news/20180625/1529927263616731.jpeg\" title=\"1529927263616731.jpeg\" alt=\"3.jpeg\"/></p><p style=\"text-indent: 2em;\">内饰方面，2019款帕杰罗预计与现款保持一致，采用2+3+2的7座布局，装备四辐式多功能方向盘、双炮筒式仪表以及9英寸中控屏，该屏幕集成北斗+GPS双模导航，并支持手机互联功能。空调出风口位于屏幕两侧，双圆形控制旋钮位于屏幕下方。</p><p style=\"text-indent: 2em; text-align: center;\"><img src=\"/xkershouche/uploads/news/20180625/1529927345405961.jpeg\" title=\"1529927345405961.jpeg\" alt=\"4.jpeg\"/></p><p style=\"text-indent: 2em;\">2019款帕杰罗将搭载3.0L V6 SOHC发动机，最大功率128kW，峰值扭矩255Nm。传动系统，新车匹配5速手自一体变速箱，配备了第二代超选四轮驱动系统，并采用承载式车身。</p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p><p style=\"text-indent: 2em;\"><br/></p>', '小可老师111', NULL, NULL, 12, 0);
 INSERT INTO `xk_news` VALUES (3, '三菱新款帕杰罗7月1日开卖 外观微调/配置升级', '<p style=\"text-indent: 2em;\">帕杰罗是三菱旗下一款中大型SUV，目前以进口的方式引入国内销售。网上车市从三菱汽车官方获悉，2019款帕杰罗将在7月1日正式上市。新车作为年度改款车型，仅在前脸造型做出了调整，并增加了部分内部配置，动力方面仍搭载3.0L V6自然吸气发动机。</p><p style=\"text-indent: 2em;\"><img src=\"/xkershouche/uploads/news/20180625/1529927686894458.jpeg\" title=\"1529927686894458.jpeg\" alt=\"1.jpeg\"/></p>', 'xiaoke', NULL, NULL, 3, 21);
 INSERT INTO `xk_news` VALUES (4, '帕杰罗是三菱旗下一款中大型SUV，目前以进口的方式引入国内销售。网上车市从三菱汽车官方获悉，2019款帕杰罗将在7月1日正式上市。新车作为年度改款车型，仅在前脸造型做出了调整，并增加了部分内部配置，动力方面仍搭载3.0L V6自然吸气发动机。', '<p style=\"text-indent: 2em;\">帕杰罗是三菱旗下一款中大型SUV，目前以进口的方式引入国内销售。网上车市从三菱汽车官方获悉，2019款帕杰罗将在7月1日正式上市。新车作为年度改款车型，仅在前脸造型做出了调整，并增加了部分内部配置，动力方面仍搭载3.0L V6自然吸气发动机。</p><p style=\"text-indent: 2em;\"><img src=\"/xkershouche/uploads/news/20180625/1529927733124559.jpeg\" title=\"1529927733124559.jpeg\" alt=\"1.jpeg\"/></p>', 'xiaoke', 1529927735, 1529927735, 3, 0);
+INSERT INTO `xk_news` VALUES (5, '5帕杰罗是三菱旗下一款中大型SUV，目前以进口的方式引入国内销售。网上车市从三菱汽车官方获悉，2019款帕杰罗将在7月1日正式上市。新车作为年度改款车型，仅在前脸造型做出了调整，并增加了部分内部配置，动力方面仍搭载3.0L V6自然吸气发动机。', '<p style=\"text-indent: 2em;\">帕杰罗是三菱旗下一款中大型SUV，目前以进口的方式引入国内销售。网上车市从三菱汽车官方获悉，2019款帕杰罗将在7月1日正式上市。新车作为年度改款车型，仅在前脸造型做出了调整，并增加了部分内部配置，动力方面仍搭载3.0L V6自然吸气发动机。</p><p style=\"text-indent: 2em;\"><img src=\"/xkershouche/uploads/news/20180625/1529927733124559.jpeg\" title=\"1529927733124559.jpeg\" alt=\"1.jpeg\"/></p>', 'xiaoke', 1529927735, 1529927735, 3, 0);
+INSERT INTO `xk_news` VALUES (6, '6帕杰罗是三菱旗下一款中大型SUV，目前以进口的方式引入国内销售。网上车市从三菱汽车官方获悉，2019款帕杰罗将在7月1日正式上市。新车作为年度改款车型，仅在前脸造型做出了调整，并增加了部分内部配置，动力方面仍搭载3.0L V6自然吸气发动机。', '<p style=\"text-indent: 2em;\">帕杰罗是三菱旗下一款中大型SUV，目前以进口的方式引入国内销售。网上车市从三菱汽车官方获悉，2019款帕杰罗将在7月1日正式上市。新车作为年度改款车型，仅在前脸造型做出了调整，并增加了部分内部配置，动力方面仍搭载3.0L V6自然吸气发动机。</p><p style=\"text-indent: 2em;\"><img src=\"/xkershouche/uploads/news/20180625/1529927733124559.jpeg\" title=\"1529927733124559.jpeg\" alt=\"1.jpeg\"/></p>', 'xiaoke', 1529927735, 1529927735, 3, 0);
 
 -- ----------------------------
 -- Table structure for xk_newsfenlei
@@ -547,11 +576,11 @@ CREATE TABLE `xk_rentcars`  (
 -- ----------------------------
 -- Records of xk_rentcars
 -- ----------------------------
-INSERT INTO `xk_rentcars` VALUES (3, 120000, 120100, 120101, '11111111111', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 1, 2, '4444', 12, 1529566335, -1, 'rentcars/20180621/73fecf709b7eb7a3a437bfd0f8a7c762.jpg');
-INSERT INTO `xk_rentcars` VALUES (4, 150000, 150100, 150101, '奥迪双钻，我的伙伴', '奥迪 一汽大众奥迪 奥迪A3 2018款 TFSI 时尚型', 120, 3000, '奥迪双钻，我的伙伴', 1, 1529638053, -1, 'rentcars/20180622/04424a8ed9810b5d8f6816d66153c4dd.jpg');
-INSERT INTO `xk_rentcars` VALUES (5, 120000, 120200, 120221, '宝马宝马', '宝马 进口宝马 宝马1系（进口） 2015款 118i 领先型', 200, 5000, '宝马宝马', 1, 1529638125, 1, 'rentcars/20180622/553b2db8c1519b19b0e092a4ea230e64.jpg');
-INSERT INTO `xk_rentcars` VALUES (6, 130000, 0, NULL, '大奔驰开着就是爽', '奔驰 北京奔驰 奔驰C级 2018款 C 200 运动版', 300, 8000, '大奔驰开着就是爽', 1, 1529638293, -1, 'rentcars/20180622/06cae52aff9a21e32bbff01c330e97f9.jpg');
-INSERT INTO `xk_rentcars` VALUES (7, 210000, 210300, 210302, '宝马租车一天100', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 100, 5000, '宝马租车一天100', 12, 1529719009, -1, 'rentcars/20180623/07c8db44e878ebc18f0b427347ef09ae.jpg');
+INSERT INTO `xk_rentcars` VALUES (3, 120000, 120100, 120101, '11111111111', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 1, 2, '4444', 12, 1529566335, 1, 'rentcars/20180621/73fecf709b7eb7a3a437bfd0f8a7c762.jpg');
+INSERT INTO `xk_rentcars` VALUES (4, 150000, 150100, 150101, '奥迪双钻，我的伙伴', '奥迪 一汽大众奥迪 奥迪A3 2018款 TFSI 时尚型', 120, 3000, '奥迪双钻，我的伙伴', 1, 1529638053, 1, 'rentcars/20180622/04424a8ed9810b5d8f6816d66153c4dd.jpg');
+INSERT INTO `xk_rentcars` VALUES (5, 120000, 120200, 120221, '宝马宝马', '宝马 进口宝马 宝马1系（进口） 2015款 118i 领先型', 200, 5000, '宝马宝马', 12, 1529638125, 1, 'rentcars/20180622/553b2db8c1519b19b0e092a4ea230e64.jpg');
+INSERT INTO `xk_rentcars` VALUES (6, 120000, 120200, 120221, '大奔驰开着就是爽', '奔驰 北京奔驰 奔驰C级 2018款 C 200 运动版', 300, 8000, '大奔驰开着就是爽', 1, 1529638293, 1, 'rentcars/20180622/06cae52aff9a21e32bbff01c330e97f9.jpg');
+INSERT INTO `xk_rentcars` VALUES (7, 210000, 210300, 210302, '宝马租车一天100', '宝马 华晨宝马 宝马3系 2013款 118i 运动版', 100, 5000, '宝马租车一天100', 12, 1529719009, 1, 'rentcars/20180623/07c8db44e878ebc18f0b427347ef09ae.jpg');
 
 -- ----------------------------
 -- Table structure for xk_selfattribute
