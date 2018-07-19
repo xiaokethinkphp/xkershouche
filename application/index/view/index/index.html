@@ -1,6 +1,19 @@
 {extend name="base" /}
 {block name="header"}
 {__block__}
+<script src="__ADMIN__/js/jquery.cxselect.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#brands").cxSelect({
+            url:"{:url('index/assessment/brandJsonGet')}",
+            selects:['brand1','brand2','brand3','brand4'],
+            jsonName:'name',
+            jsonValue:'id',
+            jsonSub:'children',
+        })
+
+    })
+</script>
 <script language="JavaScript">
 $(function() {
     //品牌选择
@@ -44,7 +57,7 @@ $(".carform").Validform({
 //热门车源
 $("#hotcar1").load("/simcms/index.php?m=ajax&ajax=1&cartype=indexhot");
 //首页推荐新车
-$("#hotcar").load("/simcms/index.php?m=ajax&ajax=1&cartype=indexnew");
+// $("#hotcar").load("/simcms/index.php?m=ajax&ajax=1&cartype=indexnew");
 //首页推荐新车旧卖
 //$("#hotcar").load("/simcms/index.php?m=ajax&ajax=1&cartype=recommend");
 
@@ -171,368 +184,228 @@ $(function(){
 {block name="main"}
 <div class="fullSlide">
     <div class="leftsearch">
-      <div class="leftsearch_tab">
-        <ul class="clearfix">
-          <!--修改处-->
-          <li class="here">快速选车</li>
-          <li>快速评估</li>
-        </ul>
-      </div>
-      <div class="leftsearch_tab_box">
-        <div>
-          <div class="leftsearchbox" >
-            <div class="rightad" id="allcarlist">
-              <div class="triangle1" style="top:74px;"></div>
-              <div class="carlist_left" >
-                <h2>全部车辆品牌</h2>
-                <ul class="carlist">
-                  <li class="carlist_li"><span>A</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_1" >奥迪</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_4" >阿斯顿马丁</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_2" >奥克斯</a> </li>
-                  <li class="carlist_li"><span>B</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_7" >宝马</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_16" >别克</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_11" >本田</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_6" >奔驰</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_10" >比亚迪</a> </li>
-                  <li class="carlist_li"><span>C</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_28" >长安商用</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_27" >长安轿车</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_25" >长城</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_26" >昌河</a> </li>
-                  <li class="carlist_li"><span>D</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_29" >大众</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_31" >东南</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_39" >东风小康</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_35" >东风风行</a> </li>
-                  <li class="carlist_li"><span>F</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_41" >丰田</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_42" >福特</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_43" >菲亚特</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_47" >福田</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_46" >法拉利</a> </li>
-                  <li class="carlist_li"><span>H</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_59" >海马</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_73" >哈弗</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_58" >哈飞</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_60" >华普</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_66" >华泰</a> </li>
-                  <li class="carlist_li"><span>J</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_75" >吉利汽车</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_76" >江淮</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_74" >Jeep</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_77" >江铃</a> </li>
-                  <li class="carlist_li"><span>K</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_87" >凯迪拉克</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_88" >克莱斯勒</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_89" >开瑞</a> </li>
-                  <li class="carlist_li"><span>L</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_101" >路虎</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_93" >铃木</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_99" >雷克萨斯</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_95" >力帆</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_102" >雷诺</a> </li>
-                </ul>
-                <ul class="carlist">
-                  <li class="carlist_li"><span>M</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_108" >马自达</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_111" >MINI</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_110" >MG</a> </li>
-                  <li class="carlist_li"><span>O</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_118" >欧宝</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_117" >讴歌</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_119" >欧朗</a> </li>
-                  <li class="carlist_li"><span>Q</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_123" >起亚</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_124" >奇瑞</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_126" >启辰</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_125" >庆玲</a> </li>
-                  <li class="carlist_li"><span>R</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_127" >日产</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_128" >荣威</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_129" >瑞麟</a> </li>
-                  <li class="carlist_li"><span>S</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_130" >斯柯达</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_131" >三菱</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_137" >斯巴鲁</a> </li>
-                  <li class="carlist_li"><span>W</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_152" >五菱</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_150" >沃尔沃</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_154" >威麟</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_153" >五十铃</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_151" >万丰</a> </li>
-                  <li class="carlist_li"><span>X</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_157" >现代</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_158" >雪佛兰</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_156" >雪铁龙</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_161" >新凯</a> </li>
-                  <li class="carlist_li"><span>Y</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_166" >一汽</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_168" >英菲尼迪</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_164" >依维柯</a> </li>
-                  <li class="carlist_li"><span>Z</span><a class="carlist_a" href="/simcms/index.php?m=search&c=b_176" >中华</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_179" >众泰</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_176" >中兴</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_180" >中欧</a> <a class="carlist_a" href="/simcms/index.php?m=search&c=b_178" >中顺</a> </li>
-                </ul>
-              </div>
-            </div>
-            <div class="lefttitle"> <span class="lefttitle_icon" id="icon_01"></span> 按品牌 </div>
-            <div class="triangle"></div>
-            <div class="clearfix""> <a href="/simcms/index.php?m=search&c=b_1" >奥迪</a><a href="/simcms/index.php?m=search&c=b_11" >本田</a><a href="/simcms/index.php?m=search&c=b_16" >别克</a><a href="/simcms/index.php?m=search&c=b_29" >大众</a><a href="/simcms/index.php?m=search&c=b_41" >丰田</a><a href="/simcms/index.php?m=search&c=b_42" >福特</a><a href="/simcms/index.php?m=search&c=b_157" >现代</a><a href="/simcms/index.php?m=search&c=b_158" >雪佛兰</a> <a href="/simcms/index.php?m=search" class="more">更多<i></i></a> </div>
-          </div>
-          <div class="leftsearchbox">
-            <div class="rightad" id="ad_01">
-              <div class="triangle1" style="top:144px;"></div>
-              <a class="rightad_center" href="#"> <img class="ad_img" src="__INDEX__/default/image/ad0.jpg" width="562" height="422" /> </a>
-              <div class="rightad_right"> <a class="rightad_a" href="#"> <img class="ad_img" src="__INDEX__/default/image/ad1.jpg" width="300" height="211" /> </a> <a class="rightad_a" href="#"> <img class="ad_img" src="__INDEX__/default/image/ad2.jpg" width="300" height="211" /> </a> </div>
-            </div>
-            <div class="lefttitle"> <span class="lefttitle_icon" id="icon_02"></span> 按价格 </div>
-            <div class="triangle"></div>
-            <div class="clearfix"><a href="/simcms/index.php?m=search&c=p_1" >3万以下</a><a href="/simcms/index.php?m=search&c=p_2" >3-5万</a><a href="/simcms/index.php?m=search&c=p_3" >5-10万</a><a href="/simcms/index.php?m=search&c=p_4" >10-20万</a><a href="/simcms/index.php?m=search&c=p_5" >20-30万</a><a href="/simcms/index.php?m=search&c=p_6" >30-40万</a><a href="/simcms/index.php?m=search&c=p_7" >40万以上</a></div>
-          </div>
-          <div class="leftsearchbox">
-            <div class="rightad" id="ad_02">
-              <div class="triangle1" style="top:225px;"></div>
-              <a class="rightad_center" href="#"> <img class="ad_img" src="__INDEX__/default/image/ad5.jpg" width="562" height="422" /> </a>
-              <div class="rightad_right"> <a class="rightad_a" href="#"> <img class="ad_img" src="__INDEX__/default/image/ad3.jpg" width="300" height="211" /> </a> <a class="rightad_a" href="#"> <img class="ad_img" src="__INDEX__/default/image/ad4.jpg" width="300" height="211" /> </a> </div>
-            </div>
-            <div class="lefttitle"> <span class="lefttitle_icon" id="icon_03"></span> 按车型 </div>
-            <div class="triangle"></div>
-            <div class="clearfix"><a href="/simcms/index.php?m=search&c=m_41" >小型车</a><a href="/simcms/index.php?m=search&c=m_1" >微型车</a><a href="/simcms/index.php?m=search&c=m_3" >紧凑型车</a><a href="/simcms/index.php?m=search&c=m_4" >中型车</a><a href="/simcms/index.php?m=search&c=m_5" >中大型车</a><a href="/simcms/index.php?m=search&c=m_6" >豪华车</a><a href="/simcms/index.php?m=search&c=m_7" >MPV</a><a href="/simcms/index.php?m=search&c=m_8" >SUV</a><a href="/simcms/index.php?m=search&c=m_9" >跑车</a><a href="/simcms/index.php?m=search&c=m_38" >皮卡</a></div>
-          </div>
-          <div class="leftsearchbox" style="height:62px;">
-            <div class="rightad" id="ad_03">
-              <div class="triangle1" style="top:295px;"></div>
-              <a class="rightad_center" href="#"> <img class="ad_img" src="__INDEX__/default/image/ad6.jpg" width="562" height="422" /> </a>
-              <div class="rightad_right"> <a class="rightad_a" href="#"> <img class="ad_img" src="__INDEX__/default/image/ad2.jpg" width="300" height="211" /> </a> <a class="rightad_a" href="#"> <img class="ad_img" src="__INDEX__/default/image/ad3.jpg" width="300" height="211" /> </a> </div>
-            </div>
-            <div class="lefttitle"> <span class="lefttitle_icon" id="icon_04"></span> 按车龄 </div>
-            <div class="triangle"></div>
-            <div class="clearfix"><a href="/simcms/index.php?m=search&c=a_1" >1年以内</a><a href="/simcms/index.php?m=search&c=a_2" >1-3年</a><a href="/simcms/index.php?m=search&c=a_3" >3-5年</a><a href="/simcms/index.php?m=search&c=a_4" >5年以上</a></div>
-          </div>
-          <div class="other"> <i></i>
-            <p class="tel">400-0000-000</p>
-            <p class="info">8:30-17:00（工作时间）</p>
-          </div>
+        <div class="leftsearch_tab">
+            <ul class="clearfix">
+              <!--修改处-->
+              <li class="here">快速选车</li>
+              <li>快速评估</li>
+            </ul>
         </div>
-        <div class="hide pb20">
-          <form name="carform" class="carform" method="post" action="/simcms/index.php?m=assesscar">
-            <table cellspacing="0" cellpadding="0" width="100%"  class="sell_table" id="quickassess">
-              <tr>
-                <th> 品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：</th>
-                <td colspan="3"><select name="p_brand" id="brand" datatype="n" nullmsg="请选择品牌！" class="select01">
-                    <option value=''>请选择品牌</option>
-<option value='1' >A 奥迪</option>
-<option value='2' >A 奥克斯</option>
-<option value='3' >A 阿尔法·罗密欧</option>
-<option value='4' >A 阿斯顿·马丁</option>
-<option value='6' >B 奔驰</option>
-<option value='7' >B 宝马</option>
-<option value='8' >B 标致</option>
-<option value='9' >B 北汽制造</option>
-<option value='10' >B 比亚迪</option>
-<option value='11' >B 本田</option>
-<option value='12' >B 奔腾</option>
-<option value='13' >B 宝龙</option>
-<option value='14' >B 保时捷</option>
-<option value='15' >B 宾利</option>
-<option value='16' >B 别克</option>
-<option value='17' >B 布加迪</option>
-<option value='18' >B 宝骏</option>
-<option value='19' >B 北京汽车</option>
-<option value='20' >B 北汽威旺</option>
-<option value='21' >B 巴博斯</option>
-<option value='22' >B 保斐利</option>
-<option value='23' >B 北汽幻速</option>
-<option value='24' >B 北汽新能源</option>
-<option value='25' >C 长城</option>
-<option value='26' >C 昌河</option>
-<option value='27' >C 长安轿车</option>
-<option value='28' >C 长安商用</option>
-<option value='29' >D 大众</option>
-<option value='30' >D 东风</option>
-<option value='31' >D 东南</option>
-<option value='32' >D 大迪</option>
-<option value='33' >D 大宇</option>
-<option value='34' >D 道奇</option>
-<option value='35' >D 东风风行</option>
-<option value='36' >D 东风风神</option>
-<option value='37' >D DS</option>
-<option value='38' >D 东风风度</option>
-<option value='39' >D 东风小康</option>
-<option value='40' >D 东风御风</option>
-<option value='41' >F 丰田</option>
-<option value='42' >F 福特</option>
-<option value='43' >F 菲亚特</option>
-<option value='44' >F 富奇</option>
-<option value='45' >F 福迪</option>
-<option value='46' >F 法拉利</option>
-<option value='47' >F 福田</option>
-<option value='48' >F 福达</option>
-<option value='49' >F Faralli Mazzanti</option>
-<option value='50' >F 飞驰商务车</option>
-<option value='51' >F 福汽启腾</option>
-<option value='52' >G 广汽吉奥</option>
-<option value='53' >G GMC</option>
-<option value='54' >G 光冈</option>
-<option value='55' >G 广汽日野</option>
-<option value='56' >G 广汽</option>
-<option value='57' >G 观致汽车</option>
-<option value='58' >H 哈飞</option>
-<option value='59' >H 海马</option>
-<option value='60' >H 华普</option>
-<option value='61' >H 汇众</option>
-<option value='62' >H 黄海</option>
-<option value='63' >H 红旗</option>
-<option value='64' >H 航天圆通</option>
-<option value='65' >H 悍马</option>
-<option value='66' >H 华泰</option>
-<option value='67' >H 汉江</option>
-<option value='68' >H 黑豹</option>
-<option value='69' >H 华阳</option>
-<option value='70' >H 海马商用车</option>
-<option value='71' >H 海格</option>
-<option value='72' >H 恒天汽车</option>
-<option value='73' >H 哈弗</option>
-<option value='74' >J Jeep</option>
-<option value='75' >J 吉利汽车</option>
-<option value='76' >J 江淮</option>
-<option value='77' >J 江铃</option>
-<option value='78' >J 江南</option>
-<option value='79' >J 金杯</option>
-<option value='80' >J 金龙联合</option>
-<option value='81' >J 金程</option>
-<option value='82' >J 捷豹</option>
-<option value='83' >J 吉林江北</option>
-<option value='84' >J 九龙</option>
-<option value='85' >J 金旅客车</option>
-<option value='86' >K 克莱斯勒</option>
-<option value='87' >K 凯迪拉克</option>
-<option value='88' >K 科尼塞克</option>
-<option value='89' >K 开瑞</option>
-<option value='90' >K 卡尔森</option>
-<option value='91' >K KTM</option>
-<option value='92' >K 卡威</option>
-<option value='93' >L 铃木</option>
-<option value='94' >L 陆风</option>
-<option value='95' >L 力帆</option>
-<option value='96' >L 劳斯莱斯</option>
-<option value='97' >L 路特斯</option>
-<option value='98' >L 兰博基尼</option>
-<option value='99' >L 雷克萨斯</option>
-<option value='100' >L 林肯</option>
-<option value='101' >L 路虎</option>
-<option value='102' >L 雷诺</option>
-<option value='103' >L 罗孚</option>
-<option value='104' >L 莲花</option>
-<option value='105' >L 猎豹汽车</option>
-<option value='106' >L 理念</option>
-<option value='107' >L 蓝海房车</option>
-<option value='108' >M 马自达</option>
-<option value='109' >M 美亚</option>
-<option value='110' >M MG</option>
-<option value='111' >M MINI</option>
-<option value='112' >M 迈巴赫</option>
-<option value='113' >M 玛莎拉蒂</option>
-<option value='114' >M 迈凯伦</option>
-<option value='115' >M 摩根</option>
-<option value='116' >N 纳智捷</option>
-<option value='117' >O 讴歌</option>
-<option value='118' >O 欧宝</option>
-<option value='119' >O 欧朗</option>
-<option value='120' >P 旁蒂克</option>
-<option value='121' >P 帕加尼</option>
-<option value='122' >P 皮特比尔特卡车</option>
-<option value='123' >Q 起亚</option>
-<option value='124' >Q 奇瑞</option>
-<option value='125' >Q 庆铃</option>
-<option value='126' >Q 启辰</option>
-<option value='127' >R 日产</option>
-<option value='128' >R 荣威</option>
-<option value='129' >R 瑞麒</option>
-<option value='130' >S 斯柯达</option>
-<option value='131' >S 三菱</option>
-<option value='132' >S 双环</option>
-<option value='133' >S 顺旅</option>
-<option value='134' >s  smart</option>
-<option value='135' >S 双龙</option>
-<option value='136' >S 萨博</option>
-<option value='137' >S 斯巴鲁</option>
-<option value='138' >S 三星</option>
-<option value='139' >S 世爵</option>
-<option value='140' >S 上汽大通MAXUS</option>
-<option value='141' >S 陕汽通家</option>
-<option value='142' >S 绅宝</option>
-<option value='143' >S 山姆</option>
-<option value='144' >T 天马</option>
-<option value='145' >T 通田</option>
-<option value='146' >T 塔菲克</option>
-<option value='147' >T 腾势</option>
-<option value='148' >T 特斯拉</option>
-<option value='149' >T 泰卡特</option>
-<option value='150' >W 沃尔沃</option>
-<option value='151' >W 万丰</option>
-<option value='152' >W 五菱</option>
-<option value='153' >W 五十铃</option>
-<option value='154' >W 威麟</option>
-<option value='155' >W 威兹曼</option>
-<option value='156' >X 雪铁龙</option>
-<option value='157' >X 现代</option>
-<option value='158' >X 雪佛兰</option>
-<option value='159' >X 新雅途</option>
-<option value='160' >X 新大地</option>
-<option value='161' >X 新凯</option>
-<option value='162' >X 西雅特</option>
-<option value='163' >X 星客特</option>
-<option value='164' >Y 依维柯</option>
-<option value='165' >Y 仪征</option>
-<option value='166' >Y 一汽</option>
-<option value='167' >Y 永源</option>
-<option value='168' >Y 英菲尼迪</option>
-<option value='169' >Y 云豹</option>
-<option value='170' >Y 云雀</option>
-<option value='171' >Y 野马汽车</option>
-<option value='172' >Y 友谊客车</option>
-<option value='173' >Y 宇通</option>
-<option value='174' >Y 扬州亚星客车</option>
-<option value='175' >Z 中兴</option>
-<option value='176' >Z 中华</option>
-<option value='177' >Z 中客华北</option>
-<option value='178' >Z 中顺</option>
-<option value='179' >Z 众泰</option>
-<option value='180' >Z 中欧</option>
-<option value='181' >Z 中通客车</option>
-<option value='182' >Z 浙江卡尔森</option>
+        <div class="leftsearch_tab_box">
+            <div>
+                <div class="leftsearchbox" >
+                    <div class="rightad" id="allcarlist">
+                        <div class="triangle1" style="top:74px;"></div>
+                        <div class="carlist_left" >
+                            <h2>全部车辆品牌</h2>
+                            <ul class="carlist">
+                                {volist name="brand_list" id="vo"}
+                                <li class="carlist_li">
+                                    <span>{$key}</span>
+                                    {volist name="$vo" id="vo1" length='3'}
+                                    <a class="carlist_a" href="{:url('index/buycars/recondition',array('key'=>'brandlevel1','val'=>$vo1.id))}" >{$vo1.name}</a>
+                                    {/volist}
+                                </li>
+                                {/volist}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lefttitle">
+                        <span class="lefttitle_icon" id="icon_01"></span> 按品牌
+                    </div>
+                    <div class="triangle"></div>
+                        <div class="clearfix">
+                            {volist name="brand_select" id="vo" length='8'}
+                            <a href='{:url("index/buycars/recondition",array("key"=>"brandlevel1","val"=>$vo.id))}'>{$vo.name}</a>
+                            {/volist}
+                            <a href="{url('index/buycars/index')}" class="more">更多<i></i></a>
+                        </div>
+                    </div>
+                    <div class="leftsearchbox">
+                        <div class="rightad" id="ad_01">
+                            <div class="triangle1" style="top:144px;"></div>
+                            <a class="rightad_center" href="#">
+                                <img class="ad_img" src="__INDEX__/default/image/ad0.jpg" width="562" height="422" />
+                            </a>
+                            <div class="rightad_right">
+                                <a class="rightad_a" href="#">
+                                    <img class="ad_img" src="__INDEX__/default/image/ad1.jpg" width="300" height="211" />
+                                </a>
+                                <a class="rightad_a" href="#">
+                                    <img class="ad_img" src="__INDEX__/default/image/ad2.jpg" width="300" height="211" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="lefttitle">
+                            <span class="lefttitle_icon" id="icon_02"></span>按价格
+                        </div>
+                        <div class="triangle"></div>
+                        <div class="clearfix">
+                            <a href="{:url('index/buycars/recondition',array('key'=>'price','val'=>3))}" >3万以下</a>
+                            <a href="{:url('index/buycars/recondition',array('key'=>'price','val'=>5))}" >3-5万</a>
+                            <a href="{:url('index/buycars/recondition',array('key'=>'price','val'=>8))}" >5-8万</a>
+                            <a href="{:url('index/buycars/recondition',array('key'=>'price','val'=>12))}" >8-12万</a>
+                            <a href="{:url('index/buycars/recondition',array('key'=>'price','val'=>18))}" >12-18万</a>
+                            <a href="{:url('index/buycars/recondition',array('key'=>'price','val'=>24))}" >18-24万</a>
+                            <a href="{:url('index/buycars/recondition',array('key'=>'price','val'=>35))}" >24-35万</a>
+                            <a href="{:url('index/buycars/recondition',array('key'=>'price','val'=>50))}" >35-50万</a>
+                            <a href="{:url('index/buycars/recondition',array('key'=>'price','val'=>100))}" >50-100万</a>
+                            <a href="{:url('index/buycars/recondition',array('key'=>'price','val'=>999))}" >100万以上</a>
+                        </div>
+                    </div>
+                    <div class="leftsearchbox">
+                        <div class="rightad" id="ad_02">
+                            <div class="triangle1" style="top:225px;">
 
-                  </select></td>
-              </tr>
-              <tr>
-                <th> 车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;系：</th>
-                <td><select id="subbrand" name="p_subbrand" datatype="n" nullmsg="请选择车系！" class="select01">
-                    <option value="" selected>请选择车系</option>
-                  </select></td>
-              </tr>
-              <tr>
-                <th> 车&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</th>
-                <td><select id="subsubbrand" name="p_subsubbrand" datatype="n" nullmsg="请选择款式！" class="select01">
-                    <option value="" selected>请选择款式</option>
-                  </select></td>
-              </tr>
-              <tr>
-                <th>上牌日期：</th>
-                <td><select name="p_year" datatype="n" nullmsg="请选择年份！" class="select02">
-                    <option value=''>请选择年份</option>
-<option value='2003' >2003年</option>
-<option value='2004' >2004年</option>
-<option value='2005' >2005年</option>
-<option value='2006' >2006年</option>
-<option value='2007' >2007年</option>
-<option value='2008' >2008年</option>
-<option value='2009' >2009年</option>
-<option value='2010' >2010年</option>
-<option value='2011' >2011年</option>
-<option value='2012' >2012年</option>
-<option value='2013' >2013年</option>
-<option value='2014' >2014年</option>
+                            </div>
+                            <a class="rightad_center" href="#">
+                                <img class="ad_img" src="__INDEX__/default/image/ad5.jpg" width="562" height="422" />
+                            </a>
+                            <div class="rightad_right">
+                                <a class="rightad_a" href="#">
+                                    <img class="ad_img" src="__INDEX__/default/image/ad3.jpg" width="300" height="211" />
+                                </a>
+                                <a class="rightad_a" href="#">
+                                    <img class="ad_img" src="__INDEX__/default/image/ad4.jpg" width="300" height="211" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="lefttitle">
+                            <span class="lefttitle_icon" id="icon_03"></span>按车型
+                        </div>
+                        <div class="triangle">
 
-                  </select>
-                  <select name="p_month" datatype="n" nullmsg="请选择月份！" class="select02">
-                    <option value=''>请选择月份</option>
-<option value='01' >01月</option>
-<option value='02' >02月</option>
-<option value='03' >03月</option>
-<option value='04' >04月</option>
-<option value='05' >05月</option>
-<option value='06' >06月</option>
-<option value='07' >07月</option>
-<option value='08' >08月</option>
-<option value='09' >09月</option>
-<option value='10' >10月</option>
-<option value='11' >11月</option>
-<option value='12' >12月</option>
+                        </div>
+                        <div class="clearfix">
+                            {volist name="level" id="vo"}
+                            <a href="{:url('index/buycars/recondition',array('key'=>'level','val'=>$vo.id))}" >{$vo.name}</a>
+                            {/volist}
+                        </div>
+                    </div>
+                    <div class="leftsearchbox" style="height:62px;">
+                        <div class="rightad" id="ad_03">
+                            <div class="triangle1" style="top:295px;">
 
-                  </select></td>
-                </td>
-              </tr>
-              <tr>
-                <th>行驶里程：</th>
-                <td><input name="p_kilometre" type="text" id="p_kilometre" size="15" />
-                  <span class="gray">(万公里)</span></td>
-                </td>
-              </tr>
-              <tr>
-                <th>手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机：</th>
-                <td><input name="p_contact_tel" type="text" size="30" class="inp01" value="" datatype="m" nullmsg="请填写手机号！"/></td>
-              </tr>
-              <tr>
-                <th>验&nbsp;&nbsp;证&nbsp;&nbsp;码：</th>
-                <td colspan="5"><input name="authcode" id="cftcode" size="10"  type="text"  class="inp02" datatype="s" ajaxurl="/simcms/index.php?m=ajax&ajax=1" nullmsg="请输入验证码！" errormsg="请输入正确的验证码！"/>
-                  <img src="/simcms/include/kcaptcha/" width="70" height="30" onclick="this.src='/simcms/include/kcaptcha/?'+Math.random();" title="点击刷新验证码" style="cursor:pointer" id="checkcode" align="absmiddle"></td>
-              </tr>
-              <tr>
-                <th></th>
-                <td><input type="submit" value="立即评估" class="sell_but02">
-                  <input type="hidden" name="action" value="sellcar"></td>
-              </tr>
-            </table>
-          </form>
+                            </div>
+                            <a class="rightad_center" href="#">
+                                <img class="ad_img" src="__INDEX__/default/image/ad6.jpg" width="562" height="422" />
+                            </a>
+                            <div class="rightad_right">
+                                <a class="rightad_a" href="#">
+                                    <img class="ad_img" src="__INDEX__/default/image/ad2.jpg" width="300" height="211" />
+                                </a>
+                                <a class="rightad_a" href="#">
+                                    <img class="ad_img" src="__INDEX__/default/image/ad3.jpg" width="300" height="211" />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="lefttitle">
+                            <span class="lefttitle_icon" id="icon_04"></span>按车龄
+                        </div>
+                        <div class="triangle"></div>
+                        <div class="clearfix">
+                            <a href="{:url('index/buycars/recondition',array('key'=>'plate','val'=>1))}" >1年以内</a>
+                            <a href="{:url('index/buycars/recondition',array('key'=>'plate','val'=>3))}" >1-3年</a>
+                            <a href="{:url('index/buycars/recondition',array('key'=>'plate','val'=>5))}" >3-5年</a>
+                            <a href="{:url('index/buycars/recondition',array('key'=>'plate','val'=>999))}" >5年以上</a>
+                        </div>
+                    </div>
+                    <div class="other">
+                        <i></i>
+                        <p class="tel">400-0000-000</p>
+                        <p class="info">8:30-17:00（工作时间）</p>
+                    </div>
+                </div>
+                <div class="hide pb20">
+                    <form name="carform" class="carform" method="post" action="{:url('index/assessment/assesshanddle')}">
+                        <table cellspacing="0" cellpadding="0" width="100%"  class="sell_table" id="quickassess">
+                            <tr id="brands">
+            					<th> 品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;牌：</th>
+            					<td colspan="3">
+                                    <select name="brand_level1" class="select01 brand1">
+            							<option value=''>请选择母品牌</option>
+            						</select>
+                                    <select name="brand_level2" class="select01 brand2">
+            							<option value="" selected>请选择子车系</option>
+            						</select>
+
+                                    <select name="brand_level3" class="select01 brand3">
+            							<option value="" selected>请选择车品牌</option>
+            						</select>
+                                    <select name="carmodel" class="select01 brand4">
+            							<option value="" selected>请选择款式</option>
+            						</select>
+            					</td>
+            				</tr>
+
+            				<tr>
+            					<th>上牌日期：</th>
+            					<td>
+                                    <select name="year" datatype="n" nullmsg="请选择年份！" class="select02">
+            						    <option value=''>请选择年份</option>
+                                        {volist name="years" id="vo"}
+                                        <option value='{$vo}'>{$vo}年</option>
+                                        {/volist}
+            						</select>
+            						<select name="month" datatype="n" nullmsg="请选择月份！" class="select02">
+            							<option value=''>请选择月份</option>
+            							<option value='1'>1月份</option>
+            							<option value='2'>2月份</option>
+            							<option value='3'>3月份</option>
+            							<option value='4'>4月份</option>
+            							<option value='5'>5月份</option>
+            							<option value='6'>6月份</option>
+            							<option value='7'>7月份</option>
+            							<option value='8'>8月份</option>
+            							<option value='9'>9月份</option>
+            							<option value='10'>10月份</option>
+            							<option value='11'>11月份</option>
+            							<option value='12'>12月份</option>
+            						</select>
+            					</td>
+            				</tr>
+
+            				<tr>
+            					<th>行驶里程：</th>
+            					<td>
+                                    <input name="kilometre" type="text" size="15" />
+            						<span class="gray">(万公里)</span>
+                                </td>
+            				</tr>
+
+            				<tr>
+            					<td></td>
+            					<td>
+                                    <input type="submit" value="立刻发布" class="sell_but02">
+
+                                </td>
+            				</tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-	<div class="small-banner">
-        <a href="/simcms/index.php?m=citylist" target="_blank" class="banner-item"><span class="icon icon-1"></span><p class="f20">全国最优</p><p>精选城市优质商家</p></a>
-            <b class="banner-divider"></b>
-        <a href="/simcms/index.php?m=search" target="_blank" class="banner-item" ><span class="icon icon-2"></span><p class="f20">诚信为本</p><p>杜绝劣质车源</p></a>
-            <b class="banner-divider"></b>
-        <a href="/simcms/index.php?m=assesscar" target="_blank" class="banner-item last">
-                <span class="icon icon-3"></span><p class="f20">车价评估</p><p>免费评估车辆价格</p>
-        </a>
-    </div>
+        <div class="small-banner">
+            <a href="{:url('index/assessment/index')}" target="_blank" class="banner-item last">
+                <span class="icon icon-3"></span>
+                <p class="f20">车价评估</p>
+                <p>免费评估车辆价格</p>
+            </a>
+        </div>
 
-    <div class="bd">
-      <ul>
+        <div class="bd">
+            <ul>
                 <li _src="url(/upload/image/20140926/20140926103555_25468.jpg)" style="background:#fc5300 center 0 no-repeat;"><a target="_blank" href="http://www.baidu.com"></a></li>
                 <li _src="url(/upload/image/20140926/20140926103611_26805.jpg)" style="background:#fc5300 center 0 no-repeat;"><a target="_blank" href="http://www.baidu.com"></a></li>
               </ul>
+        </div>
+        <div class="hd">
+            <ul>
+            </ul>
+        </div>
+        <span class="prev"></span>
+        <span class="next"></span>
     </div>
-    <div class="hd">
-      <ul>
-      </ul>
-    </div>
-    <span class="prev"></span> <span class="next"></span> </div>
 </div>
 <script type="text/javascript">
 /* 控制左右按钮显示 */
@@ -548,411 +421,157 @@ jQuery(".fullSlide").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"fold",
 });
 </script>
 <div class="main mt20 clearfix" id="hot_brands">
-  <div class="tab_title">
-    <ul class="clearfix">
-      <li class="js-title"> <a style="line-height:76px;cursor:pointer;color: #ff6600;font-weight: bold;font-size: 20px;" class="current">最新车源</a> </li>
-            <li class="js-title"> <a  href="javascript:;"><img src="upload/brand/m_9.png" alt="奥迪">奥迪</a> </li>
-            <li class="js-title"> <a  href="javascript:;"><img src="upload/brand/m_26.png" alt="本田">本田</a> </li>
-            <li class="js-title"> <a  href="javascript:;"><img src="upload/brand/m_127.png" alt="别克">别克</a> </li>
-            <li class="js-title"> <a  href="javascript:;"><img src="upload/brand/m_8.png" alt="大众">大众</a> </li>
-            <li class="js-title"> <a  href="javascript:;"><img src="upload/brand/m_7.png" alt="丰田">丰田</a> </li>
-            <li class="js-title"> <a  href="javascript:;"><img src="upload/brand/m_17.png" alt="福特">福特</a> </li>
-            <li class="js-title"> <a  href="javascript:;"><img src="upload/brand/m_13.png" alt="现代">现代</a> </li>
-            <li class="js-title"> <a  href="javascript:;"><img src="upload/brand/m_49.png" alt="雪佛兰">雪佛兰</a> </li>
+    <div class="tab_title">
+        <ul class="clearfix">
+            <li class="js-title">
+                <a style="line-height:76px;cursor:pointer;color: #ff6600;font-weight: bold;font-size: 20px;" class="current">最新车源</a>
+            </li>
+            {volist name="brand_select" id="vo" length='8'}
+            <li class="js-title">
+                <a  href="javascript:;">
+                    <img src="__UPLOADS__/brand/{$vo.thumb}" alt="{$vo.name}">{$vo.name}
+                </a>
+            </li>
+            {/volist}
           </ul>
-  </div>
-  <div class="cartab_box">
-    <div class="box">
-      <ul id="hotcar" class="bigcarlist clearfix">
-      </ul>
-	  <div class="carmore"><a target="_blank" href="/simcms/index.php?m=search">查看更多汽车<i></i></a></div>
     </div>
+    <div class="cartab_box">
+        <div class="box">
+            <ul id="hotcar" class="bigcarlist clearfix">
+                {volist name='brand_select' id="vo"}
+                {volist name="$vo.children" id="vo1" length='10'}
+                <li class="bbgspe">
+                    <a href="" target="_blank">
+                        <img src="__UPLOADS__/{$vo1.carsimg[0]['url']}" alt="{$vo1.full_name}"/>
+                    </a>
+                    <p class="carname mt5">
+                        <a href="{:url('index/cars/carsdetails',array('id'=>$vo1.id))}" target="_blank">{$vo1.full_name}
+                        </a>
+                    </p>
+                    <p>
+                        <span class="price">{$vo1.kilometer|format='%.2f'}</span>万
+                    </p>
+                    <p class="gray01 mt5 f12">
+                        <span class="fr">里程：{$vo1.kilometer|format='%.2f'}万公里</span>上牌：{$vo1.plate|date="Y年m月"}
+                    </p>
+                </li>
+                {/volist}
+                {/volist}
+            </ul>
+            <div class="carmore">
+                <a target="_blank" href="{:url('index/buycars/recondition')}">查看更多汽车<i></i></a></div>
+        </div>
+        {volist name='brand_select' id="vo"}
         <div class="box hide">
-      <ul class="bigcarlist clearfix">
-              </ul>
-      <div class="carmore"><a target="_blank" href="/simcms/index.php?m=search&c=b_1">查看更多<strong>奥迪</strong>汽车<i></i></a></div>
-    </div>
-        <div class="box hide">
-      <ul class="bigcarlist clearfix">
-              </ul>
-      <div class="carmore"><a target="_blank" href="/simcms/index.php?m=search&c=b_11">查看更多<strong>本田</strong>汽车<i></i></a></div>
-    </div>
-        <div class="box hide">
-      <ul class="bigcarlist clearfix">
-              </ul>
-      <div class="carmore"><a target="_blank" href="/simcms/index.php?m=search&c=b_16">查看更多<strong>别克</strong>汽车<i></i></a></div>
-    </div>
-        <div class="box hide">
-      <ul class="bigcarlist clearfix">
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/40.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927114120_70197_small.jpg" alt="大众 桑塔纳 2007 款 1.8 手动 LPG单燃料型"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/40.html" target="_blank">大众 桑塔纳 2007 款 1.8 手动 LPG单燃料型</a></p>
-        <p><span class="price">4.28</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：5.90万公里</span>上牌：2008年8月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/39.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927113625_88742_small.jpg" alt="大众 宝来 2005 款 1.6L 自动基本型"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/39.html" target="_blank">大众 宝来 2005 款 1.6L 自动基本型</a></p>
-        <p><span class="price">3.19</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：13.00万公里</span>上牌：2004年7月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/38.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927112652_38182_small.jpg" alt="大众 高尔夫 2010 款 1.6 自动舒适型"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/38.html" target="_blank">大众 高尔夫 2010 款 1.6 自动舒适型</a></p>
-        <p><span class="price">8.90</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：8.00万公里</span>上牌：2010年7月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/37.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927111927_92800_small.jpg" alt="大众 速腾 2012 款 1.4T 双离合 时尚型"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/37.html" target="_blank">大众 速腾 2012 款 1.4T 双离合 时尚型</a></p>
-        <p><span class="price">13.50</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：3.60万公里</span>上牌：2012年12月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/36.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927111237_68790_small.jpg" alt="大众 帕萨特 2011 款 1.8T 双离合 政府采购版"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/36.html" target="_blank">大众 帕萨特 2011 款 1.8T 双离合 政府采购版</a></p>
-        <p><span class="price">16.50</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：4.60万公里</span>上牌：2011年6月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/35.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927105141_48175_small.jpg" alt="大众 Tiguan 2011 款 2.0 TSI 豪华版"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/35.html" target="_blank">大众 Tiguan 2011 款 2.0 TSI 豪华版</a></p>
-        <p><span class="price">23.80</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：4.50万公里</span>上牌：2011年7月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/34.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927104301_12742_small.jpg" alt="大众 途观 2010 款 旗舰版 2.0TSI 手自一体 4MOTION"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/34.html" target="_blank">大众 途观 2010 款 旗舰版 2.0TSI 手自一体 4MOTION</a></p>
-        <p><span class="price">18.00</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：6.90万公里</span>上牌：2010年10月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/33.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927103228_79129_small.jpg" alt="大众 朗逸 2010 款 1.4TSI运动版"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/33.html" target="_blank">大众 朗逸 2010 款 1.4TSI运动版</a></p>
-        <p><span class="price">9.60</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：6.00万公里</span>上牌：2010年7月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/32.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927102316_80534_small.jpg" alt="大众CC(进口) 2010 款 2.0L 豪华版"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/32.html" target="_blank">大众CC(进口) 2010 款 2.0L 豪华版</a></p>
-        <p><span class="price">23.00</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：3.50万公里</span>上牌：2012年10月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/26/29.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927101442_22316_small.jpg" alt="大众 桑塔纳 2013 款 1.6L 手动 豪华版"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/26/29.html" target="_blank">大众 桑塔纳 2013 款 1.6L 手动 豪华版</a></p>
-        <p><span class="price">8.00</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：0.00万公里</span>上牌：2013年6月</p>
-        </li>
-              </ul>
-      <div class="carmore"><a target="_blank" href="/simcms/index.php?m=search&c=b_29">查看更多<strong>大众</strong>汽车<i></i></a></div>
-    </div>
-        <div class="box hide">
-      <ul class="bigcarlist clearfix">
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/50.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927134115_14308_small.jpg" alt="丰田 锐志 2012 款 2.5V 风度菁英版 炫装版"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/50.html" target="_blank">丰田 锐志 2012 款 2.5V 风度菁英版 炫装版</a></p>
-        <p><span class="price">17.50</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：2.00万公里</span>上牌：2012年9月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/49.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927125425_87941_small.jpg" alt="丰田 凯美瑞 2012 款 经典版 2.0L 200E 精英版"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/49.html" target="_blank">丰田 凯美瑞 2012 款 经典版 2.0L 200E 精英版</a></p>
-        <p><span class="price">15.10</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：3.50万公里</span>上牌：2012年4月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/48.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927124938_51301_small.jpg" alt="丰田 凯美瑞 2008 款 240G 豪华版"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/48.html" target="_blank">丰田 凯美瑞 2008 款 240G 豪华版</a></p>
-        <p><span class="price">11.50</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：8.00万公里</span>上牌：2008年3月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/47.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927124047_92717_small.jpg" alt="丰田 普拉多 2010 款 4.0L V6 VX NAVI"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/47.html" target="_blank">丰田 普拉多 2010 款 4.0L V6 VX NAVI</a></p>
-        <p><span class="price">31.80</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：16.00万公里</span>上牌：2011年1月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/46.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927123413_65402_small.jpg" alt="丰田 威驰 2002 款 1.5 GL-i自动"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/46.html" target="_blank">丰田 威驰 2002 款 1.5 GL-i自动</a></p>
-        <p><span class="price">3.20</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：10.00万公里</span>上牌：2003年9月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/45.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927121055_70267_small.jpg" alt="丰田 汉兰达 2012 款 2.7L 自动 两驱 至尊型 7座 "/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/45.html" target="_blank">丰田 汉兰达 2012 款 2.7L 自动 两驱 至尊型 7座 </a></p>
-        <p><span class="price">21.80</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：3.70万公里</span>上牌：2012年9月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/44.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927120440_80552_small.jpg" alt="丰田 凯美瑞 2010 款 240G  豪华版"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/44.html" target="_blank">丰田 凯美瑞 2010 款 240G  豪华版</a></p>
-        <p><span class="price">14.00</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：6.00万公里</span>上牌：2011年3月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/43.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927115849_16657_small.jpg" alt="丰田 花冠 2004 款 GLX-S运动版 自动型"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/43.html" target="_blank">丰田 花冠 2004 款 GLX-S运动版 自动型</a></p>
-        <p><span class="price">4.28</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：21.00万公里</span>上牌：2004年7月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/42.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927115328_58408_small.jpg" alt="丰田 卡罗拉 2011 款 1.8L GL-i 纪念版 CVT"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/42.html" target="_blank">丰田 卡罗拉 2011 款 1.8L GL-i 纪念版 CVT</a></p>
-        <p><span class="price">8.60</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：7.00万公里</span>上牌：2010年5月</p>
-        </li>
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/27/41.html" target="_blank"><img src="localhost/simcms/upload/image/20140927/20140927114759_90204_small.jpg" alt="丰田 凯美瑞 2007 款 240G 豪华版"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/27/41.html" target="_blank">丰田 凯美瑞 2007 款 240G 豪华版</a></p>
-        <p><span class="price">9.58</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：15.00万公里</span>上牌：2007年7月</p>
-        </li>
-              </ul>
-      <div class="carmore"><a target="_blank" href="/simcms/index.php?m=search&c=b_41">查看更多<strong>丰田</strong>汽车<i></i></a></div>
-    </div>
-        <div class="box hide">
-      <ul class="bigcarlist clearfix">
-              </ul>
-      <div class="carmore"><a target="_blank" href="/simcms/index.php?m=search&c=b_42">查看更多<strong>福特</strong>汽车<i></i></a></div>
-    </div>
-        <div class="box hide">
-      <ul class="bigcarlist clearfix">
-              </ul>
-      <div class="carmore"><a target="_blank" href="/simcms/index.php?m=search&c=b_157">查看更多<strong>现代</strong>汽车<i></i></a></div>
-    </div>
-        <div class="box hide">
-      <ul class="bigcarlist clearfix">
-         <li class="bbgspe"> <a href="/simcms/buycars/2014/09/26/21.html" target="_blank"><img src="localhost/simcms/upload/image/20140926/20140926140049_86420_small.jpg" alt="雪佛兰 科鲁兹三厢 2009 款 1.6 SL MT"/></a>
-        <p class="carname mt5"><a href="/simcms/buycars/2014/09/26/21.html" target="_blank">雪佛兰 科鲁兹三厢 2009 款 1.6 SL MT</a></p>
-        <p><span class="price">6.20</span> 万</p>
-        <p class="gray01 mt5 f12"><span class="fr">里程：7.00万公里</span>上牌：2010年11月</p>
-        </li>
-              </ul>
-      <div class="carmore"><a target="_blank" href="/simcms/index.php?m=search&c=b_158">查看更多<strong>雪佛兰</strong>汽车<i></i></a></div>
-    </div>
+            <ul class="bigcarlist clearfix">
+                {volist name="$vo.children" id="vo1" length='10'}
+                <li class="bbgspe">
+                    <a href="" target="_blank">
+                        <img src="__UPLOADS__/{$vo1.carsimg[0]['url']}" alt="{$vo1.full_name}"/>
+                    </a>
+                    <p class="carname mt5">
+                        <a href="{:url('index/cars/carsdetails',array('id'=>$vo1.id))}" target="_blank">{$vo1.full_name}
+                        </a>
+                    </p>
+                    <p>
+                        <span class="price">{$vo1.kilometer|format='%.2f'}</span>万
+                    </p>
+                    <p class="gray01 mt5 f12">
+                        <span class="fr">里程：{$vo1.kilometer|format='%.2f'}万公里</span>上牌：{$vo1.plate|date="Y年m月"}
+                    </p>
+                </li>
+                {/volist}
+            </ul>
+            <div class="carmore">
+                <a target="_blank" href="{:url('index/buycars/recondition',array('key'=>'brandlevel1','val'=>$vo.id))}">查看更多
+                    <strong>{$vo.name}</strong>汽车
+                    <i></i>
+                </a>
+            </div>
+        </div>
+        {/volist}
      </div>
 </div>
 <div class="main mt10">
-  <script language="javascript" src="/simcms/index.php?m=ad&id=54"></script>
-</div>
-<div class="main clearfix mt15">
-  <div class="main_left">
-    <div class="hotdealer" style="padding:0;background:#fff;">
-      <h3 id="hottitle"><a href="/simcms/index.php?m=dealer" class="more">更多车商</a>热门二手车经销商</h3>
-      <div class="tjdealer">
-        <div class="ohbox">
-          <ul class="piclist">
-                        <li class="clearfix" style="margin:6px 10px 0px 6px;padding:8px;" > <a href="/simcms/index.php?m=shop&id=181" target="_blank" style="">
-              <div class="img">                <div class="noimg">暂无图片</div>
-                 <span class="gray01" style="color:#666;padding-top:5px;">西门二手车行</span>
-                <!--<span class="gray01">15027223912</span>-->
-                <span class="gray01">在售：<span class="fb orange01" style="display:inline">2</span> 辆</span> </a> </div>
-            </li>
-                        <li class="clearfix" style="margin:6px 10px 0px 6px;padding:8px;" > <a href="/simcms/index.php?m=shop&id=179" target="_blank" style="">
-              <div class="img"><img src="/upload/image/20140922/20140922145842_96174.png" class="vt"> <span class="gray01" style="color:#666;padding-top:5px;">恩施天勤网络</span>
-                <!--<span class="gray01">15027223968</span>-->
-                <span class="gray01">在售：<span class="fb orange01" style="display:inline">0</span> 辆</span> </a> </div>
-            </li>
-                      </ul>
-        </div>
-        <div class="pageBtn"> <span class="prev"><</span> <span class="next">></span> </div>
-      </div>
-    </div>
-    <div class="index_left01">
-      <ul class="indexnews_tab clearfix">
-        <li class="here">商家推荐二手车</li>
-      </ul>
-      <div class="indexnews_box">
-        <div class="clearfix">
-          <ul class="smallcarlist clearfix">
-             <li class="bbg"> <a href="/simcms/buycars/2015/08/20/72.html" target="_blank"><img src="__INDEX__/static/img/car.jpg"/></a>
-            <p class="carname mt10"><a href="/simcms/buycars/2015/08/20/72.html" target="_blank">奥迪100 1994 款 V6 2.</a><span class="fr pt5"><span class="check01" title="商家车源"></span></span></p>
-            <p class="mt5"><span class="price fb fr">11.00万</span>             <span class="gray01 f12 mt5">0.00万公里&nbsp;&nbsp;0年0月</span></p>
-            </li>
-             <li class="bbg"> <a href="/simcms/buycars/2015/08/19/59.html" target="_blank"><img src="__INDEX__/static/img/car.jpg"/></a>
-            <p class="carname mt10"><a href="/simcms/buycars/2015/08/19/59.html" target="_blank">阿尔法·罗密欧 156</a><span class="fr pt5"><span class="check01" title="商家车源"></span></span></p>
-            <p class="mt5"><span class="price fb fr">11.00万</span>             <span class="gray01 f12 mt5">11.00万公里&nbsp;&nbsp;2013年11月</span></p>
-            </li>
-                      </ul>
-        </div>
-      </div>
-    </div>
-	<div class="index_left01">
-      <ul class="indexnews_tab clearfix">
-        <li class="here">个人推荐二手车</li>
-      </ul>
-      <div class="indexnews_box">
-        <div class="clearfix">
-          <ul class="smallcarlist clearfix">
-             <li class="bbg"> <a href="/simcms/buycars/2015/08/19/60.html" target="_blank"><img src="__INDEX__/static/img/car.jpg"/></a>
-            <p class="carname mt10"><a href="/simcms/buycars/2015/08/19/60.html" target="_blank">奥克斯 朗杰 2004 </a><span class="fr pt5"><span class="check02" title="个人车源"></span></span></p>
-            <p class="mt5"><span class="price fb fr">11.00万</span>             <span class="gray01 f12 mt5">11.00万公里&nbsp;&nbsp;2005年3月</span></p>
-            </li>
-                      </ul>
-        </div>
-      </div>
-
-      <div>
-      	      </div>
-
-    </div>
-	</div>
-  	<div class="index_right">
-		<div class="activityBox">
-			<div class="title">
-				<h2>特荐车源</h2>
-				<span class="prev"></span>
-				<span class="next"></span>
-			</div>
-			<div class="content">
-				<span class="leftZone"></span>
-				<div class="contentInner">
-					<ul>
-												<li>
-							<a href="/simcms/buycars/2015/08/20/72.html" target="_blank"><img src="" alt="阿尔法·罗密欧 156"/></a>
-							<p class="carname mt10"><a href="/simcms/buycars/2015/08/20/72.html" class="f14">奥迪100 1994 款 V6 2.4L MT</a></p>
-							<p class="mt5"><span class="f16 orange01">11.00</span></p>
-							<p class="mt5 gray01">0年0月上牌</p>
-						</li>
-												<li>
-							<a href="/simcms/buycars/2015/08/19/60.html" target="_blank"><img src="" alt="阿尔法·罗密欧 156"/></a>
-							<p class="carname mt10"><a href="/simcms/buycars/2015/08/19/60.html" class="f14">奥克斯 朗杰 2004 款 豪华型</a></p>
-							<p class="mt5"><span class="f16 orange01">11.00</span></p>
-							<p class="mt5 gray01">2005年3月上牌</p>
-						</li>
-												<li>
-							<a href="/simcms/buycars/2015/08/19/59.html" target="_blank"><img src="" alt="阿尔法·罗密欧 156"/></a>
-							<p class="carname mt10"><a href="/simcms/buycars/2015/08/19/59.html" class="f14">阿尔法·罗密欧 156 2004 款 156 2.0</a></p>
-							<p class="mt5"><span class="f16 orange01">11.00</span></p>
-							<p class="mt5 gray01">2013年11月上牌</p>
-						</li>
-											</ul>
-				</div>
-				<span class="rightZone"></span>
-			</div>
-		</div>
-		<script type="text/javascript">jQuery(".activityBox").slide({ mainCell:".contentInner ul", effect:"top",delayTime:400});</script>
-		<div class="commonbox01 mt10">
-		<h3><span>热门商家</span></h3>
-
-            <div class="indexhotcarlist box">
-                          <div  style="overflow:hidden;">
-
-                                <span class="num01">
-
-                1
-
-   				</span>
-
-
-                <a href="/simcms/index.php?m=shop&id=181" target="_blank" class="fl pl5 fours">
-              		<div class="img">
-                    	                		<div class="noimg">暂无图片</div>
-
-                    	西门二手车行
-                    </div>
-                </a>
-
-              </div>
-                          <div  style="overflow:hidden;">
-
-                                <span class="num01">
-
-                2
-
-   				</span>
-
-
-                <a href="/simcms/index.php?m=shop&id=179" target="_blank" class="fl pl5 fours">
-              		<div class="img">
-                    	                    	<img src="/upload/image/20140922/20140922145842_96174.png" class="vt">
-
-                    	恩施天勤网络
-                    </div>
-                </a>
-
-              </div>
-
-        	</div>
-
-		</div>
-		<div class="commonbox02 mt10">
-       			  <h3>热门车源排行</h3>
-		  <div class="box">
-			<div id="hotcar1" class="indexhotcarlist"></div>
-		  </div>
-
-        </div>
-
-   </div>
+    <script language="javascript" src="/simcms/index.php?m=ad&id=54"></script>
 </div>
 
 <div class="main mt15 clearfix">
-  <div class="index_left02">
-    <ul class="indexnews_tab clearfix">
-      <li class="here">网站动态</li>
-      <li>用车护车</li>
-      <li>二手车选购</li>
-      <li>二手车专题</li>
-    </ul>
-    <div class="indexnews_box">
-      <div class="clearfix">
-        <div class="box_left">           <div class="picnewslist clearfix">
-            <div class="img"><img src="/upload/image/20140929/20140929144347_57912.jpg"></div>
-            <div class="info">
-              <p><a href="/simcms/news/201409/260.html" class="f14 fb">关于举办2014首届中国二手车行业博鳌高峰论</a></p>
-              <p class="mt10 gray">
-	核心提示：关于举办2014首届中国二手车行业博鳌高峰论坛的通知
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</p>
-            </div>
-          </div>
+    <div class="index_left02">
+        <ul class="indexnews_tab clearfix">
+            {volist name="news" id="vo"}
+            <li
+            {if $key==0}
+            class="here"
+            {/if}>{$vo.name}</li>
+            {/volist}
+        </ul>
+        <div class="indexnews_box">
+            {volist name="news" id="vo"}
+            <div
+            {if $key==0}
+            class="clearfix"
+            {else/}
+            class="hide clearfix"
+            {/if}
+            >
+                <div class="box_left">
+                    {volist name="$vo.children" id="vo1" offset='0' length='2'}
                     <div class="picnewslist clearfix">
-            <div class="img"><img src="/upload/image/20140929/20140929143924_62198.jpg"></div>
-            <div class="info">
-              <p><a href="/simcms/news/201409/258.html" class="f14 fb">首次迎来“五连跌” 9月30日油价或下调</a></p>
-              <p class="mt10 gray">
-	核心提示：继今年9月16日24时全国油价下调之后，近日国际原油价格持续下跌，9月30日国内成品油调价窗口将开启，当前国内油价调整参考的原油价格变化率已经突破调价红线，预计未来国际油价将继续窄幅震</p>
-            </div>
-          </div>
-           </div>
-        <div class="box_right">
-          <ul class="newslist">
-                        <li><a href="/simcms/news/201409/260.html" target="_blank">关于举办2014首届中国二手车行业博鳌高峰论</a></li>
-                        <li><a href="/simcms/news/201409/259.html" target="_blank">车企召回率排行榜：奔驰召回最少 现代最频</a></li>
-                        <li><a href="/simcms/news/201409/258.html" target="_blank">首次迎来“五连跌” 9月30日油价或下调</a></li>
-                        <li><a href="/simcms/news/201409/257.html" target="_blank">国五排放标准实施之后 二手车市场不达标车</a></li>
-                        <li><a href="/simcms/news/201409/246.html" target="_blank">二手车电商受资本青睐 万亿市场蓄势待发</a></li>
-                        <li><a href="/simcms/news/201409/245.html" target="_blank">我国二手车行业现状分析</a></li>
-                        <li><a href="/simcms/news/201409/244.html" target="_blank">二手车电商市场迎来高速增长期</a></li>
-                        <li><a href="/simcms/news/201409/243.html" target="_blank">专家：2020年中国二手车市场交易量将达到4000</a></li>
+                        <div class="img">
+                            <img src="">
+                        </div>
+                        <div class="info">
+                            <p>
+                                <a href="{:url('index/news/newsdetails',array('id'=>$vo1.id))}" class="f14 fb">{$vo1.title|msubstr=0,20,'utf-8',true}</a>
+                            </p>
+                            <p class="mt10 gray">
+                                核心提示：{$vo1.title|msubstr=0,10,'utf-8',false}
+                            </p>
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+                <div class="box_right">
+                    <ul class="newslist">
+                        {volist name="$vo.children" id="vo1" offset='2' length='4'}
+                        <li>
+                            <a href="{:url('index/news/newsdetails',array('id'=>$vo1.id))}" target="_blank">{$vo1.title|msubstr=0,20,'utf-8',false}</a></li>
+                        {/volist}
                       </ul>
-        </div>
-      </div>
-      <div class="hide clearfix">
-        <div class="box_left">           <div class="picnewslist clearfix">
-            <div class="img"><img src="/upload/image/20140928/20140928090346_46294.jpg"></div>
-            <div class="info">
-              <p><a href="/simcms/news/201409/236.html" class="f14 fb">秋冬季如何拒绝爱车跟我玩小电击</a></p>
-              <p class="mt10 gray">
-
-
-
-
-		“啪”的一声，接触到车身的手被静电打得又麻又疼，这是秋冬季开车经常会遇到的情况。虽然这不会造成大麻烦，但是每次碰到车都玩一次小电击，可真不舒服。
-　　对于这种现象，一些车主甚至</p>
+                </div>
             </div>
-          </div>
+            {/volist}
+            <!-- <div class="hide clearfix">
+                <div class="box_left">
                     <div class="picnewslist clearfix">
-            <div class="img"><img src="/upload/image/20140928/20140928090534_11092.jpg"></div>
-            <div class="info">
-              <p><a href="/simcms/news/201409/235.html" class="f14 fb">安全气囊事关生命的小部件</a></p>
-              <p class="mt10 gray">
-	安全气囊顾名思义，就是在危险发生时可以保护驾驶员生命安全的气囊袋，一般是由一个折叠好的气囊袋、充气器、点火器以及氮气固态粒子组成，通过安装在车头的几组传感器感应车辆与外物的撞击度，以确</p>
-            </div>
-          </div>
-           </div>
-        <div class="box_right">
-          <ul class="newslist">
+                        <div class="img">
+                            <img src="/upload/image/20140928/20140928090346_46294.jpg">
+                        </div>
+                        <div class="info">
+                            <p>
+                                <a href="/simcms/news/201409/236.html" class="f14 fb">秋冬季如何拒绝爱车跟我玩小电击</a>
+                            </p>
+                            <p class="mt10 gray">
+                                “啪”的一声，接触到车身的手被静电打得又麻又疼，
+                                这是秋冬季开车经常会遇到的情况。
+                                虽然这不会造成大麻烦，但是每次碰到车都玩一次小电击，
+                                可真不舒服。对于这种现象，一些车主甚至
+                            </p>
+                        </div>
+                    </div>
+                    <div class="picnewslist clearfix">
+                        <div class="img"><img src="/upload/image/20140928/20140928090534_11092.jpg">
+                        </div>
+                        <div class="info">
+                            <p><a href="/simcms/news/201409/235.html" class="f14 fb">安全气囊事关生命的小部件</a></p>
+                            <p class="mt10 gray">
+                                安全气囊顾名思义，就是在危险发生时可以保护驾驶员生命安全的气囊袋，一般是由一个折叠好的气囊袋、充气器、点火器以及氮气固态粒子组成，通过安装在车头的几组传感器感应车辆与外物的撞击度，以确</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="box_right">
+                    <ul class="newslist">
                         <li><a href="/simcms/news/201409/265.html" target="_blank">如何防范汽车自燃？</a></li>
                         <li><a href="/simcms/news/201409/264.html" target="_blank">汽车异响的原因是什么？</a></li>
                         <li><a href="/simcms/news/201409/263.html" target="_blank">改装车身份将合法化 全面解析二手车改装那</a></li>
@@ -961,115 +580,12 @@ jQuery(".fullSlide").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"fold",
                         <li><a href="/simcms/news/201409/256.html" target="_blank">二手车保养“换”先行</a></li>
                         <li><a href="/simcms/news/201409/236.html" target="_blank">秋冬季如何拒绝爱车跟我玩小电击</a></li>
                         <li><a href="/simcms/news/201409/235.html" target="_blank">安全气囊事关生命的小部件</a></li>
-                      </ul>
+                    </ul>
+                </div>
+            </div> -->
         </div>
-      </div>
-      <div class="hide clearfix">
-        <div class="box_left">           <div class="picnewslist clearfix">
-            <div class="img"><img src="/upload/image/20140929/20140929113456_62153.jpg"></div>
-            <div class="info">
-              <p><a href="/simcms/news/201409/248.html" class="f14 fb">四招识破二手车到底有没有补过漆</a></p>
-              <p class="mt10 gray">
-	买二手车最怕什么?除了怕遇到“翻新车”之外，更怕遇到“穿大褂车”，搞的车漆像贴满了补丁似的，事实上，二手车车漆的优劣程度，在很大程度上反映了二手车车况，是衡量二手车价格的一项重要指标。
-
-</p>
-            </div>
-          </div>
-                    <div class="picnewslist clearfix">
-            <div class="img"><img src="/upload/image/20140928/20140928094203_36861.jpg"></div>
-            <div class="info">
-              <p><a href="/simcms/news/201409/239.html" class="f14 fb">二手车的保险投保有讲究</a></p>
-              <p class="mt10 gray">
-
-		&nbsp; &nbsp; “选车险不容易，为二手车选车险就更讲究了”。在二手车交易中，一般卖方在出手时常常只剩下快到期的车险，因此买方在接手时也就不得不重新考虑投险。记者了解到，除了交强险、第三者责</p>
-            </div>
-          </div>
-           </div>
-        <div class="box_right">
-          <ul class="newslist">
-                        <li><a href="/simcms/news/201410/311.html" target="_blank">二手车购买--变速器检查莫忽视</a></li>
-                        <li><a href="/simcms/news/201409/292.html" target="_blank">什么人开什么车，看看你适合哪类二手车？</a></li>
-                        <li><a href="/simcms/news/201409/290.html" target="_blank">二手车小知识 网上购买二手车该注意什么</a></li>
-                        <li><a href="/simcms/news/201409/289.html" target="_blank">从里到外 6条贴士助您购车</a></li>
-                        <li><a href="/simcms/news/201409/287.html" target="_blank">里程表不靠谱 简单几招查翻新</a></li>
-                        <li><a href="/simcms/news/201409/252.html" target="_blank">选购爱车，不是便宜就好</a></li>
-                        <li><a href="/simcms/news/201409/251.html" target="_blank">选购二手豪车必杀技</a></li>
-                        <li><a href="/simcms/news/201409/248.html" target="_blank">四招识破二手车到底有没有补过漆</a></li>
-                      </ul>
-        </div>
-      </div>
-      <div class="hide clearfix">
-        <div class="box_left">           <div class="picnewslist clearfix">
-            <div class="img"><img src="/upload/image/20140929/20140929142117_43588.jpg"></div>
-            <div class="info">
-              <p><a href="/simcms/news/201409/250.html" class="f14 fb">六步简单鉴别二手车发动机</a></p>
-              <p class="mt10 gray">
-	教你简单鉴别二手车发动机室：﻿
-
-
-	　　第一步：检查发动机盖。
-
-
-	&nbsp; &nbsp; 首先查看发动机盖的外观布置情况，看看与翼子板的密合度或发动机留有的间隙是否一致，与挡风玻璃之间的间隙是否一致。</p>
-            </div>
-          </div>
-                    <div class="picnewslist clearfix">
-            <div class="img"><img src="/upload/image/20140929/20140929140335_59330.jpg"></div>
-            <div class="info">
-              <p><a href="/simcms/news/201409/249.html" class="f14 fb">七大二手车专业术语</a></p>
-              <p class="mt10 gray">
-	&nbsp;隔行如隔山，在选购二手车的过程中，总会碰到一些专业术语。这些专业术语，对于买卖二手车又有很大关系...
-
-
-	　　下面，就让我们盘点下二手汽车行业里，7大不可不知的专业术语。
-
-
-	　　No.1汽车</p>
-            </div>
-          </div>
-           </div>
-        <div class="box_right">
-          <ul class="newslist">
-                        <li><a href="/simcms/news/201409/291.html" target="_blank">事故车等级划分与购买建议</a></li>
-                        <li><a href="/simcms/news/201409/284.html" target="_blank">改装车身份将合法化 全面解析二手车改装那</a></li>
-                        <li><a href="/simcms/news/201409/267.html" target="_blank">二手车的保险投保有讲究</a></li>
-                        <li><a href="/simcms/news/201409/266.html" target="_blank">手把手教您交易二手车时如何防骗</a></li>
-                        <li><a href="/simcms/news/201409/255.html" target="_blank">买卖二手车不得不知的交易法规</a></li>
-                        <li><a href="/simcms/news/201409/254.html" target="_blank">二手车检查 透过底盘看车况</a></li>
-                        <li><a href="/simcms/news/201409/253.html" target="_blank">二手车评估六大细节要注意</a></li>
-                        <li><a href="/simcms/news/201409/250.html" target="_blank">六步简单鉴别二手车发动机</a></li>
-                      </ul>
-        </div>
-      </div>
     </div>
-  </div>
-  <div class="index_right02">
-    <div class="commonbox01">
-      <h3><a href="/simcms/index.php?m=news&catid=12" class="more">查看更多二手车问答</a><span>二手车问答</span></h3>
-      <div class="box">
-        <ul class="asklist clearfix">
-                    <li>
-            <div class="ask clearfix"><i></i><strong><a href="/simcms/news/201409/295.html" target="_blank">二手车强制险是否必要过户</a></strong></div>
-            <div class="reply clearfix"><i></i>
-              <p><a href="/simcms/news/201409/295.html" target="_blank">建议还是去过户，如果有事故需要报保险不过户就还需要找原车主，因为受益人还是原车主</a></p>
-            </div>
-          </li>
-                    <li>
-            <div class="ask clearfix"><i></i><strong><a href="/simcms/news/201409/294.html" target="_blank">转让车没有购车发票行不行？</a></strong></div>
-            <div class="reply clearfix"><i></i>
-              <p><a href="/simcms/news/201409/294.html" target="_blank">有车辆登记证书，购置税，保险单，行驶证就可以转让。</a></p>
-            </div>
-          </li>
-                    <li>
-            <div class="ask clearfix"><i></i><strong><a href="/simcms/news/201409/293.html" target="_blank">什么车比较省油</a></strong></div>
-            <div class="reply clearfix"><i></i>
-              <p><a href="/simcms/news/201409/293.html" target="_blank">省油是相对的，同排量，技术含量不同，油耗相差很大。一般来说，排量小的车子比较省油</a></p>
-            </div>
-          </li>
-                  </ul>
-      </div>
-    </div>
-  </div>
+
 </div>
 <script language="JavaScript">
 $(function() {

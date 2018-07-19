@@ -232,9 +232,9 @@ class Buycars extends Controller
         // dump(cookie("price"));
         // dump(cookie('plate'));
         // dump(cookie('gas'));
-        dump(cookie('plateorder'));
+        // dump(cookie('plateorder'));
         // cookie('price',null);
-        // dump(cookie('brand_level1'));
+        dump(cookie('brand_level1'));
         // dump(cookie('brand_level2'));
         // dump(cookie('brand_level3'));
         // dump(cookie('paginate'));
@@ -327,5 +327,106 @@ class Buycars extends Controller
         cookie('brand_level3',null);
         $this->redirect(url('index/buycars/index',array("view"=>$view)));
     }
+
+    public function recondition($key='',$val='')
+    {
+        cookie('level',null);
+        cookie('price',null);
+        cookie('plate',null);
+        cookie('gas',null);
+        cookie('brand_level1',null);
+        cookie('brand_level2',null);
+        cookie('brand_level3',null);
+
+        $level_select = db('level')->select();
+        $level_id_name = array_column($level_select, 'name','id');
+
+        if ($key&&$val) {
+            if ($key=='brandlevel1') {
+                $arr['id'] = $val;
+                $arr['where'] = ['brand_level1','eq',$val];
+                $name = db('brand')->where('id',$val)->value('name');
+                $arr['name'] = $name;
+                cookie('brand_level1',$arr);
+
+            } else if($key=='price') {
+                if ($val==3) {
+                    $arr['where'] = ['price','lt','3'];
+                    $arr['name'] = '3万以下';
+                    cookie("price",$arr);
+                } else if($val==5){
+                    $arr['where'] = ['price','between','3,5'];
+                    $arr['name'] = '3-5万';
+                    cookie("price",$arr);
+                } else if($val==8){
+                    $arr['where'] = ['price','between','5,8'];
+                    $arr['name'] = '5-8万';
+                    cookie("price",$arr);
+                }else if($val==12){
+                    $arr['where']=['price','between','8,12'];
+                    $arr['name'] = '8-12万';
+                    cookie("price",$arr);
+                }else if($val==18){
+                    $arr['where']=['price','between','12,18'];
+                    $arr['name'] = '12-18万';
+                    cookie("price",$arr);
+                }else if($val==24){
+                    $arr['where']=['price','between','18,24'];
+                    $arr['name'] = '18-24万';
+                    cookie("price",$arr);
+                }else if($val==35){
+                    $arr['where']=['price','between','24,35'];
+                    $arr['name'] = '24-35万';
+                    cookie("price",$arr);
+                }else if($val==50){
+                    $arr['where']=['price','between','35,50'];
+                    $arr['name'] = '35-50万';
+                    cookie("price",$arr);
+                }else if($val==100){
+                    $arr['where']=['price','between','50,100'];
+                    $arr['name'] = '50-100万';
+                    cookie("price",$arr);
+                }else if($val==999){
+                    $arr['where']=['price','gt','100'];
+                    $arr['name'] = '100万以上';
+                    cookie("price",$arr);
+                }else if($val==''){
+                    cookie("price",null);
+                }
+            } else if($key=='level') {
+                $arr['where']=['level','=',$val];
+                $arr['name'] = $level_id_name[$val];
+                cookie("level",$arr);
+            } else if($key=='plate') {
+                if ($val == 1) {
+                    $mytime=mktime(0, 0, 0, date('m'), date('d'), date('Y')-1);
+                    $arr['where']=['plate','gt',$mytime];
+                    $arr['name']='1年以内';
+                    cookie("plate",$arr);
+                } else if($val==3) {
+                    $mytime1=mktime(0, 0, 0, date('m'), date('d'), date('Y')-1);
+                    $mytime2=mktime(0, 0, 0, date('m'), date('d'), date('Y')-3);
+                    $arr['where']=['plate','between',$mytime2.','.$mytime1];
+                    $arr['name']='1-3年';
+                    cookie("plate",$arr);
+                }else if($val==5) {
+                    $mytime1=mktime(0, 0, 0, date('m'), date('d'), date('Y')-3);
+                    $mytime2=mktime(0, 0, 0, date('m'), date('d'), date('Y')-5);
+                    $arr['where']=['plate','between',$mytime2.','.$mytime1];
+                    $arr['name']='3-5年';
+                    cookie("plate",$arr);
+                }else if($val==999) {
+                    $mytime=mktime(0, 0, 0, date('m'), date('d'), date('Y')-5);
+                    $arr['where']=['plate','lt',$mytime];
+                    $arr['name']='5年以上';
+                    cookie("plate",$arr);
+                }else if($val==''){
+                    cookie("plate",null);
+                }
+            }
+        }
+        $this->redirect('index/buycars/index');
+    }
+
 
 }

@@ -17,15 +17,56 @@ class Rentcars extends Controller
         details'
         )->find($id);
         if (empty($rentcars_find)) {
-            $this->redirect('admin/rentcars/lst');
+            $this->redirect('index/rentcars/index');
         }
         if ($rentcars_find['status']==0) {
             $this->error('该车辆已出租');
         }
         if ($rentcars_find['status']==-1) {
-            $this->redirect('admin/rentcars/lst');
+            $this->redirect('index/rentcars/index');
         }
         $this->assign('rentcars',$rentcars_find);
         return view();
+    }
+
+    public function index($dayprice='',$where='')
+    {
+        switch (cookie('dayprice')) {
+            case '100':
+                $where[] = ['dayprice','lt','100'];
+
+                break;
+            case '200':
+                $where[] = ['dayprice','between','100,200'];
+
+                break;
+            case '300':
+                $where[] = ['dayprice','between','200,300'];
+
+                break;
+            case '400':
+                $where[] = ['dayprice','between','300,400'];
+
+                break;
+            case '500':
+                $where[] = ['dayprice','between','400,500'];
+
+                break;
+            case '999':
+                $where[] = ['dayprice','gt','500'];
+
+                break;
+            default:
+                // code...
+                break;
+        }
+        $rentcars = db('rentcars')->where($where)->where('status','1')->paginate(2);
+        $this->assign('rentcars',$rentcars);
+        return view();
+    }
+
+    public function index2()
+    {
+        dump(cookie('aaa'));
     }
 }

@@ -1,0 +1,110 @@
+{extend name="base"/}
+{block name="header"}
+{__block__}
+<style media="screen">
+    .pagination>li{display:inline}
+</style>
+<script type="text/javascript" src="__INDEX__/static/js/jQuery.cookie.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var ul = $('.search_list');
+        var a = ul.find('li:eq(0)').find('a');
+        a.each(function(index, el) {
+            $(this).click(function(event) {
+                /* Act on the event */
+                src = $(this).attr('href');
+                num = src.replace(/[^0-9]/ig,"");
+                $.cookie('dayprice',num);
+                // alert($.cookie('dayprice'));
+            });
+        });
+    })
+</script>
+{/block}
+{block name="main"}
+<div class="nav">您当前的位置：<a href="{:url('index/index/index')}">首页</a> <span>></span> 租车</div>
+<div class="main clearfix mt10">
+    <div class="main_left">
+        <div class="search_box mb10">
+            <!-- <div class="condition">
+                <span class="fr pr10">
+                    <a href="{:url('index/rentcars/index2')}" class="unl blue">清空条件</a>
+                </span>
+                <span class="fl">您已选择：</span>
+                <ul class="condition_list fl">
+                </ul>
+            </div> -->
+            <ul class="search_list">
+                <li>价 格：
+                    <a href="{:url('index/rentcars/index',array('dayprice'=>'1'))}"
+                        {if $Think.cookie.dayprice==1||$Think.cookie.dayprice==''}
+                        class="here"
+                        {/if}>全部</a>
+                    <a href="{:url('index/rentcars/index',array('dayprice'=>'100'))}"
+                        {if $Think.cookie.dayprice==100}
+                        class="here"
+                        {/if}>100元以下</a>
+                    <a href="{:url('index/rentcars/index',array('dayprice'=>'200'))}"
+                        {if $Think.cookie.dayprice==200}
+                        class="here"
+                        {/if}>100-200元</a>
+                    <a href="{:url('index/rentcars/index',array('dayprice'=>'300'))}"
+                        {if $Think.cookie.dayprice==300}
+                        class="here"
+                        {/if}>200-300元</a>
+                    <a href="{:url('index/rentcars/index',array('dayprice'=>'400'))}"
+                        {if $Think.cookie.dayprice==400}
+                        class="here"
+                        {/if}>300-400元</a>
+                    <a href="{:url('index/rentcars/index',array('dayprice'=>'500'))}"
+                        {if $Think.cookie.dayprice==500}
+                        class="here"
+                        {/if}>400-500元</a>
+                    <a href="{:url('index/rentcars/index',array('dayprice'=>'999'))}"
+                        {if $Think.cookie.dayprice==999}
+                        class="here"
+                        {/if}>500元以上</a>
+                </li>
+            </ul>
+        </div>
+        <div class="cartype">
+            <ul class="clearfix">
+                <li><a href="/simcms/index.php?m=rentcar&c=f_0" class="here">全部信息</a></li>
+
+            </ul>
+        </div>
+        <div class="search_big_box">
+            <div class="orderlist">
+                <ul class="fl">
+                    <li class="or04"><a href="/simcms/index.php?m=rentcar&order=2" >时间</a></li>
+
+                </ul>
+            </div>
+            <div class="box">
+                {volist name="rentcars" id="vo"}
+                <div class="listrentcar clearfix">
+                    <div class="img">
+                        <a href="{:url('index/rentcars/rentcarsdetails',array('id'=>$vo.id))}" target="_blank">
+                            <img src="__UPLOADS__/{$vo.img}"/></a>
+                    </div>
+                    <div class="word">
+                        <p class="clearfix">
+                            <span class="carname fl">
+                                <a href="{:url('index/rentcars/rentcarsdetails',array('id'=>$vo.id))}" target="_blank">{$vo.full_name}</a>
+                            </span></span>
+                        </p>
+                        <p>{$vo.details}</p>
+                        <p>发布日期：{$vo.listtime|date="Y-m-d"}</p>
+                    </div>
+                    <div class="price">
+                        <span class="orange01 fb f14 fr">￥{$vo.dayprice|format='%.2f'}元/天&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;￥{$vo.monthprice|format='%.2f'}元/月</span>
+                    </div>
+                </div>
+                {/volist}
+                <div class="page_list">
+                {$rentcars|raw}</div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
